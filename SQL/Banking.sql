@@ -10,7 +10,7 @@ create table tblAccounts
 	minbalance varchar(10) not null,
 	acc_number varchar(20) unique not null,
 	balance varchar(20) not null,
-	open_date date not null,
+	open_date date not null
 )
 --drop table tblAccounts
 
