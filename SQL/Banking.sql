@@ -68,7 +68,7 @@ create table tblBlocked
 create table tblInternetBanking
 (
 	cust_id varchar(20) foreign key references tblAccounts(cust_id),
-	acc_number varchar(20) unique not null,
+	acc_number varchar(20) primary key,
 	pwd varchar(20) not null,
 	Tpwd varchar(20) not null,
 )
