@@ -83,3 +83,54 @@ create table tblBeneficiary
 	nickname varchar(20) not null
 )
 --drop table tblBeneficiary
+
+
+--Stored Procedures
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Jayanth
+-- Create date: 25-12-2020
+-- Description:	User Registration
+-- =============================================
+CREATE PROCEDURE proc_UserReg 
+	-- Add the parameters for the stored procedure here
+	@aadhar varchar(20),
+	@cust_id varchar(20),
+	@title varchar(20),
+	@first_name varchar(30),
+	@middle_name varchar(30),
+	@last_name varchar(30),
+	@father_name varchar(50),
+	@phone varchar(15),
+	@cust_mail varchar(50),
+	@dob date,
+	@age int,
+	@res_address varchar(200),
+	@perm_address varchar(200),
+	@gender varchar(10)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	insert into tblCustomer (aadhar,cust_id,title,first_name,middle_name,last_name,father_name,phone,cust_mail,dob,age,res_address,perm_address,gender) values (@aadhar,@cust_id,@title,@first_name,@middle_name,@last_name,@father_name,@phone,@cust_mail,@dob,@age,@res_address,@perm_address,@gender)
+END
+GO
