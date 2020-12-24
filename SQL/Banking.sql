@@ -104,7 +104,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Jayanth
+-- Author:	Narla	Jayanth
 -- Create date: 25-12-2020
 -- Description:	User Registration
 -- =============================================
@@ -125,7 +125,7 @@ CREATE PROCEDURE proc_UserReg
 	@perm_address varchar(200),
 	@gender varchar(10)
 AS
-BEGIN
+BEGIN 
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
