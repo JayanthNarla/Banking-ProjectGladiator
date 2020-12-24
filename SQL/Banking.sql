@@ -164,7 +164,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Narla Jayanth
+-- Author:	Narla Jayanth
 -- Create date: 25-12-2020
 -- Description:	User Login
 -- =============================================
@@ -205,7 +205,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Narla Jayanth
+-- Author:	Narla Jayanth
 -- Create date: 25-12-2020
 -- Description:	Get Blocked Contacts
 -- =============================================
@@ -243,7 +243,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		Narla Jayanth
+-- Author:	Narla Jayanth
 -- Create date: 25-12-2020
 -- Description:	Insert Blocked Contacts
 -- =============================================
