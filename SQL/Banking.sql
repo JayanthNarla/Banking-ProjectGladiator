@@ -1,3 +1,11 @@
+-- =============================================
+-- Author:	Narla	Jayanth
+-- Create date: 23-12-2020
+-- Description:	Database and Table creation
+-- =============================================
+
+--Database and tables creation start
+
 create database dbBanking
 use dbBanking
 
@@ -83,6 +91,9 @@ create table tblBeneficiary
 	nickname varchar(20) not null
 )
 --drop table tblBeneficiary
+
+-- Finished Database and table creation
+
 
 
 --Stored Procedures
