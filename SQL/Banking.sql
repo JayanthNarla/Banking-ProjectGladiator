@@ -145,3 +145,119 @@ BEGIN
 	insert into tblCustomer (aadhar,cust_id,title,first_name,middle_name,last_name,father_name,phone,cust_mail,dob,age,res_address,perm_address,gender) values (@aadhar,@cust_id,@title,@first_name,@middle_name,@last_name,@father_name,@phone,@cust_mail,@dob,@age,@res_address,@perm_address,@gender)
 END
 GO
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Narla Jayanth
+-- Create date: 25-12-2020
+-- Description:	User Login
+-- =============================================
+CREATE PROCEDURE proc_UserLogin 
+	-- Add the parameters for the stored procedure here
+	@cust_id varchar(20),
+	@userId varchar(20),
+	@user_type varchar(20),
+	@pwd varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Retrieve user details on condition match
+	Select  cust_id,userId,user_type
+	from tblLogin
+	where cust_id = @cust_id AND pwd = @pwd
+END
+GO
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Narla Jayanth
+-- Create date: 25-12-2020
+-- Description:	Get Blocked Contacts
+-- =============================================
+CREATE PROCEDURE proc_GetBlocked 
+	-- Add the parameters for the stored procedure here
+	@cust_id varchar(20),
+	@acc_number varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Get blocked customers
+	SELECT * from tblBlocked
+END
+GO
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Narla Jayanth
+-- Create date: 25-12-2020
+-- Description:	Insert Blocked Contacts
+-- =============================================
+CREATE PROCEDURE proc_InsBlocked 
+	-- Add the parameters for the stored procedure here
+	@cust_id varchar(20),
+	@acc_number varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert blocked customers
+	Insert into tblBlocked (cust_id,acc_number) values (@cust_id,@acc_number)
+END
+GO
