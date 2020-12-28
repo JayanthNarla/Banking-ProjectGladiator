@@ -92,6 +92,16 @@ create table tblBeneficiary
 )
 --drop table tblBeneficiary
 
+create table tblStatus
+(
+	ref_no varchar(20) primary key,
+	aadhar varchar(20) foreign key references tblCustomer (aadhar),
+	app_by varchar(20) not null,
+	acc_status varchar(10) check(acc_status in ('approved','denied')) not null,
+	app_date date not null
+)
+--drop table tblBeneficiary
+
 -- Finished Database and table creation
 
 
@@ -168,7 +178,7 @@ GO
 -- Create date: 25-12-2020
 -- Description:	User Login
 -- =============================================
-CREATE PROCEDURE proc_UserLogin 
+Create PROCEDURE proc_UserLogin 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20),
 	@userId varchar(20),
@@ -183,9 +193,49 @@ BEGIN
     -- Retrieve user details on condition match
 	Select  cust_id,userId,user_type
 	from tblLogin
-	where cust_id = @cust_id AND pwd = @pwd
+	where cust_id = @cust_id AND pwd = @pwd AND cust_id not in (select cust_id from tblBlocked)
 END
 GO
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:	Narla Jayanth
+-- Create date: 25-12-2020
+-- Description:	User Login
+-- =============================================
+Create PROCEDURE proc_setUserLogin 
+	-- Add the parameters for the stored procedure here
+	@cust_id varchar(20),
+	@userId varchar(20),
+	@user_type varchar(20),
+	@pwd varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert Login Details of User
+	Insert into tblLogin (cust_id, userId,user_type,pwd) values ( @cust_id, @userId, @user_type, @pwd )
+END
+GO
+
+
 
 
 
@@ -209,7 +259,7 @@ GO
 -- Create date: 25-12-2020
 -- Description:	Get Blocked Contacts
 -- =============================================
-CREATE PROCEDURE proc_GetBlocked 
+Create PROCEDURE proc_GetBlocked 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20),
 	@acc_number varchar(20)
@@ -247,7 +297,7 @@ GO
 -- Create date: 25-12-2020
 -- Description:	Insert Blocked Contacts
 -- =============================================
-CREATE PROCEDURE proc_InsBlocked 
+Create PROCEDURE proc_InsBlocked 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20),
 	@acc_number varchar(20)
