@@ -86,7 +86,7 @@ create table tblInternetBanking
 create table tblBeneficiary
 (
 	ben_acc_num varchar(20) primary key,
-	cust_acc_num varchar(20) foreign key references tblAccounts(acc_number),
+	cust_id varchar(20) foreign key references tblAccounts(cust_id),
 	username varchar(50) not null,
 	nickname varchar(20) not null
 )
@@ -178,11 +178,9 @@ GO
 -- Create date: 25-12-2020
 -- Description:	User Login
 -- =============================================
-Create PROCEDURE proc_UserLogin 
+alter PROCEDURE proc_UserLogin 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20),
-	@userId varchar(20),
-	@user_type varchar(20),
 	@pwd varchar(20)
 AS
 BEGIN
@@ -196,7 +194,6 @@ BEGIN
 	where cust_id = @cust_id AND pwd = @pwd AND cust_id not in (select cust_id from tblBlocked)
 END
 GO
-
 
 -- ================================================
 -- Template generated from Template Explorer using:
@@ -234,8 +231,6 @@ BEGIN
 	Insert into tblLogin (cust_id, userId,user_type,pwd) values ( @cust_id, @userId, @user_type, @pwd )
 END
 GO
-
-
 
 
 
@@ -311,3 +306,19 @@ BEGIN
 	Insert into tblBlocked (cust_id,acc_number) values (@cust_id,@acc_number)
 END
 GO
+
+
+
+--test case data
+
+--truncate table tblLogin
+
+
+proc_setUserLogin 'R1234','qwerty1234','admin','Qwerty!23'
+proc_setUserLogin 'J1234','Jay123','customer','Qwerty!23'
+
+
+proc_UserLogin 'J1234','Qwerty!23'
+proc_UserLogin 'R1234','Qwerty!23'
+
+select * from tblLogin

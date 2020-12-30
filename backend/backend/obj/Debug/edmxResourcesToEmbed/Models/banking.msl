@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbBankingModelStoreContainer" CdmEntityContainer="dbBankingEntities">
+    <EntitySetMapping Name="tblAccounts">
+      <EntityTypeMapping TypeName="dbBankingModel.tblAccount">
+        <MappingFragment StoreEntitySet="tblAccounts">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_type" ColumnName="acc_type" />
+          <ScalarProperty Name="minbalance" ColumnName="minbalance" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="open_date" ColumnName="open_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBeneficiaries">
+      <EntityTypeMapping TypeName="dbBankingModel.tblBeneficiary">
+        <MappingFragment StoreEntitySet="tblBeneficiary">
+          <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBlockeds">
+      <EntityTypeMapping TypeName="dbBankingModel.tblBlocked">
+        <MappingFragment StoreEntitySet="tblBlocked">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCustomers">
+      <EntityTypeMapping TypeName="dbBankingModel.tblCustomer">
+        <MappingFragment StoreEntitySet="tblCustomer">
+          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="res_address" ColumnName="res_address" />
+          <ScalarProperty Name="perm_address" ColumnName="perm_address" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblInternetBankings">
+      <EntityTypeMapping TypeName="dbBankingModel.tblInternetBanking">
+        <MappingFragment StoreEntitySet="tblInternetBanking">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="Tpwd" ColumnName="Tpwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLogins">
+      <EntityTypeMapping TypeName="dbBankingModel.tblLogin">
+        <MappingFragment StoreEntitySet="tblLogin">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStatus">
+      <EntityTypeMapping TypeName="dbBankingModel.tblStatu">
+        <MappingFragment StoreEntitySet="tblStatus">
+          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+          <ScalarProperty Name="app_by" ColumnName="app_by" />
+          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+          <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTransactions">
+      <EntityTypeMapping TypeName="dbBankingModel.tblTransaction">
+        <MappingFragment StoreEntitySet="tblTransaction">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+          <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+          <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+          <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+          <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+          <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBlocked" FunctionName="dbBankingModel.Store.proc_GetBlocked">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBlocked_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_InsBlocked" FunctionName="dbBankingModel.Store.proc_InsBlocked" />
+    <FunctionImportMapping FunctionImportName="proc_setUserLogin" FunctionName="dbBankingModel.Store.proc_setUserLogin" />
+    <FunctionImportMapping FunctionImportName="proc_UserLogin" FunctionName="dbBankingModel.Store.proc_UserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_UserLogin_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_UserReg" FunctionName="dbBankingModel.Store.proc_UserReg" />
+  </EntityContainerMapping>
+</Mapping>

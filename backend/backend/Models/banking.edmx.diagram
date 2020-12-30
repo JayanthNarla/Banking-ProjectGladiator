@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e0eeb6a0c3d462e8cb6123f1143e60c" Name="Diagram1">
+        <EntityTypeShape EntityType="dbBankingModel.tblAccount" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblBeneficiary" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblBlocked" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblCustomer" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblInternetBanking" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblLogin" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblStatu" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblTransaction" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBenefi__cust___2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBlocke__cust___5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblCustom__cust___4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblIntern__cust___619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblLogin__cust_i__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblTransa__cust___52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblStatus__aadha__160F4887" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
