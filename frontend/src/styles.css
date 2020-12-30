@@ -5,6 +5,10 @@
   --blue: #0395b9;
   --white: #ecf0f1;
   --black: #21252a;
+  --black2: #151414;
+  --grey: #878787;
+  --orange: #ff5e14;
+  --light-red: #ff4d4d;
   --primary-font: "Lato", sans-serif;
   --secondary-font: "Nunito", sans-serif;
 }
@@ -13,6 +17,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* overflow-x: auto; */
 }
 
 body {

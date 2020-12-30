@@ -1,0 +1,105 @@
+<app-navbar></app-navbar>
+<section id="adminlogin">
+  <div class="cntr">
+    <div class="wrapper">
+      <h2>Enter your Credentials</h2>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form
+          [formGroup]="loginForm"
+          (submit)="AdminLogin()"
+          autocomplete="off"
+        >
+          <div class="form-group row">
+            <label for="id" class="col-sm-3 col-form-label"
+              >User Id
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="id"
+                type="text"
+                name="cust_id"
+                placeholder="Enter Your User Id"
+                [(ngModel)]="user.cust_id"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.id">
+              <div
+                class="error-message"
+                *ngIf="
+                  loginForm.get('id').hasError(error.type) &&
+                  loginForm.get('id').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-3 col-form-label">
+              Password
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="password"
+                type="password"
+                name="Password"
+                placeholder="Enter Your Password"
+                [(ngModel)]="user.pwd"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.password">
+              <div
+                class="error-message"
+                *ngIf="
+                  loginForm.get('password').hasError(error.type) &&
+                  (loginForm.get('password').dirty ||
+                    loginForm.get('password').touched)
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+          <div class="wrapper">
+            <button
+              type="submit"
+              class="form-control btn btn-primary"
+              style="margin-bottom: 20px; width: 100px"
+              [disabled]="!loginForm.valid"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
