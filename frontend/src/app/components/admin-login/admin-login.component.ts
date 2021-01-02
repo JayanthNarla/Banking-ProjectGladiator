@@ -67,8 +67,8 @@ export class AdminLoginComponent implements OnInit {
 
   AdminLogin = () => {
     console.log('submitted');
-    console.log(this.user.cust_id);
-    console.log(this.user.pwd);
+    // console.log(this.user.cust_id);
+    // console.log(this.user.pwd);
     this.ls.userLogin(this.user).subscribe((data) => {
       console.log(data);
       if (data['user_type'] == 'admin') {

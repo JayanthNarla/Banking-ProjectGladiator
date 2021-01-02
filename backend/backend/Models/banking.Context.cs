@@ -27,14 +27,33 @@ namespace backend.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblAccount> tblAccounts { get; set; }
-        public virtual DbSet<tblBeneficiary> tblBeneficiaries { get; set; }
-        public virtual DbSet<tblBlocked> tblBlockeds { get; set; }
-        public virtual DbSet<tblCustomer> tblCustomers { get; set; }
-        public virtual DbSet<tblInternetBanking> tblInternetBankings { get; set; }
-        public virtual DbSet<tblLogin> tblLogins { get; set; }
-        public virtual DbSet<tblStatu> tblStatus { get; set; }
-        public virtual DbSet<tblTransaction> tblTransactions { get; set; }
+        public virtual DbSet<tblAccounts> tblAccounts { get; set; }
+        public virtual DbSet<tblBeneficiary> tblBeneficiary { get; set; }
+        public virtual DbSet<tblBlocked> tblBlocked { get; set; }
+        public virtual DbSet<tblCustomer> tblCustomer { get; set; }
+        public virtual DbSet<tblInternetBanking> tblInternetBanking { get; set; }
+        public virtual DbSet<tblLogin> tblLogin { get; set; }
+        public virtual DbSet<tblStatus> tblStatus { get; set; }
+        public virtual DbSet<tblTransaction> tblTransaction { get; set; }
+    
+        public virtual ObjectResult<proc_getAllAppStatus_Result> proc_getAllAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllAppStatus_Result>("proc_getAllAppStatus");
+        }
+    
+        public virtual ObjectResult<proc_getAllCustDetails_Result> proc_getAllCustDetails()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetails_Result>("proc_getAllCustDetails");
+        }
+    
+        public virtual ObjectResult<proc_getAppStatus_Result> proc_getAppStatus(string cust_id)
+        {
+            var cust_idParameter = cust_id != null ?
+                new ObjectParameter("cust_id", cust_id) :
+                new ObjectParameter("cust_id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAppStatus_Result>("proc_getAppStatus", cust_idParameter);
+        }
     
         public virtual ObjectResult<proc_GetBlocked_Result> proc_GetBlocked(string cust_id, string acc_number)
         {
@@ -47,6 +66,15 @@ namespace backend.Models
                 new ObjectParameter("acc_number", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetBlocked_Result>("proc_GetBlocked", cust_idParameter, acc_numberParameter);
+        }
+    
+        public virtual ObjectResult<proc_getCustDetails_Result> proc_getCustDetails(string cust_id)
+        {
+            var cust_idParameter = cust_id != null ?
+                new ObjectParameter("cust_id", cust_id) :
+                new ObjectParameter("cust_id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getCustDetails_Result>("proc_getCustDetails", cust_idParameter);
         }
     
         public virtual int proc_InsBlocked(string cust_id, string acc_number)
@@ -62,15 +90,15 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter, acc_numberParameter);
         }
     
-        public virtual int proc_setUserLogin(string cust_id, string userId, string user_type, string pwd)
+        public virtual int proc_setUserLogin(string cust_id, string acc_number, string user_type, string pwd)
         {
             var cust_idParameter = cust_id != null ?
                 new ObjectParameter("cust_id", cust_id) :
                 new ObjectParameter("cust_id", typeof(string));
     
-            var userIdParameter = userId != null ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(string));
+            var acc_numberParameter = acc_number != null ?
+                new ObjectParameter("acc_number", acc_number) :
+                new ObjectParameter("acc_number", typeof(string));
     
             var user_typeParameter = user_type != null ?
                 new ObjectParameter("user_type", user_type) :
@@ -80,7 +108,16 @@ namespace backend.Models
                 new ObjectParameter("pwd", pwd) :
                 new ObjectParameter("pwd", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_setUserLogin", cust_idParameter, userIdParameter, user_typeParameter, pwdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_setUserLogin", cust_idParameter, acc_numberParameter, user_typeParameter, pwdParameter);
+        }
+    
+        public virtual int proc_toggleAppStatus(Nullable<int> ref_no)
+        {
+            var ref_noParameter = ref_no.HasValue ?
+                new ObjectParameter("ref_no", ref_no) :
+                new ObjectParameter("ref_no", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_toggleAppStatus", ref_noParameter);
         }
     
         public virtual ObjectResult<proc_UserLogin_Result> proc_UserLogin(string cust_id, string pwd)
@@ -155,6 +192,21 @@ namespace backend.Models
                 new ObjectParameter("gender", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_UserReg", aadharParameter, cust_idParameter, titleParameter, first_nameParameter, middle_nameParameter, last_nameParameter, father_nameParameter, phoneParameter, cust_mailParameter, dobParameter, ageParameter, res_addressParameter, perm_addressParameter, genderParameter);
+        }
+    
+        public virtual ObjectResult<proc_getAllApprovedAppStatus_Result> proc_getAllApprovedAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllApprovedAppStatus_Result>("proc_getAllApprovedAppStatus");
+        }
+    
+        public virtual ObjectResult<proc_getAllDeniedAppStatus_Result> proc_getAllDeniedAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllDeniedAppStatus_Result>("proc_getAllDeniedAppStatus");
+        }
+    
+        public virtual ObjectResult<proc_getAllPendingAppStatus_Result> proc_getAllPendingAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllPendingAppStatus_Result>("proc_getAllPendingAppStatus");
         }
     }
 }

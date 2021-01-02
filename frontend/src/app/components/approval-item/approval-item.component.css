@@ -1,0 +1,78 @@
+td,
+th {
+  border-top: 1px solid var(--black);
+  padding: 10px;
+}
+td {
+  border-left: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+}
+th {
+  background-color: var(--blue);
+  border-left: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+}
+tr:nth-of-type(even) td {
+  background-color: #d8d7d7;
+}
+tr:nth-of-type(odd) td {
+  background-color: var(--white);
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media only screen and (max-width: 760px) {
+  p {
+    display: block;
+    font-weight: bold;
+  }
+
+  tr td:not(:first-child),
+  tr th:not(:first-child),
+  tr td:not(.total-val) {
+    display: none;
+  }
+  tr:nth-of-type(even) td:first-child {
+    background-color: rgba(3, 149, 186, 0.65);
+  }
+  tr:nth-of-type(odd) td:first-child {
+    background-color: white;
+  }
+  tr:nth-of-type(even) td:not(:first-child) {
+    background-color: white;
+  }
+  tr th:first-child {
+    width: 100%;
+    display: block;
+  }
+  tr th:not(:first-child) {
+    width: 40%;
+    transition: transform 0.4s ease-out;
+    transform: translateY(-9999px);
+    position: relative;
+    z-index: -1;
+  }
+  tr td:not(:first-child) {
+    transition: transform 0.4s ease-out;
+    transform: translateY(-9999px);
+    width: 60%;
+    position: relative;
+    z-index: -1;
+  }
+  tr td:first-child {
+    display: block;
+    cursor: pointer;
+  }
+}
+@media only screen and (max-width: 300px) {
+  tr th:not(:first-child) {
+    width: 50%;
+    font-size: 14px;
+  }
+  tr td:not(:first-child) {
+    width: 50%;
+    font-size: 14px;
+  }
+}

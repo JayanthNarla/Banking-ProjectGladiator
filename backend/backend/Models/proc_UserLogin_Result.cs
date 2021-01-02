@@ -10,11 +10,11 @@
 namespace backend.Models
 {
     using System;
-
+    
     public partial class proc_UserLogin_Result
     {
         public string cust_id { get; set; }
-        public string userId { get; set; }
+        public string acc_number { get; set; }
         public string user_type { get; set; }
     }
 }

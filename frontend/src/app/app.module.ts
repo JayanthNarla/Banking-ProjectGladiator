@@ -1,3 +1,5 @@
+import { CustomerService } from './services/customer.service';
+import { LoginService } from './services/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,6 +15,13 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { ApprovalItemComponent } from './components/approval-item/approval-item.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
+import { AllApprovalsListComponent } from './components/all-approvals-list/all-approvals-list.component';
+import { AllPendingListComponent } from './components/all-pending-list/all-pending-list.component';
+import { AllDeniedListComponent } from './components/all-denied-list/all-denied-list.component';
+import { AllApprovedListComponent } from './components/all-approved-list/all-approved-list.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +34,11 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     AdminLoginComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
+    ApprovalItemComponent,
+    AllApprovalsListComponent,
+    AllPendingListComponent,
+    AllDeniedListComponent,
+    AllApprovedListComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,8 +46,15 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
+    ToastrModule.forRoot({
+      timeOut: 1500,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+    }),
   ],
-  providers: [],
+  providers: [LoginService, CustomerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

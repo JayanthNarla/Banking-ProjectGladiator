@@ -15,7 +15,7 @@ namespace backend.Models
     public partial class tblTransaction
     {
         public string transaction_id { get; set; }
-        public string cust_id { get; set; }
+        public string acc_number { get; set; }
         public string transaction_type { get; set; }
         public System.DateTime tran_date { get; set; }
         public string cred_acc { get; set; }
@@ -24,6 +24,6 @@ namespace backend.Models
         public string deb_bal { get; set; }
         public string cred_bal { get; set; }
     
-        public virtual tblAccount tblAccount { get; set; }
+        public virtual tblAccounts tblAccounts { get; set; }
     }
 }

@@ -14,11 +14,11 @@ namespace backend.Models
     
     public partial class tblLogin
     {
+        public string acc_number { get; set; }
         public string cust_id { get; set; }
-        public string userId { get; set; }
         public string user_type { get; set; }
         public string pwd { get; set; }
     
-        public virtual tblAccount tblAccount { get; set; }
+        public virtual tblAccounts tblAccounts { get; set; }
     }
 }

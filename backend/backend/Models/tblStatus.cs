@@ -12,10 +12,10 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblStatu
+    public partial class tblStatus
     {
-        public string ref_no { get; set; }
-        public string aadhar { get; set; }
+        public int ref_no { get; set; }
+        public string cust_id { get; set; }
         public string app_by { get; set; }
         public string acc_status { get; set; }
         public System.DateTime app_date { get; set; }

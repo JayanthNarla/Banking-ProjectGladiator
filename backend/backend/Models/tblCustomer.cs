@@ -17,7 +17,8 @@ namespace backend.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblCustomer()
         {
-            this.tblStatus = new HashSet<tblStatu>();
+            this.tblAccounts = new HashSet<tblAccounts>();
+            this.tblStatus = new HashSet<tblStatus>();
         }
     
         public string aadhar { get; set; }
@@ -35,8 +36,9 @@ namespace backend.Models
         public string perm_address { get; set; }
         public string gender { get; set; }
     
-        public virtual tblAccount tblAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStatu> tblStatus { get; set; }
+        public virtual ICollection<tblAccounts> tblAccounts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblStatus> tblStatus { get; set; }
     }
 }
