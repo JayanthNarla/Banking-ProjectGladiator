@@ -481,7 +481,7 @@ GO
 -- Create date: 02-01-2021
 -- Description:	Get all Application Status
 -- =============================================
-CREATE PROCEDURE proc_getAllPendingAppStatus 
+create PROCEDURE proc_getAllPendingAppStatus 
 
 AS
 BEGIN
@@ -490,7 +490,9 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	select ref_no, cust_id, app_by, acc_status, app_date from tblStatus where acc_status = 'pending';
+	select CONCAT_WS(' ',title,first_name,middle_name,last_name) cust_name , aadhar, c.cust_id,  
+	father_name, phone, cust_mail, dob, age, res_address, gender,s.acc_status from tblCustomer c join tblStatus s
+	on c.cust_id = s.cust_id where s.acc_status = 'pending'; 
 END
 GO
 
@@ -517,7 +519,7 @@ GO
 -- Create date: 02-01-2021
 -- Description:	Get all Application Status
 -- =============================================
-CREATE PROCEDURE proc_getAllApprovedAppStatus 
+create PROCEDURE proc_getAllApprovedAppStatus 
 
 AS
 BEGIN
@@ -526,7 +528,9 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	select ref_no, cust_id, app_by, acc_status, app_date from tblStatus where acc_status = 'approved';
+	select CONCAT_WS(' ',title,first_name,middle_name,last_name) cust_name , aadhar, c.cust_id,  
+	father_name, phone, cust_mail, dob, age, res_address, gender,s.acc_status from tblCustomer c join tblStatus s
+	on c.cust_id = s.cust_id where s.acc_status = 'approved'; 
 END
 GO
 
@@ -553,7 +557,7 @@ GO
 -- Create date: 02-01-2021
 -- Description:	Get all Application Status
 -- =============================================
-CREATE PROCEDURE proc_getAllDeniedAppStatus 
+create PROCEDURE proc_getAllDeniedAppStatus 
 
 AS
 BEGIN
@@ -562,7 +566,12 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	select ref_no, cust_id, app_by, acc_status, app_date from tblStatus where acc_status = 'denied';
+
+	select CONCAT_WS(' ',title,first_name,middle_name,last_name) cust_name , aadhar, c.cust_id,  
+	father_name, phone, cust_mail, dob, age, res_address, gender,s.acc_status from tblCustomer c join tblStatus s
+	on c.cust_id = s.cust_id where s.acc_status = 'denied'; 
+
+	--select ref_no, cust_id, app_by, acc_status, app_date from tblStatus where acc_status = 'denied';
 END
 GO
 
@@ -593,7 +602,7 @@ GO
 -- Create date: 02-01-2021
 -- Description:	Get all Application Status
 -- =============================================
-alter PROCEDURE proc_toggleAppStatus 
+create PROCEDURE proc_toggleAppStatus 
 	@ref_no int
 AS
 BEGIN
@@ -607,6 +616,40 @@ END
 GO
 
 
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Jayanth
+-- Create date: 02-01-2021
+-- Description:	Get all Application Status
+-- =============================================
+create PROCEDURE proc_denyAppStatus 
+	@ref_no int
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	update tblStatus set acc_status = 'denied' where ref_no = @ref_no;
+END
+GO
 
 
 

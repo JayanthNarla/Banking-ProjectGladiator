@@ -1,6 +1,6 @@
 <div class="approvalList">
   <div class="list">
-    <div class="list__title">Approvals List</div>
+    <div class="list__title">View All Applications</div>
     <ul class="list-group">
       <ng-container *ngFor="let customer of customers; index as i">
         <li class="list-group-item center-position">
@@ -35,6 +35,10 @@
       <div class="form-group">
         <label for="name">Name: </label>
         <input type="text" class="form-control" id="name" readonly />
+      </div>
+      <div class="form-group">
+        <label for="acc_status">Account Status: </label>
+        <input type="text" class="form-control" id="acc_status" readonly />
       </div>
       <div class="form-group">
         <label for="aadhar">aadhar number: </label>
@@ -74,16 +78,13 @@
       </div>
     </form>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" (click)="approve()">
-      Approve
-    </button>
+  <div class="modal-footer" *ngIf="acc_status == pending">
     <button
       type="button"
       class="btn btn-outline-danger"
       (click)="modal.close('Save click')"
     >
-      Decline
+      Close
     </button>
   </div>
 </ng-template>

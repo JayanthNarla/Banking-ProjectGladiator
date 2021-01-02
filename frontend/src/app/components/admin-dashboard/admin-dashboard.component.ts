@@ -14,11 +14,11 @@ import { ToastrService } from 'ngx-toastr';
 export class AdminDashboardComponent implements OnInit {
   //Navbar props
   main = 'All Applications';
-  opt1 = 'Pending List';
-  opt2 = 'Approved List';
-  opt3 = 'Denied List';
-  mainLink = './';
-  link1 = 'pending';
+  opt1 = 'Pending Applications';
+  opt2 = 'Approved Applications';
+  opt3 = 'Denied Applications';
+  mainLink = 'allApplications';
+  link1 = './';
   link2 = 'approved';
   link3 = 'denied';
 

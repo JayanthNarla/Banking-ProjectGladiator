@@ -1,1 +1,91 @@
-<p>all-approved-list works!</p>
+<div class="approvalList">
+  <div class="list">
+    <div class="list__title" *ngIf="applications_size > 0">
+      Approved Applications
+    </div>
+    <div class="list__title" *ngIf="applications_size == 0">
+      No Application Approved Yet
+    </div>
+    <ul class="list-group">
+      <ng-container *ngFor="let application of applications; index as i">
+        <li class="list-group-item center-position">
+          <div class="card__details">
+            <div class="card__details__name">{{ application.cust_name }}</div>
+          </div>
+          <div class="card__action">
+            <button class="viewCust" (click)="open(custDetails, application)">
+              View Application
+            </button>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>
+
+<ng-template #custDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Check Details</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" class="form-control" id="name" readonly />
+      </div>
+      <div class="form-group">
+        <label for="aadhar">aadhar number: </label>
+        <input type="text" class="form-control" id="aadhar" readonly />
+      </div>
+      <div class="form-group">
+        <label for="custId">Customer Id: </label>
+        <input type="text" class="form-control" id="custId" readonly />
+      </div>
+      <div class="form-group">
+        <label for="fatherName">Father Name: </label>
+        <input type="text" class="form-control" id="fatherName" readonly />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone: </label>
+        <input type="text" class="form-control" id="phone" readonly />
+      </div>
+      <div class="form-group">
+        <label for="mailid">Mail ID: </label>
+        <input type="text" class="form-control" id="mailid" readonly />
+      </div>
+      <div class="form-group">
+        <label for="dob">Date Of Birth: </label>
+        <input type="date" class="form-control" id="dob" readonly />
+      </div>
+      <div class="form-group">
+        <label for="age">Age: </label>
+        <input type="text" class="form-control" id="age" readonly />
+      </div>
+      <div class="form-group">
+        <label for="resAdd">Resident Address: </label>
+        <input type="text" class="form-control" id="resAdd" readonly />
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender: </label>
+        <input type="text" class="form-control" id="gender" readonly />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

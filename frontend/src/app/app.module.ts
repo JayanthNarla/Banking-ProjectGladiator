@@ -2,6 +2,7 @@ import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 1500,
       progressBar: true,

@@ -54,7 +54,7 @@
     <Property Name="perm_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblAccoun__cust___286302EC" FromRole="tblCustomer" ToRole="tblAccounts" />
-    <NavigationProperty Name="tblStatus" Relationship="Self.FK__tblStatus__cust___5CD6CB2B" FromRole="tblCustomer" ToRole="tblStatus" />
+    <NavigationProperty Name="tblStatus" Relationship="Self.FK__tblStatus__cust___6FE99F9F" FromRole="tblCustomer" ToRole="tblStatus" />
   </EntityType>
   <EntityType Name="tblInternetBanking">
     <Key>
@@ -85,7 +85,7 @@
     <Property Name="app_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="acc_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="app_date" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblStatus__cust___5CD6CB2B" FromRole="tblStatus" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblStatus__cust___6FE99F9F" FromRole="tblStatus" ToRole="tblCustomer" />
   </EntityType>
   <EntityType Name="tblTransaction">
     <Key>
@@ -174,7 +174,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblStatus__cust___5CD6CB2B">
+  <Association Name="FK__tblStatus__cust___6FE99F9F">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
     <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="*" />
     <ReferentialConstraint>
@@ -219,12 +219,15 @@
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblTransaction" EntitySet="tblTransaction" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblStatus__cust___5CD6CB2B" Association="Self.FK__tblStatus__cust___5CD6CB2B">
+    <AssociationSet Name="FK__tblStatus__cust___6FE99F9F" Association="Self.FK__tblStatus__cust___6FE99F9F">
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>
+    <FunctionImport Name="proc_getAllApprovedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllApprovedAppStatus_Result)" />
     <FunctionImport Name="proc_getAllAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllAppStatus_Result)" />
     <FunctionImport Name="proc_getAllCustDetails" ReturnType="Collection(dbBankingModel.proc_getAllCustDetails_Result)" />
+    <FunctionImport Name="proc_getAllDeniedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllDeniedAppStatus_Result)" />
+    <FunctionImport Name="proc_getAllPendingAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllPendingAppStatus_Result)" />
     <FunctionImport Name="proc_getAppStatus" ReturnType="Collection(dbBankingModel.proc_getAppStatus_Result)">
       <Parameter Name="cust_id" Mode="In" Type="String" />
     </FunctionImport>
@@ -268,10 +271,23 @@
       <Parameter Name="perm_address" Mode="In" Type="String" />
       <Parameter Name="gender" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="proc_getAllApprovedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllApprovedAppStatus_Result)" />
-    <FunctionImport Name="proc_getAllDeniedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllDeniedAppStatus_Result)" />
-    <FunctionImport Name="proc_getAllPendingAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllPendingAppStatus_Result)" />
+    <FunctionImport Name="proc_denyAppStatus">
+      <Parameter Name="ref_no" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="proc_getAllApprovedAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+  </ComplexType>
   <ComplexType Name="proc_getAllAppStatus_Result">
     <Property Type="Int32" Name="ref_no" Nullable="false" />
     <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
@@ -290,6 +306,32 @@
     <Property Type="Int32" Name="age" Nullable="false" />
     <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
     <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllDeniedAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllPendingAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
   </ComplexType>
   <ComplexType Name="proc_getAppStatus_Result">
     <Property Type="Int32" Name="ref_no" Nullable="false" />
@@ -318,26 +360,5 @@
     <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="proc_getAllApprovedAppStatus_Result">
-    <Property Type="Int32" Name="ref_no" Nullable="false" />
-    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
-    <Property Type="DateTime" Name="app_date" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="proc_getAllDeniedAppStatus_Result">
-    <Property Type="Int32" Name="ref_no" Nullable="false" />
-    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
-    <Property Type="DateTime" Name="app_date" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="proc_getAllPendingAppStatus_Result">
-    <Property Type="Int32" Name="ref_no" Nullable="false" />
-    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
-    <Property Type="DateTime" Name="app_date" Nullable="false" />
   </ComplexType>
 </Schema>

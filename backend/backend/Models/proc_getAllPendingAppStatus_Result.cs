@@ -13,10 +13,16 @@ namespace backend.Models
     
     public partial class proc_getAllPendingAppStatus_Result
     {
-        public int ref_no { get; set; }
+        public string cust_name { get; set; }
+        public string aadhar { get; set; }
         public string cust_id { get; set; }
-        public string app_by { get; set; }
+        public string father_name { get; set; }
+        public string phone { get; set; }
+        public string cust_mail { get; set; }
+        public System.DateTime dob { get; set; }
+        public int age { get; set; }
+        public string res_address { get; set; }
+        public string gender { get; set; }
         public string acc_status { get; set; }
-        public System.DateTime app_date { get; set; }
     }
 }

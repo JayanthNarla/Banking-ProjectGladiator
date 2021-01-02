@@ -37,6 +37,7 @@ namespace backend.Controllers
         }
 
         [HttpPut]
+        
         public HttpResponseMessage Put(int id, tblStatus sts)
         {
             DbContextTransaction transaction = entities.Database.BeginTransaction();

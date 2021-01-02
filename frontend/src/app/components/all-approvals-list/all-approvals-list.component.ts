@@ -19,7 +19,7 @@ export class AllApprovalsListComponent implements OnInit {
   application_id: Application;
   application_status: Application;
   toast: string;
-
+  acc_status: string;
   constructor(
     private modalService: NgbModal,
     private cs: CustomerService,
@@ -32,10 +32,10 @@ export class AllApprovalsListComponent implements OnInit {
     this.toast = 'toast';
 
     this.cs.getAllCustomers().subscribe((custData) => {
-      // console.log(custData);
+      console.log('custData', custData);
       this.customers = custData;
       this.cs.getAllAppStatus().subscribe((aplData) => {
-        // console.log(aplData);
+        console.log('aplData :>> ', aplData);
         this.applications = aplData;
       });
     });
@@ -48,8 +48,8 @@ export class AllApprovalsListComponent implements OnInit {
     this.application_id.cust_id = custId;
 
     this.cs.getAppStatus(this.application_id).subscribe((data) => {
-      // console.log(data);
-      // console.log(typeof this.applications[0]['ref_no']);
+      console.log(data);
+      console.log(typeof this.applications[0]['ref_no']);
 
       for (let i = 0; i < this.customers.length; i++) {
         if (this.customers[i]['cust_id'] == data['cust_id']) {
@@ -80,6 +80,7 @@ export class AllApprovalsListComponent implements OnInit {
     });
 
     document.getElementById('name').setAttribute('value', cust.cust_name);
+    // document.getElementById('acc_status').setAttribute('value', cust.acc_status);
     document.getElementById('aadhar').setAttribute('value', cust.aadhar);
     document.getElementById('custId').setAttribute('value', cust.cust_id);
     document
@@ -92,12 +93,6 @@ export class AllApprovalsListComponent implements OnInit {
     document.getElementById('gender').setAttribute('value', cust.gender);
     document.getElementById('dob').setAttribute('value', cust.dob.slice(0, 10));
   }
-
-  getAllAppStatus = () => {
-    this.cs.getAllAppStatus().subscribe((data) => {
-      console.log(data);
-    });
-  };
 
   ngOnInit(): void {}
 }

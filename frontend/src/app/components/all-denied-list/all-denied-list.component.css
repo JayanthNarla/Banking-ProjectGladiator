@@ -1,0 +1,80 @@
+.approvalList {
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list__title {
+  text-align: left;
+  background-color: var(--blue);
+  padding: 20px 20px;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+h4 {
+  color: var(--black);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+label {
+  color: var(--black);
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.details {
+  color: var(--black);
+}
+
+.list {
+  width: 50%;
+}
+
+.card__content {
+  width: 100%;
+  padding: 10px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__details .card__details__name {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 18px;
+  color: var(--black);
+}
+
+.center-position {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewCust {
+  background-color: var(--blue);
+  border: none;
+  padding: 10px;
+  color: var(--white);
+  border-radius: 5px;
+}
+
+.modal-header {
+  background-color: var(--blue);
+}
+.modal-title,
+.close {
+  color: var(--white);
+}

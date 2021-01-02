@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4a55aa1ace5c405881996b8c0032e589" Name="Diagram1">
+      <Diagram DiagramId="b192b90df9aa4e5592c8287309884b4a" Name="Diagram1">
         <EntityTypeShape EntityType="dbBankingModel.tblAccounts" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankingModel.tblBeneficiary" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="dbBankingModel.tblBlocked" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
@@ -19,7 +19,7 @@
         <AssociationConnector Association="dbBankingModel.FK__tblIntern__acc_n__33D4B598" ManuallyRouted="false" />
         <AssociationConnector Association="dbBankingModel.FK__tblLogin__acc_nu__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="dbBankingModel.FK__tblTransa__acc_n__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblStatus__cust___5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblStatus__cust___6FE99F9F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

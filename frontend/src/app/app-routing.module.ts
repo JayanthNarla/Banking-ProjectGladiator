@@ -16,8 +16,8 @@ const routes: Routes = [
     path: 'admindash',
     component: AdminDashboardComponent,
     children: [
-      { path: '', component: AllApprovalsListComponent },
-      { path: 'pending', component: AllPendingListComponent },
+      { path: '', component: AllPendingListComponent },
+      { path: 'allApplications', component: AllApprovalsListComponent },
       { path: 'approved', component: AllApprovedListComponent },
       { path: 'denied', component: AllDeniedListComponent },
     ],

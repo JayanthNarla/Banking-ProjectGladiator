@@ -36,6 +36,11 @@ namespace backend.Models
         public virtual DbSet<tblStatus> tblStatus { get; set; }
         public virtual DbSet<tblTransaction> tblTransaction { get; set; }
     
+        public virtual ObjectResult<proc_getAllApprovedAppStatus_Result> proc_getAllApprovedAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllApprovedAppStatus_Result>("proc_getAllApprovedAppStatus");
+        }
+    
         public virtual ObjectResult<proc_getAllAppStatus_Result> proc_getAllAppStatus()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllAppStatus_Result>("proc_getAllAppStatus");
@@ -44,6 +49,16 @@ namespace backend.Models
         public virtual ObjectResult<proc_getAllCustDetails_Result> proc_getAllCustDetails()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetails_Result>("proc_getAllCustDetails");
+        }
+    
+        public virtual ObjectResult<proc_getAllDeniedAppStatus_Result> proc_getAllDeniedAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllDeniedAppStatus_Result>("proc_getAllDeniedAppStatus");
+        }
+    
+        public virtual ObjectResult<proc_getAllPendingAppStatus_Result> proc_getAllPendingAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllPendingAppStatus_Result>("proc_getAllPendingAppStatus");
         }
     
         public virtual ObjectResult<proc_getAppStatus_Result> proc_getAppStatus(string cust_id)
@@ -194,19 +209,13 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_UserReg", aadharParameter, cust_idParameter, titleParameter, first_nameParameter, middle_nameParameter, last_nameParameter, father_nameParameter, phoneParameter, cust_mailParameter, dobParameter, ageParameter, res_addressParameter, perm_addressParameter, genderParameter);
         }
     
-        public virtual ObjectResult<proc_getAllApprovedAppStatus_Result> proc_getAllApprovedAppStatus()
+        public virtual int proc_denyAppStatus(Nullable<int> ref_no)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllApprovedAppStatus_Result>("proc_getAllApprovedAppStatus");
-        }
+            var ref_noParameter = ref_no.HasValue ?
+                new ObjectParameter("ref_no", ref_no) :
+                new ObjectParameter("ref_no", typeof(int));
     
-        public virtual ObjectResult<proc_getAllDeniedAppStatus_Result> proc_getAllDeniedAppStatus()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllDeniedAppStatus_Result>("proc_getAllDeniedAppStatus");
-        }
-    
-        public virtual ObjectResult<proc_getAllPendingAppStatus_Result> proc_getAllPendingAppStatus()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllPendingAppStatus_Result>("proc_getAllPendingAppStatus");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_denyAppStatus", ref_noParameter);
         }
     }
 }

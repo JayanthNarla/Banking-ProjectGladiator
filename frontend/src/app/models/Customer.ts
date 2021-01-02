@@ -9,6 +9,7 @@ export class Customer {
   age: string;
   res_address: string;
   gender: string;
+  acc_status: string;
   constructor(
     cust_name?: string,
     aadhar?: string,
@@ -19,7 +20,8 @@ export class Customer {
     dob?: string,
     age?: string,
     res_address?: string,
-    gender?: string
+    gender?: string,
+    acc_status?: string
   ) {
     this.cust_name = cust_name;
     this.aadhar = aadhar;
@@ -31,5 +33,6 @@ export class Customer {
     this.age = age;
     this.res_address = res_address;
     this.gender = gender;
+    this.acc_status = acc_status;
   }
 }
