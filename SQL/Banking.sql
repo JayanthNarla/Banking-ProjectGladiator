@@ -5,7 +5,7 @@
 -- =============================================
 
 --Database and tables creation start
-
+drop database dbBanking
 create database dbBanking
 use dbBanking
 
@@ -52,7 +52,9 @@ create table tblTransaction
 	deb_acc varchar(20) not null,
 	transac_amt varchar(20) not null,
 	deb_bal varchar(20) not null,
-	cred_bal varchar(20) not null
+	cred_bal varchar(20) not null,
+	mat_ins varchar(50),
+	remark varchar(50)
 )
 --drop table tblTransaction
 
