@@ -13,6 +13,9 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { NeftComponent } from './components/neft/neft.component';
+import { ImpsComponent } from './components/imps/imps.component';
+import { RtgsComponent } from './components/rtgs/rtgs.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
     AdminLoginComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
+    NeftComponent,
+    ImpsComponent,
+    RtgsComponent,
   ],
   imports: [
     BrowserModule,
