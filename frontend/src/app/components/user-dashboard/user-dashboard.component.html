@@ -1,1 +1,47 @@
-<p>user-dashboard works!</p>
+<app-navbar></app-navbar>
+<table class="menu">
+    <tbody>
+        <tr>
+                <td style="color: var(--white);background-color: var(--blue);font-weight:700;font-size:large;">
+                        Quick Links
+                </td>
+        </tr>
+        <tr>
+                <td style="background: var(--black);height:10px;padding: 0px;"></td>
+        </tr>
+        <tr>
+                <td>
+                        <a routerLink="statement">Account Statement</a>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <a routerLink="summary">Account Summary</a>                
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <a routerLink="/details">User Profile/Account Details</a>
+                </td>
+        </tr>
+        <tr>
+                <td>
+
+                        <a routerLink="/change">Change User ID,Password</a>
+                </td>
+        </tr>
+        <tr>
+                <td>
+
+                        <a routerLink="/fund">Transfer Fund</a>
+                </td>
+        </tr>
+        <tr>
+                <td>
+
+                        <a routerLink="/addben">Add Beneficiary</a>
+                </td>
+        </tr>
+    </tbody>
+</table>
+<router-outlet class="side"></router-outlet>

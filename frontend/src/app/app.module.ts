@@ -16,6 +16,13 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { NeftComponent } from './components/neft/neft.component';
 import { ImpsComponent } from './components/imps/imps.component';
 import { RtgsComponent } from './components/rtgs/rtgs.component';
+import { AccountSummaryComponent } from './components/account-summary/account-summary.component';
+import { AccountStatementComponent } from './components/account-statement/account-statement.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+
+import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
+import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
+import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +38,12 @@ import { RtgsComponent } from './components/rtgs/rtgs.component';
     NeftComponent,
     ImpsComponent,
     RtgsComponent,
+    AccountSummaryComponent,
+    AccountStatementComponent,
+    AccountDetailsComponent,
+    ChangeIdPasswordComponent,
+    FundTransferComponent,
+    AddBeneficiaryComponent,
   ],
   imports: [
     BrowserModule,

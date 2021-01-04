@@ -7,6 +7,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { NeftComponent } from './components/neft/neft.component';
 import { ImpsComponent } from './components/imps/imps.component';
 import { RtgsComponent } from './components/rtgs/rtgs.component';
+import { AccountStatementComponent } from './components/account-statement/account-statement.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { AccountSummaryComponent } from './components/account-summary/account-summary.component';
+import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
+import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
+import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -16,6 +22,12 @@ const routes: Routes = [
   { path: 'neft', component: NeftComponent },
   { path: 'imps', component: ImpsComponent },
   { path: 'rtgs', component: RtgsComponent },
+  { path: 'statement', component: AccountStatementComponent },
+  { path: 'details', component: AccountDetailsComponent },
+  { path: 'summary', component: AccountSummaryComponent },
+  { path: 'change', component: ChangeIdPasswordComponent },
+  { path: 'fund', component:FundTransferComponent  },
+  { path: 'addben', component:AddBeneficiaryComponent  },
 ];
 
 @NgModule({
