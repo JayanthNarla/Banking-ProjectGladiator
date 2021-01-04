@@ -33,5 +33,8 @@ export class NeftComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onReset()
+  {
+    this.transForm.reset();
+  }
 }

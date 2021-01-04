@@ -38,4 +38,9 @@ export class RtgsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onReset()
+  {
+    this.transForm.reset();
+  }
+
 }
