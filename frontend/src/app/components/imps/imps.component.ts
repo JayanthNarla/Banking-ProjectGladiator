@@ -39,5 +39,8 @@ export class ImpsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onReset()
+  {
+    this.transForm.reset();
+  }
 }

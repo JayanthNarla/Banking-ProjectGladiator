@@ -1,3 +1,60 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+  }
+
+header>li,
+li>a,
+a>button {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.logo {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: var(--secondary-font);
+  color: var(--white);
+  font-size: 20px;
+  letter-spacing: 1.5px;
+}
+
+.nav__links {
+  list-style: none;
+}
+
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav__links li a {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__links li a:hover {
+  transition: all 0.3s ease-in-out;
+  color: var(--blue);
+}
+
+a>button {
+  padding: 9px 25px;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+header>button:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
 
 .side{
     float:right;

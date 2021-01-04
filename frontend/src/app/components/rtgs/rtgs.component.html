@@ -125,7 +125,8 @@
                 name="tran_date"
                 formControlName="tran_date"
                 type="text"                
-                placeholder="Enter today's date"
+                placeholder="Enter transaction date"
+                onfocus="(this.type='date')"
               />
             </div>
           </div>
@@ -195,7 +196,7 @@
             </ng-container>
           </div>
             <button class="btn btn-reset" routerLink="">Add New+</button>
-            <button type="reset" class="btn btn-reset">Reset</button>
+            <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
             <button type="submit" class="btn btn-submit" routerLink="">Continue</button>
           
         </form>
