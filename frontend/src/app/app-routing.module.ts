@@ -13,6 +13,7 @@ import { AccountSummaryComponent } from './components/account-summary/account-su
 import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
 import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
 import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
+import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'change', component: ChangeIdPasswordComponent },
   { path: 'fund', component:FundTransferComponent  },
   { path: 'addben', component:AddBeneficiaryComponent  },
+  { path: 'transpass', component:TransactionPasswordComponent  },
 ];
 
 @NgModule({

@@ -1,13 +1,49 @@
 <header>
-    <div class="logo">PG Banking</div>
-    <nav>
-      <ul class="nav__links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">FAQ's</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
-    </nav>
-    <a href="" class="cta"><button>Logout</button></a>
+  <div class="logo">PG Banking</div>
+  <nav>
+    <ul class="nav__links">
+      <li><a routerLink="/statement">Account Statement</a>
+       <div class="demo">
+        <table>
+          <tr><td><a routerLink="/statement">Account Statement</a></td></tr>
+          <tr><td><a routerLink="/summary">Account Summary</a></td></tr>
+          </table>
+        </div>
+      </li>
+      
+      <li><a routerLink="/fund">Transfer Fund</a>
+        <div class="demo">
+          <table>
+          <tr><td><a routerLink="/neft">NEFT</a></td></tr>
+          <tr><td><a routerLink="/imps">IMPS</a></td></tr>
+          <tr><td><a routerLink="/rtgs">RTGS</a></td></tr>
+          <tr><td><a routerLink="/addben">Add Beneficiary</a></td></tr>
+          </table>
+        </div>
+      </li>
+
+      <li><a href="#">User Profile</a>
+        <div class="demo">
+          <table>
+            <tr><td><a routerLink="/details">Account Details</a></td></tr>
+            <tr><td><a routerLink="/change">Change User ID</a></td></tr>
+            <tr><td><a routerLink="/change">Change Password</a></td></tr>
+            </table>
+          </div>
+      </li>
+
+      <li><a>Help Desk</a>
+        <div class="demo">
+          <table>
+            <tr><td>Q&A's</td></tr>
+            <tr><td>Contact Us</td></tr>
+            <tr><td>About us</td></tr>
+            </table>
+          </div>
+      </li>
+
+    </ul>
+  </nav>
+  <a href="" class="cta"><button>Logout</button></a>
 </header>
 

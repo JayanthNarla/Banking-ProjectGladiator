@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar-logout.component.css']
 })
 export class NavbarLogoutComponent implements OnInit {
-
+  
   constructor() { }
-
   ngOnInit(): void {
   }
 

@@ -25,6 +25,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter your account number"
+                [(ngModel)]="trans.from"
               />
             </div>
           </div>
@@ -59,6 +60,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter beneficiary account number"
+                [(ngModel)]="trans.to"
               />
             </div>
           </div>
@@ -93,6 +95,7 @@
                 formControlName="trans_amt"
                 type="text"
                 placeholder="Enter transaction amount"
+                [(ngModel)]="trans.transac_amt"
               />
             </div>
           </div>
@@ -128,6 +131,7 @@
                 type="text"                
                 placeholder="Enter transaction date"
                 onfocus="(this.type='date')"
+                [(ngModel)]="trans.tran_date"
               />
             </div>
           </div>
@@ -156,6 +160,7 @@
                 formControlName="mat_ins"
                 type="text"
                 placeholder="Enter maturity instructions"
+                [(ngModel)]="trans.mat_ins"
               />
             </div>
           </div>
@@ -182,6 +187,7 @@
                 formControlName="remark"
                 type="text"
                 placeholder="Enter remarks"
+                [(ngModel)]="trans.remark"
               />
             </div>
           </div>
@@ -198,7 +204,7 @@
           </div>
             <button class="btn btn-reset" routerLink="">Add New+</button>
             <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
-            <button type="submit" class="btn btn-submit" routerLink="">Continue</button>
+            <button type="submit" class="btn btn-submit" routerLink="/transpass">Continue</button>
           
         </form>
       </div>

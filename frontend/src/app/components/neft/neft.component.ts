@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
+import { Transaction } from 'src/app/models/transaction.model';
 
 @Component({
   selector: 'app-neft',
@@ -12,6 +13,7 @@ import {
   styleUrls: ['./neft.component.css']
 })
 export class NeftComponent implements OnInit {
+  trans:Transaction;
   public transForm:FormGroup;
   public error_messages = {
     deb_acc: [{ type: 'required', message: 'From account is required' },{ type: 'maxlength', message: 'From account number must be 15 alphabets' },{ type: 'minlength', message: 'From account number must be 15 alphabets' }],
@@ -22,9 +24,11 @@ export class NeftComponent implements OnInit {
   };
 
   constructor(private formBuilder:FormBuilder) {
+    this.trans=new Transaction();
+    this.trans.mat_ins="";
     this.transForm = this.formBuilder.group({
       deb_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
-      cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15)])),
+      cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
       trans_amt:new FormControl('',Validators.required),
       tran_date:new FormControl('',Validators.required),
       remark:new FormControl('',Validators.maxLength(50)),

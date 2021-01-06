@@ -1,18 +1,40 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-  }
-
-header>li,
+li,
 li>a,
-a>button {
+button {
   font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 18px;
   color: var(--white);
   text-decoration: none;
+}
+table tr td a{
+  border:none;
+  text-decoration: none;
+  color: var(--blue);
+}
+table tr td a:hover{
+  border:none;
+  text-decoration: none;
+  color: var(--white);
+}
+table{
+  font-size: 16px;
+  border:1px solid var(--black);
+  min-width: 165px;
+  text-align: center;
+  border-radius: 30px;
+  -moz-border-radius:30px ;
+}
+table td{
+  padding: 5px;
+  background-color: var(--white);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
 }
 
 .logo {
@@ -40,10 +62,39 @@ a>button {
 
 .nav__links li a:hover {
   transition: all 0.3s ease-in-out;
-  color: var(--blue);
+  background-color: var(--blue);
+  border: solid 1px var(--black);
+  padding: 5px;
+  border-radius: 4px;
+  width: 150px;
+  -moz-border-radius:3px;
+  
 }
 
-a>button {
+.nav__links li a:hover+div{
+  display: block;
+  color: var(--blue);
+  transition-delay: 30s;
+  z-index: 1;
+  box-shadow: 1.5px #ccc;
+}
+
+.nav__links li a + div:hover{
+  display: block;
+  color: var(--blue);
+  cursor: pointer;
+  overflow-x:visible;
+  z-index: 1;
+}
+table td:hover{
+  font-size: 16px;
+  font-stretch: wider;
+  color: var(--white);
+  background-color: var(--blue);
+  
+}
+
+button {
   padding: 9px 25px;
   background-color: var(--blue);
   border: none;
@@ -52,6 +103,13 @@ a>button {
   transition: all 0.3s ease-in-out;
 }
 
-header>button:hover {
+button:hover {
   background-color: rgba(0, 136, 169, 0.8);
+}
+
+
+.demo
+{
+  display: none;
+  position: absolute;
 }
