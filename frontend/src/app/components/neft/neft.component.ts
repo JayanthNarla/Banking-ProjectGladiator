@@ -14,8 +14,8 @@ import {
 export class NeftComponent implements OnInit {
   public transForm:FormGroup;
   public error_messages = {
-    deb_acc: [{ type: 'required', message: 'From account is required' },{ type: 'maxLength', message: 'From account cannot exceed 20 alphabets' }],
-    cred_acc: [{ type: 'required', message: 'To account is required' },{ type: 'maxLength', message: 'To account cannot exceed 20 alphabets' }],
+    deb_acc: [{ type: 'required', message: 'From account is required' },{ type: 'maxlength', message: 'From account number must be 15 alphabets' },{ type: 'minlength', message: 'From account number must be 15 alphabets' }],
+    cred_acc: [{ type: 'required', message: 'To account is required' },{ type: 'maxlength', message: 'To account number must 15 alphabets' },{ type: 'minlength', message: 'To account number must 15 alphabets' }],
     trans_amt: [{ type: 'required', message: 'Transaction amount is required' }],
     tran_date: [{ type: 'required', message: 'Transaction date is required' }],
     remark: [{ type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' }]
@@ -23,8 +23,8 @@ export class NeftComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder) {
     this.transForm = this.formBuilder.group({
-      deb_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(20)])),
-      cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(20)])),
+      deb_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
+      cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15)])),
       trans_amt:new FormControl('',Validators.required),
       tran_date:new FormControl('',Validators.required),
       remark:new FormControl('',Validators.maxLength(50)),

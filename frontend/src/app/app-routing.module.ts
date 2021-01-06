@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'neft', component: NeftComponent },
   { path: 'imps', component: ImpsComponent },
   { path: 'rtgs', component: RtgsComponent },
-  { path: 'statement', component: AccountStatementComponent },
+  { path: 'statement', component: AccountStatementComponent,},
   { path: 'details', component: AccountDetailsComponent },
   { path: 'summary', component: AccountSummaryComponent },
   { path: 'change', component: ChangeIdPasswordComponent },

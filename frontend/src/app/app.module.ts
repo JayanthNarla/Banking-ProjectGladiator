@@ -23,6 +23,9 @@ import { AccountDetailsComponent } from './components/account-details/account-de
 import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
 import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
 import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
+import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
+import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { AddBeneficiaryComponent } from './components/add-beneficiary/add-benefi
     ChangeIdPasswordComponent,
     FundTransferComponent,
     AddBeneficiaryComponent,
+    TransactionPasswordComponent,
+    NavbarLogoutComponent,
   ],
   imports: [
     BrowserModule,
