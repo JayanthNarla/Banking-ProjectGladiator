@@ -651,10 +651,9 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	update tblStatus set acc_status = 'approved' where ref_no = @ref_no;
+	update tblStatus set acc_status = 'approved', app_date = GETDATE() where ref_no = @ref_no;
 END
 GO
-
 
 
 
@@ -687,7 +686,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	update tblStatus set acc_status = 'denied' where ref_no = @ref_no;
+	update tblStatus set acc_status = 'denied' ,app_date = GETDATE() where ref_no = @ref_no;
 END
 GO
 

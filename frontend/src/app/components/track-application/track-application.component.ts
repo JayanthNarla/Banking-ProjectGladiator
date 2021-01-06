@@ -48,6 +48,9 @@ export class TrackApplicationComponent implements OnInit {
       document.getElementById('cust_id').setAttribute('value', data['cust_id']);
       document.getElementById('app_by').setAttribute('value', data['app_by']);
       document
+        .getElementById('app_date')
+        .setAttribute('value', data['app_date'].slice(0, 10));
+      document
         .getElementById('acc_status')
         .setAttribute('value', data['acc_status']);
     });
