@@ -44,7 +44,7 @@ export class TrackApplicationComponent implements OnInit {
         scrollable: true,
       });
 
-s      document.getElementById('ref_no').setAttribute('value', data['ref_no']);
+      document.getElementById('ref_no').setAttribute('value', data['ref_no']);
       document.getElementById('cust_id').setAttribute('value', data['cust_id']);
       document.getElementById('app_by').setAttribute('value', data['app_by']);
       document
