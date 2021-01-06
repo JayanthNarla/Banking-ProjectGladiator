@@ -1,3 +1,6 @@
+import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
+import { TrackApplicationComponent } from './components/track-application/track-application.component';
+import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
 import { AllDeniedListComponent } from './components/all-denied-list/all-denied-list.component';
 import { AllApprovedListComponent } from './components/all-approved-list/all-approved-list.component';
 import { AllPendingListComponent } from './components/all-pending-list/all-pending-list.component';
@@ -8,6 +11,8 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -23,6 +28,25 @@ const routes: Routes = [
     ],
   },
   { path: 'userdash', component: UserDashboardComponent },
+  {
+    path: 'register',
+    component: RegisterDashboardComponent,
+    children: [
+      {
+        path: '',
+        component: RegisterOptsComponent,
+      },
+      { path: 'RgstrNetbanking', component: RegisterPageComponent },
+      {
+        path: 'trackApplication',
+        component: TrackApplicationComponent,
+      },
+      {
+        path: 'newaccount',
+        component: PersonalDetailsComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -186,6 +186,9 @@
         <Function Name="proc_getAllCustDetailsAlongWithAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_getAllDeniedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_getAllPendingAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="proc_getApplicationByRefno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ref_no" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_getAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
@@ -546,6 +549,9 @@
           <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
+          <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
+            <Parameter Name="ref_no" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_getAllApprovedAppStatus_Result">
           <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -647,6 +653,13 @@
           <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="ref_no" Nullable="false" />
           <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="app_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_getApplicationByRefno_Result">
+          <Property Type="Int32" Name="ref_no" Nullable="false" />
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
           <Property Type="DateTime" Name="app_date" Nullable="false" />
         </ComplexType>
       </Schema>
@@ -894,6 +907,17 @@
                 <ScalarProperty Name="acc_status" ColumnName="acc_status" />
                 <ScalarProperty Name="ref_no" ColumnName="ref_no" />
                 <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
                 <ScalarProperty Name="app_date" ColumnName="app_date" />
               </ComplexTypeMapping>
             </ResultMapping>

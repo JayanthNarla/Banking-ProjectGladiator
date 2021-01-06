@@ -1,3 +1,4 @@
+import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,9 @@ import { AllApprovalsListComponent } from './components/all-approvals-list/all-a
 import { AllPendingListComponent } from './components/all-pending-list/all-pending-list.component';
 import { AllDeniedListComponent } from './components/all-denied-list/all-denied-list.component';
 import { AllApprovedListComponent } from './components/all-approved-list/all-approved-list.component';
+import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
+import { TrackApplicationComponent } from './components/track-application/track-application.component';
+import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,11 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
     AllPendingListComponent,
     AllDeniedListComponent,
     AllApprovedListComponent,
+    PersonalDetailsComponent,
+    RegisterPageComponent,
+    RegisterDashboardComponent,
+    TrackApplicationComponent,
+    RegisterOptsComponent,
   ],
   imports: [
     BrowserModule,

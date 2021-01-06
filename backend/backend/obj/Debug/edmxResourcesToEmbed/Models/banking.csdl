@@ -275,6 +275,9 @@
       <Parameter Name="ref_no" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
+    <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
+      <Parameter Name="ref_no" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
     <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -376,6 +379,13 @@
     <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
     <Property Type="Int32" Name="ref_no" Nullable="false" />
     <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_getApplicationByRefno_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
     <Property Type="DateTime" Name="app_date" Nullable="false" />
   </ComplexType>
 </Schema>

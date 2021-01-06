@@ -41,4 +41,11 @@ export class CustomerService {
       sts
     );
   };
+
+  GetApplicationByRef = (sts) => {
+    return this.http.post(
+      `${GlobalVariables.BASE_API_URL}status/getApplicationByRef`,
+      sts
+    );
+  };
 }

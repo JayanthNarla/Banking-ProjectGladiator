@@ -222,5 +222,14 @@ namespace backend.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetailsAlongWithAppStatus_Result>("proc_getAllCustDetailsAlongWithAppStatus");
         }
+    
+        public virtual ObjectResult<proc_getApplicationByRefno_Result> proc_getApplicationByRefno(Nullable<int> ref_no)
+        {
+            var ref_noParameter = ref_no.HasValue ?
+                new ObjectParameter("ref_no", ref_no) :
+                new ObjectParameter("ref_no", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getApplicationByRefno_Result>("proc_getApplicationByRefno", ref_noParameter);
+        }
     }
 }

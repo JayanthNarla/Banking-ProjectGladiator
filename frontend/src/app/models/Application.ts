@@ -1,11 +1,11 @@
 export class Application {
-  ref_no: string;
+  ref_no: Number;
   cust_id: string;
   app_by: string;
   acc_status: string;
   app_date: string;
   constructor(
-    ref_no?: string,
+    ref_no?: Number,
     cust_id?: string,
     app_by?: string,
     acc_status?: string,

@@ -148,6 +148,9 @@
     <Compile Include="Models\proc_getAllPendingAppStatus_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_getApplicationByRefno_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_getAppStatus_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>

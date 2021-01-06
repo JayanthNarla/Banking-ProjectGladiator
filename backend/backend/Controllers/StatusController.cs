@@ -64,9 +64,24 @@ namespace backend.Controllers
             result = entities.proc_getAllPendingAppStatus().ToList();
             if (result == null)
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Pending Approvals");
+            else 
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+
+        [Route("getApplicationByRef")]
+        [HttpPost]
+        public HttpResponseMessage GetApplicationByRef(tblStatus sts)
+        {
+            proc_getApplicationByRefno_Result result = null;
+            result = entities.proc_getApplicationByRefno(sts.ref_no).FirstOrDefault();
+            if (result == null)
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No Application Found");
             else
                 return Request.CreateResponse(HttpStatusCode.OK, result);
         }
+
+
 
         [Route("getApproved")]
         [HttpGet]

@@ -244,5 +244,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
+          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="app_by" ColumnName="app_by" />
+          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+          <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
