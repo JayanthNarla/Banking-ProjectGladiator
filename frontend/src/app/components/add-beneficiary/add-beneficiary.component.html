@@ -6,9 +6,9 @@
     </div>
     <div class="wrapper">
       <div style="width: 50%">
-        <form>
+        <form [formGroup]="BeneficiaryForm">
           <div class="form-group row">
-            <label  class="col-sm-3 col-form-label">
+            <label for="Beneficiary_Name" class="col-sm-3 col-form-label">
                 Beneficiary Name
               <span style="
                   color: var(--light-red);
@@ -19,28 +19,30 @@
             </label>
             <div class="col-sm-7">
               <input
+                name ="Beneficiary_Name"
+                formControlName ="Beneficiary_Name"
                 class="form-control"
                 type="text"
                 placeholder="Enter Beneficiary Name"
               />
             </div>
           </div>
-          <!-- <div class="error-messages">
-            <ng-container *ngFor="let error of error_messages.from">
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.Beneficiary_Name">
               <div
                 class="error-message"
                 *ngIf="
-                  loginForm.get('#').hasError(error.type) &&
-                  loginForm.get('#').touched
+                  BeneficiaryForm.get('Beneficiary_Name').hasError(error.type) &&
+                  BeneficiaryForm.get('Beneficiary_Name').touched
                 "
               >
                 {{ error.message }}
               </div>
             </ng-container>
-          </div>  -->
+          </div>  
           
           <div class="form-group row">
-            <label class="col-sm-3 col-form-label">
+            <label for="Bene_acc_num" class="col-sm-3 col-form-label">
                 Beneficiary Account Number 
               <span style="
                   color: var(--light-red);
@@ -51,28 +53,30 @@
             </label>
             <div class="col-sm-7">
               <input
+                name ="Bene_acc_num"
+                formControlName="Bene_acc_num"
                 class="form-control"
                 type="text"
                 placeholder="Enter beneficiary account number"
               />
             </div>
           </div>
-          <!-- <div class="error-messages">
-            <ng-container *ngFor="let error of error_messages.from">
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.Bene_acc_num">
               <div
                 class="error-message"
                 *ngIf="
-                  loginForm.get('#').hasError(error.type) &&
-                  loginForm.get('#').touched
+                BeneficiaryForm.get('Bene_acc_num').hasError(error.type) &&
+                BeneficiaryForm.get('Bene_acc_num').touched
                 "
               >
                 {{ error.message }}
               </div>
             </ng-container>
-          </div> -->
+          </div> 
 
           <div class="form-group row">
-            <label  class="col-sm-3 col-form-label">
+            <label for="Re_enterAccount_num" class="col-sm-3 col-form-label">
                 Re-Enter Account Number
               <span style="
                   color: var(--light-red);
@@ -83,28 +87,30 @@
             </label>
             <div class="col-sm-7">
               <input
+                name ="Re_enterAccount_num"
+                formControlName ="Re_enterAccount_num"
                 class="form-control"
                 type="text"
                 placeholder="Enter account number"
               />
             </div>
           </div>
-          <!-- <div class="error-messages">
-            <ng-container *ngFor="let error of error_messages.from">
+           <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.Re_enterAccount_num">
               <div
                 class="error-message"
                 *ngIf="
-                  loginForm.get('#').hasError(error.type) &&
-                  loginForm.get('#').touched
+                BeneficiaryForm.get('Re_enterAccount_num').hasError(error.type) &&
+                BeneficiaryForm.get('Re_enterAccount_num').touched
                 "
               >
                 {{ error.message }}
               </div>
             </ng-container>
-          </div> -->
+          </div> 
 
           <div class="form-group row">
-            <label  class="col-sm-3 col-form-label">
+            <label for="" class="col-sm-3 col-form-label">
                 <input type ="checkbox" >
                 Save Beneficiary
               <span style="
@@ -117,53 +123,42 @@
            
               
           </div>
-          <!-- <div class="error-messages">
-            <ng-container *ngFor="let error of error_messages.from">
-              <div
-                class="error-message"
-                *ngIf="
-                  loginForm.get('#').hasError(error.type) &&
-                  loginForm.get('#').touched
-                "
-              >
-                {{ error.message }}
-              </div>
-            </ng-container>
-          </div> -->
-
+          
           <div class="form-group row">
-            <label  class="col-sm-3 col-form-label">
+            <label for="nickname" class="col-sm-3 col-form-label">
                 Nick Name
               <span style="
                   color: var(--light-red);
                   font-size: 18px;
                   margin-left: 5px;">
-                *
+                
               </span>
             </label>
             <div class="col-sm-7">
               <input
+                name="nickname"
+                formControlName="nickname"
                 class="form-control"
                 type="text"
                 placeholder="Enter nickname"
               />
             </div>
           </div>
-          <!-- <div class="error-messages">
-            <ng-container *ngFor="let error of error_messages.from">
+           <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.nickname">
               <div
                 class="error-message"
                 *ngIf="
-                  loginForm.get('#').hasError(error.type) &&
-                  loginForm.get('#').touched
+                BeneficiaryForm.get('nickname').hasError(error.type) &&
+                BeneficiaryForm.get('nickname').touched
                 "
               >
                 {{ error.message }}
               </div>
             </ng-container>
-          </div> -->
+          </div> 
             
-            <button type="submit" class="btn btn-submit" routerLink="">Save as Beneficiary</button>
+            <button type="submit" class="btn btn-submit">Save as Beneficiary</button>
           
         </form>
       </div>
