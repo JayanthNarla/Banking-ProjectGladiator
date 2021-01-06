@@ -6,4 +6,6 @@
 
 # Doubts
 
-1. After handling all applications. Pending Title Doesn't change. Remains same
+1. making multiple API calls //DONE
+2. After handling all applications. Pending Title Doesn't change. Remains same //update size after approval
+3. alter DB to include occupational details (Customer Registeration)

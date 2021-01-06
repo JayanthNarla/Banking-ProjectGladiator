@@ -274,6 +274,7 @@
     <FunctionImport Name="proc_denyAppStatus">
       <Parameter Name="ref_no" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
     <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -360,5 +361,21 @@
     <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllCustDetailsAlongWithAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
   </ComplexType>
 </Schema>

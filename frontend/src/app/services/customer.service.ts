@@ -10,7 +10,9 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   getAllCustomers = () => {
-    return this.http.get(`${GlobalVariables.BASE_API_URL}Customer`);
+    return this.http.get(
+      `${GlobalVariables.BASE_API_URL}Customer/getCustomerApplications`
+    );
   };
 
   getAllAppStatus = () => {

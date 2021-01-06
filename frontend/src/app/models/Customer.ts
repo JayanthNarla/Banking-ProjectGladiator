@@ -10,6 +10,9 @@ export class Customer {
   res_address: string;
   gender: string;
   acc_status: string;
+  ref_no: string;
+  app_by: string;
+  app_date: string;
   constructor(
     cust_name?: string,
     aadhar?: string,
@@ -21,7 +24,10 @@ export class Customer {
     age?: string,
     res_address?: string,
     gender?: string,
-    acc_status?: string
+    acc_status?: string,
+    ref_no?: string,
+    app_by?: string,
+    app_date?: string
   ) {
     this.cust_name = cust_name;
     this.aadhar = aadhar;
@@ -34,5 +40,8 @@ export class Customer {
     this.res_address = res_address;
     this.gender = gender;
     this.acc_status = acc_status;
+    this.ref_no = ref_no;
+    this.app_by = app_by;
+    this.app_date = app_date;
   }
 }

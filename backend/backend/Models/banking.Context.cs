@@ -217,5 +217,10 @@ namespace backend.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_denyAppStatus", ref_noParameter);
         }
+    
+        public virtual ObjectResult<proc_getAllCustDetailsAlongWithAppStatus_Result> proc_getAllCustDetailsAlongWithAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetailsAlongWithAppStatus_Result>("proc_getAllCustDetailsAlongWithAppStatus");
+        }
     }
 }

@@ -48,7 +48,7 @@ export class AllPendingListComponent implements OnInit {
     // console.log(custId);
 
     this.application_id.cust_id = custId;
-
+    console.log('appl_Size', this.applications_size);
     this.cs.getAppStatus(this.application_id).subscribe((data) => {
       console.log('app data ref no ', data);
       // console.log(typeof this.applications[0]['ref_no']);
@@ -68,6 +68,7 @@ export class AllPendingListComponent implements OnInit {
                 this.applications = aplData;
               });
             });
+          this.applications_size--;
         }
       }
     });

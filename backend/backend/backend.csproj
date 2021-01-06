@@ -136,6 +136,9 @@
     <Compile Include="Models\proc_getAllAppStatus_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_getAllCustDetailsAlongWithAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_getAllCustDetails_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>

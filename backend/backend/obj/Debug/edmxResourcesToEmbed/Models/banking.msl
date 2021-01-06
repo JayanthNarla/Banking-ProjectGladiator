@@ -224,5 +224,25 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_UserReg" FunctionName="dbBankingModel.Store.proc_UserReg" />
     <FunctionImportMapping FunctionImportName="proc_denyAppStatus" FunctionName="dbBankingModel.Store.proc_denyAppStatus" />
+    <FunctionImportMapping FunctionImportName="proc_getAllCustDetailsAlongWithAppStatus" FunctionName="dbBankingModel.Store.proc_getAllCustDetailsAlongWithAppStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result">
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="res_address" ColumnName="res_address" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+          <ScalarProperty Name="app_by" ColumnName="app_by" />
+          <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

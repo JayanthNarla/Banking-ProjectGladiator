@@ -388,6 +388,46 @@ GO
 
 
 
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:	Narla Jayanth
+-- Create date: 25-12-2020
+-- Description:	Get all Customer Details along with application status
+-- =============================================
+create PROCEDURE proc_getAllCustDetailsAlongWithAppStatus 
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert blocked customers
+	select CONCAT_WS(' ',title,first_name,middle_name,last_name) cust_name , aadhar, c.cust_id,  
+	father_name, phone, cust_mail, dob, age, res_address, gender,acc_status, ref_no,app_by,app_date from tblCustomer c join tblStatus s
+	on c.cust_id = s.cust_id;
+END
+GO
+
+
+
+
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -658,6 +698,7 @@ GO
 --truncate table tblLogin
 
 
+
 proc_setUserLogin 'J1234','456456','customer','Qwerty!23'
 proc_setUserLogin 'R1234','123123','admin','Qwerty!23'
 
@@ -683,6 +724,7 @@ proc_getAllPendingAppStatus
 proc_getAllApprovedAppStatus
 proc_getAllDeniedAppStatus
 proc_getAllAppStatus
+proc_getAllCustDetailsAlongWithAppStatus
 
 select * from tblStatus
 

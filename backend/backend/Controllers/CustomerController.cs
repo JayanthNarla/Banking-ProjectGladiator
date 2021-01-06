@@ -10,6 +10,7 @@ using backend.Models;
 namespace backend.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [RoutePrefix("api/customer")]
     public class CustomerController : ApiController
     {
         dbBankingEntities entities = new dbBankingEntities();
@@ -34,6 +35,18 @@ namespace backend.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No customer registered");
             else
                 return Request.CreateResponse(HttpStatusCode.OK,result);
+        }
+
+        [Route("getCustomerApplications")]
+        [HttpGet]
+        public HttpResponseMessage GetAllCustDetailsWithApplications()
+        {
+            List<proc_getAllCustDetailsAlongWithAppStatus_Result> result = null;
+            result = entities.proc_getAllCustDetailsAlongWithAppStatus().ToList();
+            if (result == null)
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "No customer registered");
+            else
+                return Request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }

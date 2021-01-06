@@ -77,3 +77,8 @@ img {
   background-color: rgba(0, 136, 169, 0.8);
   color: var(--white);
 }
+.hero-content .btn_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
