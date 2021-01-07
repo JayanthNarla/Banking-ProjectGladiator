@@ -23,6 +23,8 @@ namespace backend.Models
         public string transac_amt { get; set; }
         public string deb_bal { get; set; }
         public string cred_bal { get; set; }
+        public string mat_ins { get; set; }
+        public string remark { get; set; }
     
         public virtual tblAccounts tblAccounts { get; set; }
     }

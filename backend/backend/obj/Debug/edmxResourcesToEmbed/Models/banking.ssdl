@@ -87,8 +87,10 @@
     <Property Name="transac_amt" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="deb_bal" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="cred_bal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mat_ins" Type="varchar" MaxLength="50" />
+    <Property Name="remark" Type="varchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK__tblAccoun__cust___286302EC">
+  <Association Name="FK__tblAccoun__cust___173876EA">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="*" />
     <ReferentialConstraint>
@@ -100,7 +102,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBenefi__ben_a__36B12243">
+  <Association Name="FK__tblBenefi__ben_a__25869641">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
     <ReferentialConstraint>
@@ -112,7 +114,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBlocke__acc_n__30F848ED">
+  <Association Name="FK__tblBlocke__acc_n__1FCDBCEB">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBlocked" Type="Self.tblBlocked" Multiplicity="*" />
     <ReferentialConstraint>
@@ -124,7 +126,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblIntern__acc_n__33D4B598">
+  <Association Name="FK__tblIntern__acc_n__22AA2996">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblInternetBanking" Type="Self.tblInternetBanking" Multiplicity="*" />
     <ReferentialConstraint>
@@ -136,7 +138,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblLogin__acc_nu__2E1BDC42">
+  <Association Name="FK__tblLogin__acc_nu__1CF15040">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblLogin" Type="Self.tblLogin" Multiplicity="*" />
     <ReferentialConstraint>
@@ -148,7 +150,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblStatus__cust___6FE99F9F">
+  <Association Name="FK__tblStatus__cust___286302EC">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
     <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="*" />
     <ReferentialConstraint>
@@ -160,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblTransa__acc_n__2B3F6F97">
+  <Association Name="FK__tblTransa__acc_n__1A14E395">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
     <ReferentialConstraint>
@@ -190,9 +192,6 @@
   <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
     <Parameter Name="acc_number" Type="varchar" Mode="In" />
-  </Function>
-  <Function Name="proc_getCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -236,31 +235,31 @@
     <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__tblAccoun__cust___286302EC" Association="Self.FK__tblAccoun__cust___286302EC">
+    <AssociationSet Name="FK__tblAccoun__cust___173876EA" Association="Self.FK__tblAccoun__cust___173876EA">
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblAccounts" EntitySet="tblAccounts" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBenefi__ben_a__36B12243" Association="Self.FK__tblBenefi__ben_a__36B12243">
+    <AssociationSet Name="FK__tblBenefi__ben_a__25869641" Association="Self.FK__tblBenefi__ben_a__25869641">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBlocke__acc_n__30F848ED" Association="Self.FK__tblBlocke__acc_n__30F848ED">
+    <AssociationSet Name="FK__tblBlocke__acc_n__1FCDBCEB" Association="Self.FK__tblBlocke__acc_n__1FCDBCEB">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBlocked" EntitySet="tblBlocked" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblIntern__acc_n__33D4B598" Association="Self.FK__tblIntern__acc_n__33D4B598">
+    <AssociationSet Name="FK__tblIntern__acc_n__22AA2996" Association="Self.FK__tblIntern__acc_n__22AA2996">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblInternetBanking" EntitySet="tblInternetBanking" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblLogin__acc_nu__2E1BDC42" Association="Self.FK__tblLogin__acc_nu__2E1BDC42">
+    <AssociationSet Name="FK__tblLogin__acc_nu__1CF15040" Association="Self.FK__tblLogin__acc_nu__1CF15040">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblLogin" EntitySet="tblLogin" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblStatus__cust___6FE99F9F" Association="Self.FK__tblStatus__cust___6FE99F9F">
+    <AssociationSet Name="FK__tblStatus__cust___286302EC" Association="Self.FK__tblStatus__cust___286302EC">
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblTransa__acc_n__2B3F6F97" Association="Self.FK__tblTransa__acc_n__2B3F6F97">
+    <AssociationSet Name="FK__tblTransa__acc_n__1A14E395" Association="Self.FK__tblTransa__acc_n__1A14E395">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblTransaction" EntitySet="tblTransaction" />
     </AssociationSet>

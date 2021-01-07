@@ -20,6 +20,13 @@
         <AssociationConnector Association="dbBankingModel.FK__tblLogin__acc_nu__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="dbBankingModel.FK__tblTransa__acc_n__2B3F6F97" ManuallyRouted="false" />
         <AssociationConnector Association="dbBankingModel.FK__tblStatus__cust___6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBenefi__cust___22AA2996" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBlocke__cust___1CF15040" />
+        <AssociationConnector Association="dbBankingModel.FK__tblCustom__cust___1367E606" />
+        <AssociationConnector Association="dbBankingModel.FK__tblIntern__cust___1FCDBCEB" />
+        <AssociationConnector Association="dbBankingModel.FK__tblLogin__cust_i__1A14E395" />
+        <AssociationConnector Association="dbBankingModel.FK__tblTransa__cust___173876EA" />
+        <AssociationConnector Association="dbBankingModel.FK__tblStatus__aadha__25869641" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

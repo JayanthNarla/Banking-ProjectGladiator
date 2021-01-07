@@ -85,6 +85,8 @@
     <EntitySetMapping Name="tblTransaction">
       <EntityTypeMapping TypeName="dbBankingModel.tblTransaction">
         <MappingFragment StoreEntitySet="tblTransaction">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
           <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
           <ScalarProperty Name="acc_number" ColumnName="acc_number" />
           <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
@@ -191,22 +193,6 @@
         <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBlocked_Result">
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
           <ScalarProperty Name="acc_number" ColumnName="acc_number" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="proc_getCustDetails" FunctionName="dbBankingModel.Store.proc_getCustDetails">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbBankingModel.proc_getCustDetails_Result">
-          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
-          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="father_name" ColumnName="father_name" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="age" ColumnName="age" />
-          <ScalarProperty Name="res_address" ColumnName="res_address" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
