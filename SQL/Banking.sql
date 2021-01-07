@@ -96,7 +96,7 @@ create table tblBeneficiary
 (
 	ben_acc_num varchar(20) foreign key references tblAccounts(acc_number),
 	cust_id varchar(20) primary key,
-	username varchar(50) not null,
+	ben_name varchar(50) not null,
 	nickname varchar(20) not null
 )
 --drop table tblBeneficiary
