@@ -1,33 +1,11 @@
 li,
 li>a,
-button {
+a>button {
   font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 18px;
   color: var(--white);
   text-decoration: none;
-}
-table tr td a{
-  border:none;
-  text-decoration: none;
-  color: var(--blue);
-}
-table tr td a:hover{
-  border:none;
-  text-decoration: none;
-  color: var(--white);
-}
-table{
-  font-size: 16px;
-  border:1px solid var(--black);
-  min-width: 165px;
-  text-align: center;
-  border-radius: 30px;
-  -moz-border-radius:30px ;
-}
-table td{
-  padding: 5px;
-  background-color: var(--white);
 }
 
 header {
@@ -86,15 +64,34 @@ header {
   overflow-x:visible;
   z-index: 1;
 }
-table td:hover{
+
+
+table tr td button{
+  border:none;
+  color: var(--black);
+  padding: 5px;
+  background-color: var(--white);
+  min-width: 165px;
+}
+table tr td button:hover{
+  border:none;
+  color: var(--white);
+  padding: 5px;
+  background-color: var(--blue);
+  min-width: 165px;
   font-size: 16px;
   font-stretch: wider;
-  color: var(--white);
-  background-color: var(--blue);
-  
+}
+table{
+  font-size: 16px;
+  border:1px solid var(--black);
+  text-align: center;
+  border-radius: 30px;
+  -moz-border-radius:30px ;
 }
 
-button {
+
+a>button {
   padding: 9px 25px;
   background-color: var(--blue);
   border: none;
@@ -102,9 +99,10 @@ button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-
-button:hover {
-  background-color: rgba(0, 136, 169, 0.8);
+a>button:hover {
+  background-color: var(--white);
+  color: var(--black);
+  transform: translateY(5px);
 }
 
 

@@ -24,6 +24,8 @@ import { FundTransferComponent } from './components/fund-transfer/fund-transfer.
 import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
 import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
 import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
+import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
+
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.
     AddBeneficiaryComponent,
     TransactionPasswordComponent,
     NavbarLogoutComponent,
+    TransactionSuccessComponent,
   ],
   imports: [
     BrowserModule,

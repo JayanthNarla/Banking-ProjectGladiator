@@ -27,6 +27,7 @@ export class ImpsComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder) {
     this.trans=new Transaction();
+    this.trans.transaction_type="imps";
     this.transForm = this.formBuilder.group({
       deb_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
       cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),

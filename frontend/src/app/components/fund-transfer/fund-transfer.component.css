@@ -6,7 +6,7 @@
   }
   
   .hero-content {
-    margin-left: 60px;
+    margin-left: 20px;
     margin-bottom: 100px;
     text-align: center;
   }
@@ -37,4 +37,8 @@
     margin-top: 50px;
     width:500px;
   }
-  
+  button:hover {
+    color: var(--black);
+    background-color: var(--white);
+    transform: translateY(5px);
+  }

@@ -26,6 +26,7 @@ export class NeftComponent implements OnInit {
   constructor(private formBuilder:FormBuilder) {
     this.trans=new Transaction();
     this.trans.mat_ins="";
+    this.trans.transaction_type="neft";
     this.transForm = this.formBuilder.group({
       deb_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
       cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
