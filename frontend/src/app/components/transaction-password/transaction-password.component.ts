@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class TransactionPasswordComponent implements OnInit {
   public passForm:FormGroup;
+  submitted=false;
   public error_messages = {
     pass: [{ type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' }]
   };
@@ -25,4 +26,24 @@ export class TransactionPasswordComponent implements OnInit {
   {
     this.passForm.reset();
   }
+  onSubmit(){
+    this.submitted=true
+    console.log("button clicked");
+    console.log(this.passForm);
+    const invalid = [];
+        const controls = this.passForm.controls;
+        for (const name in controls) {
+
+            if (controls[name].invalid) {
+                invalid.push(name);
+            }
+        }
+        console.log(invalid);
+        
+    
+    if(this.passForm.valid){
+      console.table(this.passForm.value)
+      this.passForm.reset()
+    }
+}
 }

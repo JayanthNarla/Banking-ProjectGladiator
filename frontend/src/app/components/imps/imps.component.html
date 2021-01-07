@@ -202,7 +202,7 @@
           </div>
             <button class="btn btn-reset" routerLink="">Add New+</button>
             <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
-            <button type="submit" class="btn btn-submit" routerLink="/transpass">Continue</button>
+            <button type="submit" class="btn btn-submit" routerLink="../transpass" [disabled]="!transForm.valid" (click)="onSubmit()">Continue</button>
           
         </form>
       </div>

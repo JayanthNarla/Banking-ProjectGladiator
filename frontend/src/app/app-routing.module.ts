@@ -11,7 +11,6 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-<<<<<<< HEAD
 import { NeftComponent } from './components/neft/neft.component';
 import { ImpsComponent } from './components/imps/imps.component';
 import { RtgsComponent } from './components/rtgs/rtgs.component';
@@ -22,27 +21,8 @@ import { ChangeIdPasswordComponent } from './components/change-id-password/chang
 import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
 import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
 import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
-
-const routes: Routes = [
-    { path: '', component: HomePageComponent },
-    { path: 'login', component: AdminLoginComponent },
-    { path: 'admindash', component: AdminDashboardComponent },
-    { path: 'userdash', component: UserDashboardComponent,children:
-      [{ path: 'statement',component: AccountStatementComponent},
-      { path: 'fund', component:FundTransferComponent},
-      { path: 'neft', component: NeftComponent },
-      { path: 'imps',component: ImpsComponent },
-      { path: 'rtgs', component: RtgsComponent },
-      { path: 'details', component: AccountDetailsComponent },
-      { path: 'summary', component: AccountSummaryComponent },
-      { path: 'change', component: ChangeIdPasswordComponent },
-      { path: 'addben', component:AddBeneficiaryComponent  },
-      { path: 'transpass', component:TransactionPasswordComponent  }]},
-  ];
-=======
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
-
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: AdminLoginComponent },
@@ -56,7 +36,6 @@ const routes: Routes = [
       { path: 'denied', component: AllDeniedListComponent },
     ],
   },
-  { path: 'userdash', component: UserDashboardComponent },
   {
     path: 'register',
     component: RegisterDashboardComponent,
@@ -76,8 +55,22 @@ const routes: Routes = [
       },
     ],
   },
+
+  { path: 'userdash', component: UserDashboardComponent,children:
+        [
+          { path: 'statement',component: AccountStatementComponent},
+          { path: 'fund', component:FundTransferComponent},
+          { path: 'neft', component: NeftComponent },
+          { path: 'imps',component: ImpsComponent },
+          { path: 'rtgs', component: RtgsComponent },
+          { path: 'details', component: AccountDetailsComponent },
+          { path: 'summary', component: AccountSummaryComponent },
+          { path: 'change', component: ChangeIdPasswordComponent },
+          { path: 'addben', component:AddBeneficiaryComponent  },
+          { path: 'transpass', component:TransactionPasswordComponent  }
+        ]},  
 ];
->>>>>>> 1602e45388d78528b8632b44716736cf7914b6f2
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -85,3 +78,20 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule {}
+
+//const routes: Routes = [
+  //     { path: '', component: HomePageComponent },
+  //     { path: 'login', component: AdminLoginComponent },
+  //     { path: 'admindash', component: AdminDashboardComponent },
+  //     { path: 'userdash', component: UserDashboardComponent,children:
+  //       [{ path: 'statement',component: AccountStatementComponent},
+  //       { path: 'fund', component:FundTransferComponent},
+  //       { path: 'neft', component: NeftComponent },
+  //       { path: 'imps',component: ImpsComponent },
+  //       { path: 'rtgs', component: RtgsComponent },
+  //       { path: 'details', component: AccountDetailsComponent },
+  //       { path: 'summary', component: AccountSummaryComponent },
+  //       { path: 'change', component: ChangeIdPasswordComponent },
+  //       { path: 'addben', component:AddBeneficiaryComponent  },
+  //       { path: 'transpass', component:TransactionPasswordComponent  }]},
+  //   ];

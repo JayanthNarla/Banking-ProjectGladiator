@@ -1,13 +1,10 @@
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
+import { TransactionService } from './services/transaction.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
->>>>>>> 1602e45388d78528b8632b44716736cf7914b6f2
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -20,7 +17,6 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
-<<<<<<< HEAD
 import { NeftComponent } from './components/neft/neft.component';
 import { ImpsComponent } from './components/imps/imps.component';
 import { RtgsComponent } from './components/rtgs/rtgs.component';
@@ -35,8 +31,6 @@ import { TransactionPasswordComponent } from './components/transaction-password/
 import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
 import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
 
-
-=======
 import { ApprovalItemComponent } from './components/approval-item/approval-item.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
@@ -47,7 +41,7 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
 import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
 import { TrackApplicationComponent } from './components/track-application/track-application.component';
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
->>>>>>> 1602e45388d78528b8632b44716736cf7914b6f2
+
 
 @NgModule({
   declarations: [
@@ -60,7 +54,6 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     AdminLoginComponent,
     AdminDashboardComponent,
     UserDashboardComponent,
-<<<<<<< HEAD
     NeftComponent,
     ImpsComponent,
     RtgsComponent,
@@ -73,7 +66,6 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     TransactionPasswordComponent,
     NavbarLogoutComponent,
     TransactionSuccessComponent,
-=======
     ApprovalItemComponent,
     AllApprovalsListComponent,
     AllPendingListComponent,
@@ -84,16 +76,13 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     RegisterDashboardComponent,
     TrackApplicationComponent,
     RegisterOptsComponent,
->>>>>>> 1602e45388d78528b8632b44716736cf7914b6f2
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    HttpClientModule
-=======
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
@@ -103,9 +92,9 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
       progressAnimation: 'increasing',
       preventDuplicates: true,
     }),
->>>>>>> 1602e45388d78528b8632b44716736cf7914b6f2
+
   ],
-  providers: [LoginService, CustomerService],
+  providers: [LoginService, CustomerService,TransactionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -79,3 +79,6 @@ input.ng-touched.ng-invalid {
     font-style: italic;
     font-stretch: expanded;
   }
+  button:disabled {
+    cursor: not-allowed;
+  }

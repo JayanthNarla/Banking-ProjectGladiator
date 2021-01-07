@@ -73,4 +73,6 @@
     background-color: rgba(0, 136, 169, 0.8);
     color: var(--white);
   }
-  
+  button:disabled {
+    cursor: not-allowed;
+  }
