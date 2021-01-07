@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5e0eeb6a0c3d462e8cb6123f1143e60c" Name="Diagram1">
-        <EntityTypeShape EntityType="dbBankingModel.tblAccount" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblBeneficiary" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblBlocked" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblCustomer" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblInternetBanking" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblLogin" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblStatu" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbBankingModel.tblTransaction" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
-        <AssociationConnector Association="dbBankingModel.FK__tblBenefi__cust___2BFE89A6" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblBlocke__cust___5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblCustom__cust___4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblIntern__cust___619B8048" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblLogin__cust_i__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblTransa__cust___52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="dbBankingModel.FK__tblStatus__aadha__160F4887" ManuallyRouted="false" />
+      <Diagram DiagramId="b192b90df9aa4e5592c8287309884b4a" Name="Diagram1">
+        <EntityTypeShape EntityType="dbBankingModel.tblAccounts" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblBeneficiary" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblBlocked" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblCustomer" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblInternetBanking" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblLogin" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblStatus" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBankingModel.tblTransaction" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="dbBankingModel.FK__tblAccoun__cust___286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBenefi__ben_a__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblBlocke__acc_n__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblIntern__acc_n__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblLogin__acc_nu__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblTransa__acc_n__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBankingModel.FK__tblStatus__cust___6FE99F9F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

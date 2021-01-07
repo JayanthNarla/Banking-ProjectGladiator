@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  @Input() main: string;
+  @Input() opt1: string;
+  @Input() opt2: string;
+  @Input() opt3: string;
+  @Input() mainLink: string;
+  @Input() link1: string;
+  @Input() link2: string;
+  @Input() link3: string;
 
-  constructor() { }
+  @Input() isLogin: boolean;
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

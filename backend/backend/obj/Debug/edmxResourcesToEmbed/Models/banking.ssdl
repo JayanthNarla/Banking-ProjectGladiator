@@ -2,37 +2,37 @@
 <Schema Namespace="dbBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="tblAccounts">
     <Key>
-      <PropertyRef Name="cust_id" />
+      <PropertyRef Name="acc_number" />
     </Key>
-    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" />
+    <Property Name="acc_number" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="acc_type" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="minbalance" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="acc_number" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="balance" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="open_date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="tblBeneficiary">
     <Key>
-      <PropertyRef Name="ben_acc_num" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="ben_acc_num" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
+    <Property Name="ben_acc_num" Type="varchar" MaxLength="20" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="tblBlocked">
     <Key>
-      <PropertyRef Name="acc_number" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
-    <Property Name="acc_number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="acc_number" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="tblCustomer">
     <Key>
-      <PropertyRef Name="aadhar" />
+      <PropertyRef Name="cust_id" />
     </Key>
     <Property Name="aadhar" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="title" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="first_name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="middle_name" Type="varchar" MaxLength="30" />
@@ -48,19 +48,19 @@
   </EntityType>
   <EntityType Name="tblInternetBanking">
     <Key>
-      <PropertyRef Name="acc_number" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
-    <Property Name="acc_number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="acc_number" Type="varchar" MaxLength="20" />
     <Property Name="pwd" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Tpwd" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="tblLogin">
     <Key>
-      <PropertyRef Name="userId" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
-    <Property Name="userId" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="acc_number" Type="varchar" MaxLength="20" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="user_type" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="pwd" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
@@ -68,8 +68,8 @@
     <Key>
       <PropertyRef Name="ref_no" />
     </Key>
-    <Property Name="ref_no" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="aadhar" Type="varchar" MaxLength="20" />
+    <Property Name="ref_no" Type="int" Nullable="false" />
+    <Property Name="cust_id" Type="varchar" MaxLength="20" />
     <Property Name="app_by" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="acc_status" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="app_date" Type="date" Nullable="false" />
@@ -79,7 +79,7 @@
       <PropertyRef Name="transaction_id" />
     </Key>
     <Property Name="transaction_id" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="cust_id" Type="varchar" MaxLength="20" />
+    <Property Name="acc_number" Type="varchar" MaxLength="20" />
     <Property Name="transaction_type" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="tran_date" Type="date" Nullable="false" />
     <Property Name="cred_acc" Type="varchar" MaxLength="20" Nullable="false" />
@@ -88,93 +88,111 @@
     <Property Name="deb_bal" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="cred_bal" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
-  <Association Name="FK__tblBenefi__cust___2BFE89A6">
+  <Association Name="FK__tblAccoun__cust___286302EC">
+    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomer">
+        <PropertyRef Name="cust_id" />
+      </Principal>
+      <Dependent Role="tblAccounts">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblBenefi__ben_a__36B12243">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblBeneficiary">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="ben_acc_num" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBlocke__cust___5EBF139D">
+  <Association Name="FK__tblBlocke__acc_n__30F848ED">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBlocked" Type="Self.tblBlocked" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblBlocked">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblCustom__cust___4D94879B">
-    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
-    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
-      </Principal>
-      <Dependent Role="tblCustomer">
-        <PropertyRef Name="cust_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tblIntern__cust___619B8048">
+  <Association Name="FK__tblIntern__acc_n__33D4B598">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblInternetBanking" Type="Self.tblInternetBanking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblInternetBanking">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblLogin__cust_i__4316F928">
+  <Association Name="FK__tblLogin__acc_nu__2E1BDC42">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblLogin" Type="Self.tblLogin" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblLogin">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblStatus__aadha__160F4887">
+  <Association Name="FK__tblStatus__cust___6FE99F9F">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
     <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblCustomer">
-        <PropertyRef Name="aadhar" />
+        <PropertyRef Name="cust_id" />
       </Principal>
       <Dependent Role="tblStatus">
-        <PropertyRef Name="aadhar" />
+        <PropertyRef Name="cust_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblTransa__cust___52593CB8">
+  <Association Name="FK__tblTransa__acc_n__2B3F6F97">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblTransaction">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="proc_denyAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ref_no" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_getAllApprovedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getAllAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getAllCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getAllCustDetailsAlongWithAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getAllDeniedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getAllPendingAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_getApplicationByRefno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ref_no" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_getAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cust_id" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
     <Parameter Name="acc_number" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_getCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -182,9 +200,12 @@
   </Function>
   <Function Name="proc_setUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
-    <Parameter Name="userId" Type="varchar" Mode="In" />
+    <Parameter Name="acc_number" Type="varchar" Mode="In" />
     <Parameter Name="user_type" Type="varchar" Mode="In" />
     <Parameter Name="pwd" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_toggleAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ref_no" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -215,31 +236,31 @@
     <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__tblBenefi__cust___2BFE89A6" Association="Self.FK__tblBenefi__cust___2BFE89A6">
+    <AssociationSet Name="FK__tblAccoun__cust___286302EC" Association="Self.FK__tblAccoun__cust___286302EC">
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
+      <End Role="tblAccounts" EntitySet="tblAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblBenefi__ben_a__36B12243" Association="Self.FK__tblBenefi__ben_a__36B12243">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBlocke__cust___5EBF139D" Association="Self.FK__tblBlocke__cust___5EBF139D">
+    <AssociationSet Name="FK__tblBlocke__acc_n__30F848ED" Association="Self.FK__tblBlocke__acc_n__30F848ED">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBlocked" EntitySet="tblBlocked" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblCustom__cust___4D94879B" Association="Self.FK__tblCustom__cust___4D94879B">
-      <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblCustomer" EntitySet="tblCustomer" />
-    </AssociationSet>
-    <AssociationSet Name="FK__tblIntern__cust___619B8048" Association="Self.FK__tblIntern__cust___619B8048">
+    <AssociationSet Name="FK__tblIntern__acc_n__33D4B598" Association="Self.FK__tblIntern__acc_n__33D4B598">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblInternetBanking" EntitySet="tblInternetBanking" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblLogin__cust_i__4316F928" Association="Self.FK__tblLogin__cust_i__4316F928">
+    <AssociationSet Name="FK__tblLogin__acc_nu__2E1BDC42" Association="Self.FK__tblLogin__acc_nu__2E1BDC42">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblLogin" EntitySet="tblLogin" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblStatus__aadha__160F4887" Association="Self.FK__tblStatus__aadha__160F4887">
+    <AssociationSet Name="FK__tblStatus__cust___6FE99F9F" Association="Self.FK__tblStatus__cust___6FE99F9F">
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblTransa__cust___52593CB8" Association="Self.FK__tblTransa__cust___52593CB8">
+    <AssociationSet Name="FK__tblTransa__acc_n__2B3F6F97" Association="Self.FK__tblTransa__acc_n__2B3F6F97">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblTransaction" EntitySet="tblTransaction" />
     </AssociationSet>

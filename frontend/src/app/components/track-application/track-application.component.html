@@ -1,0 +1,107 @@
+<section id="trackappl">
+  <div class="cntr">
+    <div class="wrapper">
+      <h2>Track your Application</h2>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form
+          [formGroup]="trackForm"
+          (submit)="getStatus(appStatus)"
+          autocomplete="off"
+        >
+          <div class="form-group row">
+            <label for="ref_num" class="col-sm-3 col-form-label"
+              >Reference Number:
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="ref_num"
+                type="number"
+                name="ref_num"
+                placeholder="Enter Your Reference Number"
+                [(ngModel)]="application.ref_no"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.ref_num">
+              <div
+                class="error-message"
+                *ngIf="
+                  trackForm.get('ref_num').hasError(error.type) &&
+                  trackForm.get('ref_num').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="btn_container">
+            <button type="submit" class="btn" [disabled]="!trackForm.valid">
+              Check Status
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #appStatus let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Check Staus</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="ref_no">Reference Number: </label>
+        <input type="text" class="form-control" id="ref_no" readonly />
+      </div>
+      <div class="form-group">
+        <label for="cust_id">Customer ID: </label>
+        <input type="text" class="form-control" id="cust_id" readonly />
+      </div>
+      <div class="form-group">
+        <label for="app_by">Approved By: </label>
+        <input type="text" class="form-control" id="app_by" readonly />
+      </div>
+      <div class="form-group">
+        <label for="acc_status">Account Status: </label>
+        <input type="text" class="form-control" id="acc_status" readonly />
+      </div>
+      <div class="form-group">
+        <label for="app_date">Approval Date: </label>
+        <input type="text" class="form-control" id="app_date" readonly />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer" *ngIf="acc_status == pending">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.close('Save click')"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

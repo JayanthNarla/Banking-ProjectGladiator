@@ -109,7 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -128,13 +130,40 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>banking.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_getAllApprovedAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAllAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAllCustDetailsAlongWithAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAllCustDetails_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAllDeniedAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAllPendingAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getApplicationByRefno_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getAppStatus_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_GetBlocked_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_getCustDetails_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proc_UserLogin_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblAccount.cs">
+    <Compile Include="Models\tblAccounts.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblBeneficiary.cs">
@@ -152,7 +181,7 @@
     <Compile Include="Models\tblLogin.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblStatu.cs">
+    <Compile Include="Models\tblStatus.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblTransaction.cs">

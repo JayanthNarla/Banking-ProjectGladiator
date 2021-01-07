@@ -19,6 +19,6 @@ namespace backend.Models
         public string pwd { get; set; }
         public string Tpwd { get; set; }
     
-        public virtual tblAccount tblAccount { get; set; }
+        public virtual tblAccounts tblAccounts { get; set; }
     }
 }

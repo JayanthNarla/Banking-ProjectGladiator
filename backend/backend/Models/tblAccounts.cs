@@ -12,37 +12,35 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAccount
+    public partial class tblAccounts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblAccount()
+        public tblAccounts()
         {
-            this.tblBeneficiaries = new HashSet<tblBeneficiary>();
-            this.tblBlockeds = new HashSet<tblBlocked>();
-            this.tblCustomers = new HashSet<tblCustomer>();
-            this.tblInternetBankings = new HashSet<tblInternetBanking>();
-            this.tblLogins = new HashSet<tblLogin>();
-            this.tblTransactions = new HashSet<tblTransaction>();
+            this.tblBeneficiary = new HashSet<tblBeneficiary>();
+            this.tblBlocked = new HashSet<tblBlocked>();
+            this.tblInternetBanking = new HashSet<tblInternetBanking>();
+            this.tblLogin = new HashSet<tblLogin>();
+            this.tblTransaction = new HashSet<tblTransaction>();
         }
     
         public string cust_id { get; set; }
+        public string acc_number { get; set; }
         public string acc_type { get; set; }
         public string minbalance { get; set; }
-        public string acc_number { get; set; }
         public string balance { get; set; }
         public System.DateTime open_date { get; set; }
     
+        public virtual tblCustomer tblCustomer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBeneficiary> tblBeneficiaries { get; set; }
+        public virtual ICollection<tblBeneficiary> tblBeneficiary { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBlocked> tblBlockeds { get; set; }
+        public virtual ICollection<tblBlocked> tblBlocked { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomer> tblCustomers { get; set; }
+        public virtual ICollection<tblInternetBanking> tblInternetBanking { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblInternetBanking> tblInternetBankings { get; set; }
+        public virtual ICollection<tblLogin> tblLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblLogin> tblLogins { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTransaction> tblTransactions { get; set; }
+        public virtual ICollection<tblTransaction> tblTransaction { get; set; }
     }
 }

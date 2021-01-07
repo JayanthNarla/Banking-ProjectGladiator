@@ -1,0 +1,432 @@
+<!-- <app-navbar></app-navbar> -->
+<section id="pd">
+  <div class="cntr">
+    <div class="wrapper">
+      <h2>Personal Details</h2>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form [formGroup]="pdform" (ngSubmit)="onSubmit()" autocomplete="off">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Title
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <select formControlName="title" class="form-control">
+                <option value=""></option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Ms">Ms</option>
+              </select>
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.title">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('title').hasError(error.type) &&
+                  pdform.get('title').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >First Name
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="first_name"
+                type="text"
+                placeholder="Enter Your First Name"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.first_name">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('first_name').hasError(error.type) &&
+                  pdform.get('first_name').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label">MiddleName </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="middle_name"
+                type="text"
+                placeholder="Enter Your Middle Name"
+              />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Last Name
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="last_name"
+                type="text"
+                placeholder="Enter Your Last Name"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.last_name">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('last_name').hasError(error.type) &&
+                  pdform.get('last_name').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Fathers Name
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="father_name"
+                type="text"
+                placeholder="Enter Your Fathers Name"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.father_name">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('father_name').hasError(error.type) &&
+                  pdform.get('father_name').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Email
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="cust_mail"
+                type="text"
+                placeholder="Enter Your Email"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.cust_mail">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('cust_mail').hasError(error.type) &&
+                  pdform.get('cust_mail').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Phone Number
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="phone"
+                type="text"
+                placeholder="Enter Your phone Number"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.phone">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('phone').hasError(error.type) &&
+                  pdform.get('phone').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Aadhar
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="aadhar"
+                type="text"
+                placeholder="Enter Your Aadhar Number"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.aadhar">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('aadhar').hasError(error.type) &&
+                  pdform.get('aadhar').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Date Of Birth
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="dob"
+                type="date"
+                placeholder="Enter Your Date of Birth"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.dob">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('dob').hasError(error.type) &&
+                  pdform.get('dob').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Gender
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <select formControlName="gender" class="form-control">
+                <option value=""></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.gender">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('gender').hasError(error.type) &&
+                  pdform.get('gender').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Residential Address
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <textarea
+                name="res_address"
+                rows="5"
+                cols="45"
+                formControlName="res_address"
+              ></textarea>
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.res_address">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('res_address').hasError(error.type) &&
+                  pdform.get('res_address').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Permanent Address
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <textarea
+                name="perm_address"
+                rows="5"
+                cols="45"
+                formControlName="perm_address"
+              ></textarea>
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.perm_address">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('perm_address').hasError(error.type) &&
+                  pdform.get('perm_address').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="wrapper">
+            <button
+              type="submit"
+              class="form-control btn btn-primary"
+              style="margin-bottom: 20px; width: 100px"
+              [disabled]="!pdform.valid"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

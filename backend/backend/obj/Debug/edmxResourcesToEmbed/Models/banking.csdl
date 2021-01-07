@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbBankingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="tblAccount">
-    <Key>
-      <PropertyRef Name="cust_id" />
-    </Key>
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="acc_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="minbalance" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="balance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="open_date" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="tblBeneficiaries" Relationship="Self.FK__tblBenefi__cust___2BFE89A6" FromRole="tblAccounts" ToRole="tblBeneficiary" />
-    <NavigationProperty Name="tblBlockeds" Relationship="Self.FK__tblBlocke__cust___5EBF139D" FromRole="tblAccounts" ToRole="tblBlocked" />
-    <NavigationProperty Name="tblCustomers" Relationship="Self.FK__tblCustom__cust___4D94879B" FromRole="tblAccounts" ToRole="tblCustomer" />
-    <NavigationProperty Name="tblInternetBankings" Relationship="Self.FK__tblIntern__cust___619B8048" FromRole="tblAccounts" ToRole="tblInternetBanking" />
-    <NavigationProperty Name="tblLogins" Relationship="Self.FK__tblLogin__cust_i__4316F928" FromRole="tblAccounts" ToRole="tblLogin" />
-    <NavigationProperty Name="tblTransactions" Relationship="Self.FK__tblTransa__cust___52593CB8" FromRole="tblAccounts" ToRole="tblTransaction" />
-  </EntityType>
-  <EntityType Name="tblBeneficiary">
-    <Key>
-      <PropertyRef Name="ben_acc_num" />
-    </Key>
-    <Property Name="ben_acc_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblBenefi__cust___2BFE89A6" FromRole="tblBeneficiary" ToRole="tblAccounts" />
-  </EntityType>
-  <EntityType Name="tblBlocked">
+  <EntityType Name="tblAccounts">
     <Key>
       <PropertyRef Name="acc_number" />
     </Key>
     <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblBlocke__cust___5EBF139D" FromRole="tblBlocked" ToRole="tblAccounts" />
+    <Property Name="acc_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="minbalance" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="balance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="open_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblAccoun__cust___286302EC" FromRole="tblAccounts" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblBeneficiary" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblAccounts" ToRole="tblBeneficiary" />
+    <NavigationProperty Name="tblBlocked" Relationship="Self.FK__tblBlocke__acc_n__30F848ED" FromRole="tblAccounts" ToRole="tblBlocked" />
+    <NavigationProperty Name="tblInternetBanking" Relationship="Self.FK__tblIntern__acc_n__33D4B598" FromRole="tblAccounts" ToRole="tblInternetBanking" />
+    <NavigationProperty Name="tblLogin" Relationship="Self.FK__tblLogin__acc_nu__2E1BDC42" FromRole="tblAccounts" ToRole="tblLogin" />
+    <NavigationProperty Name="tblTransaction" Relationship="Self.FK__tblTransa__acc_n__2B3F6F97" FromRole="tblAccounts" ToRole="tblTransaction" />
+  </EntityType>
+  <EntityType Name="tblBeneficiary">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="ben_acc_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblBeneficiary" ToRole="tblAccounts" />
+  </EntityType>
+  <EntityType Name="tblBlocked">
+    <Key>
+      <PropertyRef Name="cust_id" />
+    </Key>
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBlocke__acc_n__30F848ED" FromRole="tblBlocked" ToRole="tblAccounts" />
   </EntityType>
   <EntityType Name="tblCustomer">
     <Key>
-      <PropertyRef Name="aadhar" />
+      <PropertyRef Name="cust_id" />
     </Key>
     <Property Name="aadhar" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="title" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -53,46 +53,46 @@
     <Property Name="res_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="perm_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblCustom__cust___4D94879B" FromRole="tblCustomer" ToRole="tblAccounts" />
-    <NavigationProperty Name="tblStatus" Relationship="Self.FK__tblStatus__aadha__160F4887" FromRole="tblCustomer" ToRole="tblStatus" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblAccoun__cust___286302EC" FromRole="tblCustomer" ToRole="tblAccounts" />
+    <NavigationProperty Name="tblStatus" Relationship="Self.FK__tblStatus__cust___6FE99F9F" FromRole="tblCustomer" ToRole="tblStatus" />
   </EntityType>
   <EntityType Name="tblInternetBanking">
     <Key>
-      <PropertyRef Name="acc_number" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Tpwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblIntern__cust___619B8048" FromRole="tblInternetBanking" ToRole="tblAccounts" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblIntern__acc_n__33D4B598" FromRole="tblInternetBanking" ToRole="tblAccounts" />
   </EntityType>
   <EntityType Name="tblLogin">
     <Key>
-      <PropertyRef Name="userId" />
+      <PropertyRef Name="cust_id" />
     </Key>
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="userId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="user_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblLogin__cust_i__4316F928" FromRole="tblLogin" ToRole="tblAccounts" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblLogin__acc_nu__2E1BDC42" FromRole="tblLogin" ToRole="tblAccounts" />
   </EntityType>
-  <EntityType Name="tblStatu">
+  <EntityType Name="tblStatus">
     <Key>
       <PropertyRef Name="ref_no" />
     </Key>
-    <Property Name="ref_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="aadhar" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ref_no" Type="Int32" Nullable="false" />
+    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="app_by" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="acc_status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="app_date" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblStatus__aadha__160F4887" FromRole="tblStatus" ToRole="tblCustomer" />
+    <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblStatus__cust___6FE99F9F" FromRole="tblStatus" ToRole="tblCustomer" />
   </EntityType>
   <EntityType Name="tblTransaction">
     <Key>
       <PropertyRef Name="transaction_id" />
     </Key>
     <Property Name="transaction_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="acc_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="transaction_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="tran_date" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="cred_acc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -100,132 +100,143 @@
     <Property Name="transac_amt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="deb_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cred_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblTransa__cust___52593CB8" FromRole="tblTransaction" ToRole="tblAccounts" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblTransa__acc_n__2B3F6F97" FromRole="tblTransaction" ToRole="tblAccounts" />
   </EntityType>
-  <Association Name="FK__tblBenefi__cust___2BFE89A6">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
+  <Association Name="FK__tblAccoun__cust___286302EC">
+    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCustomer">
+        <PropertyRef Name="cust_id" />
+      </Principal>
+      <Dependent Role="tblAccounts">
+        <PropertyRef Name="cust_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblBenefi__ben_a__36B12243">
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblBeneficiary">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="ben_acc_num" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBlocke__cust___5EBF139D">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
+  <Association Name="FK__tblBlocke__acc_n__30F848ED">
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBlocked" Type="Self.tblBlocked" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblBlocked">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblCustom__cust___4D94879B">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
-    <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
-      </Principal>
-      <Dependent Role="tblCustomer">
-        <PropertyRef Name="cust_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__tblIntern__cust___619B8048">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
+  <Association Name="FK__tblIntern__acc_n__33D4B598">
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblInternetBanking" Type="Self.tblInternetBanking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblInternetBanking">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblLogin__cust_i__4316F928">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
+  <Association Name="FK__tblLogin__acc_nu__2E1BDC42">
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblLogin" Type="Self.tblLogin" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblLogin">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblTransa__cust___52593CB8">
-    <End Role="tblAccounts" Type="Self.tblAccount" Multiplicity="0..1" />
+  <Association Name="FK__tblTransa__acc_n__2B3F6F97">
+    <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblAccounts">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Principal>
       <Dependent Role="tblTransaction">
-        <PropertyRef Name="cust_id" />
+        <PropertyRef Name="acc_number" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblStatus__aadha__160F4887">
+  <Association Name="FK__tblStatus__cust___6FE99F9F">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
-    <End Role="tblStatus" Type="Self.tblStatu" Multiplicity="*" />
+    <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tblCustomer">
-        <PropertyRef Name="aadhar" />
+        <PropertyRef Name="cust_id" />
       </Principal>
       <Dependent Role="tblStatus">
-        <PropertyRef Name="aadhar" />
+        <PropertyRef Name="cust_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="dbBankingEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="tblAccounts" EntityType="Self.tblAccount" />
-    <EntitySet Name="tblBeneficiaries" EntityType="Self.tblBeneficiary" />
-    <EntitySet Name="tblBlockeds" EntityType="Self.tblBlocked" />
-    <EntitySet Name="tblCustomers" EntityType="Self.tblCustomer" />
-    <EntitySet Name="tblInternetBankings" EntityType="Self.tblInternetBanking" />
-    <EntitySet Name="tblLogins" EntityType="Self.tblLogin" />
-    <EntitySet Name="tblStatus" EntityType="Self.tblStatu" />
-    <EntitySet Name="tblTransactions" EntityType="Self.tblTransaction" />
-    <AssociationSet Name="FK__tblBenefi__cust___2BFE89A6" Association="Self.FK__tblBenefi__cust___2BFE89A6">
+    <EntitySet Name="tblAccounts" EntityType="Self.tblAccounts" />
+    <EntitySet Name="tblBeneficiary" EntityType="Self.tblBeneficiary" />
+    <EntitySet Name="tblBlocked" EntityType="Self.tblBlocked" />
+    <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" />
+    <EntitySet Name="tblInternetBanking" EntityType="Self.tblInternetBanking" />
+    <EntitySet Name="tblLogin" EntityType="Self.tblLogin" />
+    <EntitySet Name="tblStatus" EntityType="Self.tblStatus" />
+    <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" />
+    <AssociationSet Name="FK__tblAccoun__cust___286302EC" Association="Self.FK__tblAccoun__cust___286302EC">
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblBeneficiary" EntitySet="tblBeneficiaries" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBlocke__cust___5EBF139D" Association="Self.FK__tblBlocke__cust___5EBF139D">
+    <AssociationSet Name="FK__tblBenefi__ben_a__36B12243" Association="Self.FK__tblBenefi__ben_a__36B12243">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblBlocked" EntitySet="tblBlockeds" />
+      <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblCustom__cust___4D94879B" Association="Self.FK__tblCustom__cust___4D94879B">
+    <AssociationSet Name="FK__tblBlocke__acc_n__30F848ED" Association="Self.FK__tblBlocke__acc_n__30F848ED">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblCustomer" EntitySet="tblCustomers" />
+      <End Role="tblBlocked" EntitySet="tblBlocked" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblIntern__cust___619B8048" Association="Self.FK__tblIntern__cust___619B8048">
+    <AssociationSet Name="FK__tblIntern__acc_n__33D4B598" Association="Self.FK__tblIntern__acc_n__33D4B598">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblInternetBanking" EntitySet="tblInternetBankings" />
+      <End Role="tblInternetBanking" EntitySet="tblInternetBanking" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblLogin__cust_i__4316F928" Association="Self.FK__tblLogin__cust_i__4316F928">
+    <AssociationSet Name="FK__tblLogin__acc_nu__2E1BDC42" Association="Self.FK__tblLogin__acc_nu__2E1BDC42">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblLogin" EntitySet="tblLogins" />
+      <End Role="tblLogin" EntitySet="tblLogin" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblTransa__cust___52593CB8" Association="Self.FK__tblTransa__cust___52593CB8">
+    <AssociationSet Name="FK__tblTransa__acc_n__2B3F6F97" Association="Self.FK__tblTransa__acc_n__2B3F6F97">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
-      <End Role="tblTransaction" EntitySet="tblTransactions" />
+      <End Role="tblTransaction" EntitySet="tblTransaction" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblStatus__aadha__160F4887" Association="Self.FK__tblStatus__aadha__160F4887">
-      <End Role="tblCustomer" EntitySet="tblCustomers" />
+    <AssociationSet Name="FK__tblStatus__cust___6FE99F9F" Association="Self.FK__tblStatus__cust___6FE99F9F">
+      <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>
+    <FunctionImport Name="proc_getAllApprovedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllApprovedAppStatus_Result)" />
+    <FunctionImport Name="proc_getAllAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllAppStatus_Result)" />
+    <FunctionImport Name="proc_getAllCustDetails" ReturnType="Collection(dbBankingModel.proc_getAllCustDetails_Result)" />
+    <FunctionImport Name="proc_getAllDeniedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllDeniedAppStatus_Result)" />
+    <FunctionImport Name="proc_getAllPendingAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllPendingAppStatus_Result)" />
+    <FunctionImport Name="proc_getAppStatus" ReturnType="Collection(dbBankingModel.proc_getAppStatus_Result)">
+      <Parameter Name="cust_id" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="proc_GetBlocked" ReturnType="Collection(dbBankingModel.proc_GetBlocked_Result)">
       <Parameter Name="cust_id" Mode="In" Type="String" />
       <Parameter Name="acc_number" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getCustDetails" ReturnType="Collection(dbBankingModel.proc_getCustDetails_Result)">
+      <Parameter Name="cust_id" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_InsBlocked">
       <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -233,9 +244,12 @@
     </FunctionImport>
     <FunctionImport Name="proc_setUserLogin">
       <Parameter Name="cust_id" Mode="In" Type="String" />
-      <Parameter Name="userId" Mode="In" Type="String" />
+      <Parameter Name="acc_number" Mode="In" Type="String" />
       <Parameter Name="user_type" Mode="In" Type="String" />
       <Parameter Name="pwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_toggleAppStatus">
+      <Parameter Name="ref_no" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="proc_UserLogin" ReturnType="Collection(dbBankingModel.proc_UserLogin_Result)">
       <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -257,14 +271,121 @@
       <Parameter Name="perm_address" Mode="In" Type="String" />
       <Parameter Name="gender" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="proc_denyAppStatus">
+      <Parameter Name="ref_no" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
+    <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
+      <Parameter Name="ref_no" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="proc_GetBlocked_Result">
+  <ComplexType Name="proc_getAllApprovedAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllAppStatus_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
     <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="acc_number" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllCustDetails_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllDeniedAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllPendingAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getAppStatus_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBlocked_Result">
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_getCustDetails_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
   </ComplexType>
   <ComplexType Name="proc_UserLogin_Result">
-    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="userId" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_getAllCustDetailsAlongWithAppStatus_Result">
+    <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_getApplicationByRefno_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
   </ComplexType>
 </Schema>
