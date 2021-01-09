@@ -18,7 +18,7 @@ create table tblAccounts
 	acc_type varchar(50) not null,
 	minbalance varchar(10) not null,
 	balance varchar(20) not null,
-	open_date date not null,
+	open_date date not null
 )
 --drop table tblAccounts
 
@@ -52,9 +52,12 @@ create table tblTransaction
 	deb_acc varchar(20) not null,
 	transac_amt varchar(20) not null,
 	deb_bal varchar(20) not null,
-	cred_bal varchar(20) not null
+	cred_bal varchar(20) not null,
+	mat_ins varchar(50),
+	remark varchar(50)
 )
 --drop table tblTransaction
+
 
 create table tblLogin
 (
@@ -194,7 +197,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Retrieve user details on condition match
-	Select  cust_id,acc_number,user_type
+	Select  cust_id,acc_number,user_type, pwd
 	from tblLogin
 	where cust_id = @cust_id AND pwd = @pwd AND cust_id not in (select cust_id from tblBlocked)
 END
@@ -299,20 +302,25 @@ GO
 -- Create date: 25-12-2020
 -- Description:	Insert Blocked Contacts
 -- =============================================
-Create PROCEDURE proc_InsBlocked 
+alter PROCEDURE proc_InsBlocked 
 	-- Add the parameters for the stored procedure here
-	@cust_id varchar(20),
-	@acc_number varchar(20)
+	@cust_id varchar(20)
 AS
-BEGIN
+BEGIN	
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-
+	declare @acc_number varchar(20)
+	declare @checkCustId varchar(20)
+	set @acc_number = (select acc_number from tblAccounts where cust_id = @cust_id)
+	set @checkCustId = (select cust_id from tblAccounts where cust_id = @cust_id)
     -- Insert blocked customers
-	Insert into tblBlocked (cust_id,acc_number) values (@cust_id,@acc_number)
+	if(@checkCustId = @cust_id)
+		Insert into tblBlocked (cust_id,acc_number) values (@cust_id,@acc_number)
+	
 END
 GO
+
 
 
 
@@ -729,6 +737,40 @@ GO
 
 
 
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Jayanth
+-- Create date: 02-01-2021
+-- Description:	Get all Application Status
+-- =============================================
+alter PROCEDURE proc_verifyMail
+	@cust_id varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select a.cust_id, cust_mail from tblAccounts a join tblCustomer c 
+	on a.cust_id = c.cust_id
+	where a.cust_id = @cust_id ;
+END
+GO
 
 
 
@@ -766,6 +808,11 @@ proc_getAllApprovedAppStatus
 proc_getAllDeniedAppStatus
 proc_getAllAppStatus
 proc_getAllCustDetailsAlongWithAppStatus
+
+
+
+proc_verifyMail  'R1234'
+
 
 select * from tblStatus
 

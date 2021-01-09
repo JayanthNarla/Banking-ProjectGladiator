@@ -72,3 +72,13 @@ M:\Programming\PG Banking Software\backend\backend\obj\Debug\backend.pdb
 M:\Programming\PG Banking Software\backend\backend\bin\System.Web.Cors.dll
 M:\Programming\PG Banking Software\backend\backend\bin\System.Web.Http.Cors.dll
 M:\Programming\PG Banking Software\backend\backend\bin\System.Web.Http.Cors.xml
+M:\Programming\PG Banking Software\backend\backend\bin\BouncyCastle.Crypto.dll
+M:\Programming\PG Banking Software\backend\backend\bin\MailKit.dll
+M:\Programming\PG Banking Software\backend\backend\bin\MimeKit.dll
+M:\Programming\PG Banking Software\backend\backend\bin\System.Buffers.dll
+M:\Programming\PG Banking Software\backend\backend\bin\BouncyCastle.Crypto.xml
+M:\Programming\PG Banking Software\backend\backend\bin\MailKit.pdb
+M:\Programming\PG Banking Software\backend\backend\bin\MailKit.xml
+M:\Programming\PG Banking Software\backend\backend\bin\MimeKit.pdb
+M:\Programming\PG Banking Software\backend\backend\bin\MimeKit.xml
+M:\Programming\PG Banking Software\backend\backend\bin\System.Buffers.xml

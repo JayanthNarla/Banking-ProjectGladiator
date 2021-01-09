@@ -13,7 +13,7 @@
         >
           <div class="form-group row">
             <label for="id" class="col-sm-3 col-form-label"
-              >User Id
+              >Customer ID
               <span
                 style="
                   color: var(--light-red);
@@ -92,10 +92,16 @@
             <button
               type="submit"
               class="form-control btn btn-primary"
-              style="margin-bottom: 20px; width: 100px"
               [disabled]="!loginForm.valid"
             >
               Login
+            </button>
+            <button
+              type="submit"
+              class="form-control btn btn-primary"
+              routerLink="/forgotPwd"
+            >
+              Forgot Password
             </button>
           </div>
         </form>

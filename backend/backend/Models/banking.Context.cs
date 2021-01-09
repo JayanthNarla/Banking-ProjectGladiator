@@ -92,17 +92,13 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getCustDetails_Result>("proc_getCustDetails", cust_idParameter);
         }
     
-        public virtual int proc_InsBlocked(string cust_id, string acc_number)
+        public virtual int proc_InsBlocked(string cust_id)
         {
             var cust_idParameter = cust_id != null ?
                 new ObjectParameter("cust_id", cust_id) :
                 new ObjectParameter("cust_id", typeof(string));
     
-            var acc_numberParameter = acc_number != null ?
-                new ObjectParameter("acc_number", acc_number) :
-                new ObjectParameter("acc_number", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter, acc_numberParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter);
         }
     
         public virtual int proc_setUserLogin(string cust_id, string acc_number, string user_type, string pwd)
@@ -230,6 +226,15 @@ namespace backend.Models
                 new ObjectParameter("ref_no", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getApplicationByRefno_Result>("proc_getApplicationByRefno", ref_noParameter);
+        }
+    
+        public virtual ObjectResult<proc_verifyMail_Result> proc_verifyMail(string cust_id)
+        {
+            var cust_idParameter = cust_id != null ?
+                new ObjectParameter("cust_id", cust_id) :
+                new ObjectParameter("cust_id", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_verifyMail_Result>("proc_verifyMail", cust_idParameter);
         }
     }
 }

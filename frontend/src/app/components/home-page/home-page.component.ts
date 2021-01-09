@@ -11,6 +11,10 @@ export class HomePageComponent implements OnInit {
   opt2 = 'Services';
   opt3 = 'ContactUs';
   isLogin = true;
+  mainLink = '/';
+  link1 = 'faq';
+  link2 = 'services';
+  link3 = 'contactUs';
   constructor() {}
 
   ngOnInit(): void {}

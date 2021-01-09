@@ -1,3 +1,7 @@
+import { ServicePageComponent } from './components/service-page/service-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FaqPageComponent } from './components/faq-page/faq-page.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
 import { TrackApplicationComponent } from './components/track-application/track-application.component';
 import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
@@ -28,6 +32,9 @@ const routes: Routes = [
     ],
   },
   { path: 'userdash', component: UserDashboardComponent },
+
+  { path: 'forgotPwd', component: ForgotPasswordComponent },
+
   {
     path: 'register',
     component: RegisterDashboardComponent,
@@ -47,6 +54,10 @@ const routes: Routes = [
       },
     ],
   },
+
+  { path: 'faq', component: FaqPageComponent },
+  { path: 'services', component: ServicePageComponent },
+  { path: 'contactUs', component: ContactUsComponent },
 ];
 
 @NgModule({

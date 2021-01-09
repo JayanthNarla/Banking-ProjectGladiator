@@ -1,3 +1,4 @@
+import { Blocked } from './../../models/Blocked';
 import { LoginService } from './../../services/login.service';
 import { Login } from './../../models/Login';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-login',
@@ -18,6 +20,7 @@ import { Router } from '@angular/router';
 export class AdminLoginComponent implements OnInit {
   loginForm: FormGroup;
   user: Login;
+  blockedAcc: Blocked;
   error_messages = {
     id: [{ type: 'required', message: 'User Id is required' }],
 
@@ -38,13 +41,18 @@ export class AdminLoginComponent implements OnInit {
       },
     ],
   };
+  login_count = 0;
+  toast: string;
 
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
-    private ls: LoginService
+    private ls: LoginService,
+    private toastr: ToastrService
   ) {
+    this.toast = 'toast';
     this.user = new Login();
+    this.blockedAcc = new Blocked();
     this.loginForm = this.formBuilder.group({
       id: new FormControl(
         '',
@@ -67,16 +75,32 @@ export class AdminLoginComponent implements OnInit {
 
   AdminLogin = () => {
     console.log('submitted');
-    // console.log(this.user.cust_id);
-    // console.log(this.user.pwd);
-    this.ls.userLogin(this.user).subscribe((data) => {
-      console.log(data);
-      if (data['user_type'] == 'admin') {
-        this.router.navigate(['admindash']);
-      } else if (data['user_type'] == 'customer') {
-        this.router.navigate(['userdash']);
+    this.ls.userLogin(this.user).subscribe(
+      (data) => {
+        console.log(data);
+
+        if (data['user_type'] == 'admin') {
+          this.router.navigate(['admindash']);
+        } else if (data['user_type'] == 'customer') {
+          this.router.navigate(['userdash']);
+        }
+      },
+      (err) => {
+        if (this.login_count == 3) {
+          this.blockedAcc.cust_id = this.loginForm.get('id').value;
+          console.log(this.blockedAcc);
+          this.toastr.error(`You're Blocked Contact admin`);
+          this.ls.setBlockedUser(this.blockedAcc).subscribe((blk) => {
+            console.log(blk);
+            this.login_count = 0;
+          });
+        } else {
+          this.toastr.error(`Enter Valid Customer ID and password`);
+          this.login_count = this.login_count + 1;
+          console.log(this.login_count);
+        }
       }
-    });
+    );
   };
   ngOnInit(): void {}
 }

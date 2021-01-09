@@ -1,3 +1,4 @@
+import { OtpService } from './services/otp.service';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
@@ -27,6 +28,10 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
 import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
 import { TrackApplicationComponent } from './components/track-application/track-application.component';
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { FaqPageComponent } from './components/faq-page/faq-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ServicePageComponent } from './components/service-page/service-page.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +54,10 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     RegisterDashboardComponent,
     TrackApplicationComponent,
     RegisterOptsComponent,
+    ForgotPasswordComponent,
+    FaqPageComponent,
+    ContactUsComponent,
+    ServicePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +74,7 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
       preventDuplicates: true,
     }),
   ],
-  providers: [LoginService, CustomerService],
+  providers: [LoginService, CustomerService, OtpService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

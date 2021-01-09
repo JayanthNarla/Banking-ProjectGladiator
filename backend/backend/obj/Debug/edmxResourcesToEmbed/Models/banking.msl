@@ -85,6 +85,8 @@
     <EntitySetMapping Name="tblTransaction">
       <EntityTypeMapping TypeName="dbBankingModel.tblTransaction">
         <MappingFragment StoreEntitySet="tblTransaction">
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
           <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
           <ScalarProperty Name="acc_number" ColumnName="acc_number" />
           <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
@@ -252,6 +254,14 @@
           <ScalarProperty Name="app_by" ColumnName="app_by" />
           <ScalarProperty Name="acc_status" ColumnName="acc_status" />
           <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_verifyMail" FunctionName="dbBankingModel.Store.proc_verifyMail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_verifyMail_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

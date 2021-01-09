@@ -87,6 +87,8 @@
     <Property Name="transac_amt" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="deb_bal" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="cred_bal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="mat_ins" Type="varchar" MaxLength="50" />
+    <Property Name="remark" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK__tblAccoun__cust___286302EC">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
@@ -196,7 +198,6 @@
   </Function>
   <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
-    <Parameter Name="acc_number" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_setUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -226,6 +227,9 @@
     <Parameter Name="res_address" Type="varchar" Mode="In" />
     <Parameter Name="perm_address" Type="varchar" Mode="In" />
     <Parameter Name="gender" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_verifyMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
   <EntityContainer Name="dbBankingModelStoreContainer">
     <EntitySet Name="tblAccounts" EntityType="Self.tblAccounts" Schema="dbo" store:Type="Tables" />

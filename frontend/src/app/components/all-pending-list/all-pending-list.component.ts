@@ -66,6 +66,7 @@ export class AllPendingListComponent implements OnInit {
               this.cs.getAllPendingAppStatus().subscribe((aplData) => {
                 console.log(aplData);
                 this.applications = aplData;
+                this.modalService.dismissAll();
               });
             });
           this.applications_size--;
@@ -97,6 +98,7 @@ export class AllPendingListComponent implements OnInit {
               this.cs.getAllPendingAppStatus().subscribe((aplData) => {
                 console.log(aplData);
                 this.applications = aplData;
+                this.modalService.dismissAll();
               });
             });
         }

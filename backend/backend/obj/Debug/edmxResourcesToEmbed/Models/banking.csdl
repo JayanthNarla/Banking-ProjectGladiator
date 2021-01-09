@@ -101,6 +101,8 @@
     <Property Name="deb_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cred_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblTransa__acc_n__2B3F6F97" FromRole="tblTransaction" ToRole="tblAccounts" />
+    <Property Name="mat_ins" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__tblAccoun__cust___286302EC">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
@@ -240,7 +242,6 @@
     </FunctionImport>
     <FunctionImport Name="proc_InsBlocked">
       <Parameter Name="cust_id" Mode="In" Type="String" />
-      <Parameter Name="acc_number" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_setUserLogin">
       <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -277,6 +278,9 @@
     <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
     <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
       <Parameter Name="ref_no" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
+      <Parameter Name="cust_id" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
@@ -387,5 +391,9 @@
     <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
     <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_verifyMail_Result">
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
   </ComplexType>
 </Schema>
