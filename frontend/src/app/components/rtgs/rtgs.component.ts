@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { Transaction } from 'src/app/models/transaction.model';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -40,7 +42,7 @@ export class RtgsComponent implements OnInit {
     remark: [{ type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' }]
   };
 
-  constructor(private formBuilder:FormBuilder,private ser:TransactionService) {
+  constructor(private formBuilder:FormBuilder,private ser:TransactionService,private toastr:ToastrService) {
     this.trans=new Transaction();
     this.trans.transaction_type="rtgs";
     this.transForm = this.formBuilder.group({
@@ -76,7 +78,7 @@ export class RtgsComponent implements OnInit {
     dc=this.transForm.get("deb_acc").value;
     this.ser.GetPassword(dc).subscribe(
       d=>present=d.toString(),
-      err=>{alert("Invalid Account number");this.transForm.get("deb_acc").setValue("")});
+      err=>{this.toastr.error("Invalid Account number");this.transForm.get("deb_acc").setValue("")});
   }
   validateAcc()
   {
@@ -84,7 +86,7 @@ export class RtgsComponent implements OnInit {
     console.log(acc);
     this.ser.GetPassword(acc).subscribe(
       d=>present=d.toString(),
-      err=>{alert("Invalid Account number");this.transForm.get("cred_acc").setValue("")});
+      err=>{this.toastr.error("Invalid Account number");this.transForm.get("cred_acc").setValue("")});
   }
 }
 var dc;

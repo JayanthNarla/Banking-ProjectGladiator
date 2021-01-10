@@ -44,6 +44,8 @@ import { TrackApplicationComponent } from './components/track-application/track-
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
 import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
 import { PayeeComponent } from './components/payee/payee.component';
+import { BeneficiaryService } from './services/beneficiary.service';
+import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
 
 
 @NgModule({
@@ -81,6 +83,7 @@ import { PayeeComponent } from './components/payee/payee.component';
     RegisterOptsComponent,
     TransactionFailedComponent,
     PayeeComponent,
+    ViewBeneficiariesComponent,
 
   ],
   imports: [
@@ -99,7 +102,7 @@ import { PayeeComponent } from './components/payee/payee.component';
     }),
 
   ],
-  providers: [LoginService, CustomerService,TransactionService,AccountStatementService],
+  providers: [LoginService, CustomerService,TransactionService,AccountStatementService,BeneficiaryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

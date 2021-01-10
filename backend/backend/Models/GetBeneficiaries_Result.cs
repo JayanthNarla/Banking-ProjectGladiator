@@ -10,15 +10,12 @@
 namespace backend.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblBeneficiary
+    public partial class GetBeneficiaries_Result
     {
         public string ben_acc_num { get; set; }
         public string cust_id { get; set; }
-        public string nickname { get; set; }
         public string ben_name { get; set; }
-    
-        public virtual tblAccounts tblAccounts { get; set; }
+        public string nickname { get; set; }
     }
 }

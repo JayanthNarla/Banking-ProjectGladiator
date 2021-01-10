@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/models/transaction.model';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transaction-password',
@@ -18,14 +20,14 @@ export class TransactionPasswordComponent implements OnInit {
     
   };
 
-  constructor(private formBuilder:FormBuilder,private ser:TransactionService,private route:Router) {
+  constructor(private formBuilder:FormBuilder,private ser:TransactionService,private route:Router,private toastr:ToastrService) {
     
     this.tran=this.ser.passData();
     this.ser.GetPassword(this.tran.deb_acc).subscribe(d=>pwd=d.toString());
-
     this.passForm = this.formBuilder.group({
       pass:new FormControl('',Validators.compose([InvalidPassword,Validators.required,Validators.maxLength(15)]))
     });
+
   }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class TransactionPasswordComponent implements OnInit {
       console.table(this.passForm.value)
       this.ser.AddTransaction(this.tran).subscribe(
         data=>{this.tran.transaction_id=data.toString();this.route.navigate(['userdash/success'])},
-        err=>{alert("Insufficient Balance"),this.route.navigate(['userdash/cancel'])});
+        err=>{this.toastr.error("Insufficient Balance"),this.route.navigate(['userdash/cancel'])});
       this.passForm.reset()
     }
   }

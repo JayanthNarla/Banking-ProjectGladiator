@@ -23,9 +23,9 @@
     </Key>
     <Property Name="ben_acc_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblBeneficiary" ToRole="tblAccounts" />
+    <Property Name="ben_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="tblBlocked">
     <Key>
@@ -291,6 +291,8 @@
     <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
       <Parameter Name="acc" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="GetBeneficiaries" ReturnType="Collection(dbBankingModel.GetBeneficiaries_Result)" />
+    <FunctionImport Name="proc_GetBeneficiaries" ReturnType="Collection(dbBankingModel.proc_GetBeneficiaries_Result)" />
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
     <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -433,5 +435,17 @@
     <Property Type="String" Name="acc_type" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="balance" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="Name" Nullable="true" MaxLength="92" />
+  </ComplexType>
+  <ComplexType Name="GetBeneficiaries_Result">
+    <Property Type="String" Name="ben_acc_num" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ben_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nickname" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBeneficiaries_Result">
+    <Property Type="String" Name="ben_acc_num" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="ben_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nickname" Nullable="false" MaxLength="20" />
   </ComplexType>
 </Schema>

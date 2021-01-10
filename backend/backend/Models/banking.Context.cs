@@ -266,5 +266,15 @@ namespace backend.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAccountDetails_Result>("proc_GetAccountDetails", accParameter);
         }
+    
+        public virtual ObjectResult<GetBeneficiaries_Result> GetBeneficiaries()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBeneficiaries_Result>("GetBeneficiaries");
+        }
+    
+        public virtual ObjectResult<proc_GetBeneficiaries_Result> proc_GetBeneficiaries()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetBeneficiaries_Result>("proc_GetBeneficiaries");
+        }
     }
 }

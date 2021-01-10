@@ -1,7 +1,8 @@
 #add-beneficiary {
-    height: 70vh;
+    height: 80vh;
     position: relative;
     overflow-x: hidden;
+    overflow-x: initial !important;
   }
 
   h3 {
@@ -33,7 +34,7 @@
   .cntr {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 62.5%;
     transform: translate(-50%, -50%);
     width: 100vw;
   }
@@ -63,4 +64,6 @@
   .btn-submit:hover {
     background-color: rgba(0, 136, 169, 0.8);
   }
-  
+  button:disabled{
+    cursor: not-allowed;
+  }

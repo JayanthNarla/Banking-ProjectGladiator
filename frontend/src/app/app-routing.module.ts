@@ -26,6 +26,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
 import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
 import { PayeeComponent } from './components/payee/payee.component';
+import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: AdminLoginComponent },
@@ -74,6 +75,7 @@ const routes: Routes = [
           { path: 'success', component:TransactionSuccessComponent },
           { path: 'cancel', component:TransactionFailedComponent },
           { path: 'payee', component:PayeeComponent },
+          { path: 'viewben', component:ViewBeneficiariesComponent },
         ]},  
 ];
 

@@ -17,7 +17,7 @@
     </Key>
     <Property Name="ben_acc_num" Type="varchar" MaxLength="20" />
     <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ben_name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="tblBlocked">
@@ -102,7 +102,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBenefi__ben_a__25869641">
+  <Association Name="FK__tblBenefi__ben_a__6FE99F9F">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
     <ReferentialConstraint>
@@ -192,6 +192,7 @@
   <Function Name="proc_getAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_GetBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
     <Parameter Name="acc_number" Type="varchar" Mode="In" />
@@ -250,7 +251,7 @@
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblAccounts" EntitySet="tblAccounts" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBenefi__ben_a__25869641" Association="Self.FK__tblBenefi__ben_a__25869641">
+    <AssociationSet Name="FK__tblBenefi__ben_a__6FE99F9F" Association="Self.FK__tblBenefi__ben_a__6FE99F9F">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
     </AssociationSet>

@@ -1,6 +1,7 @@
 <section id="statement">
     <div class="hero">
         <div class="hero-content">
+        <div *ngIf="!show">
           <h2>Account statement</h2>
           <table class="tbl">
               <tr>
@@ -20,13 +21,14 @@
         
         <div style="width: 50%">
           <form [formGroup]='stateForm'>
-            <label for="start" class="col-sm-5 col-form-label">Start date :</label>
+              <label for="start" class="col-sm-5 col-form-label">Start date :</label>
                 <div class="col-sm-7">
                     <input type="date" 
                     name="start" 
                     formControlName="start"
                     class="form-control" 
-                    placeholder="Starting date"/>
+                    placeholder="Starting date"
+                    (change)="SetDate()"/>
                 </div>
               <label class="col-sm-5 col-form-label">End date :</label>
                 <div class="col-sm-7">
@@ -40,10 +42,10 @@
           </form>
           
         </div>
-        
+        </div>
           <table *ngIf="show" class="stat">
             <tr>
-              <td colspan="8" style="border: none;height:130px;">
+              <td colspan="8" style="border: none;height:100px;">
               <h2>Account statement</h2>
               </td>
             <tr>
@@ -70,7 +72,7 @@
           
           <button [disabled]="!stateForm.valid" (click)="View()">{{ show === false ? 'View statement' : 'Hide statement'}}</button>
           <div *ngIf="empty">
-            <h2 class="box">No transaction performed!</h2>
+            <h4 class="box">No transaction performed!</h4>
           </div>
         </div>
     </div>

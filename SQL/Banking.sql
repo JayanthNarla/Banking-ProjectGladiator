@@ -97,7 +97,7 @@ create table tblBeneficiary
 	ben_acc_num varchar(20) foreign key references tblAccounts(acc_number),
 	cust_id varchar(20) primary key,
 	ben_name varchar(50) not null,
-	nickname varchar(20) not null
+	nickname varchar(20)
 )
 --drop table tblBeneficiary
 
@@ -854,6 +854,45 @@ GO
 
 
 
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 10-01-2021
+-- Description:	Get all beneficiary
+-- =============================================
+CREATE PROCEDURE proc_GetBeneficiaries
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select * from tblBeneficiary
+END
+GO
+
+
+
+
+
 --test case data
 
 --truncate table tblLogin
@@ -898,6 +937,8 @@ select * from tblStatus
 select * from tblLogin
 
 select * from tblAccounts;
+
+select * from tblBeneficiary
 
 select * from tblTransaction order by tran_date desc
 

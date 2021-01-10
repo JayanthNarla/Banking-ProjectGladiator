@@ -1,6 +1,7 @@
 <section id="summary">
     <div class="hero">
         <div class="hero-content">
+          <div *ngIf="!show">
           <h2>Account summary</h2>
           <table class="tbl">
               <tr>
@@ -16,10 +17,11 @@
                 <td>{{account.balance}}</td>
               </tr>
           </table>
-          
+        </div>
+
           <table *ngIf="show" class="stat">
             <tr>
-            <td colspan="8" style="border: none;height:120px;">
+            <td colspan="8" style="border: none;height:100px;">
             <h2>Recent Transactions</h2>
             </td>
           </tr>

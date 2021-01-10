@@ -39,7 +39,7 @@ namespace backend.Controllers
                 trans.acc_number = trans.deb_acc;
                 trans.deb_bal = debAccount.balance;
                 trans.cred_bal = credAccount.balance;
-                if (Convert.ToSingle(debAccount.balance) > 0 && Convert.ToSingle(debAccount.balance) > Convert.ToSingle(debAccount.minbalance))
+                if (Convert.ToSingle(debAccount.balance) > 0)
                 {
                     entities.tblTransaction.Add(trans);
                     entities.SaveChanges();

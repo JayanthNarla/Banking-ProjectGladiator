@@ -1,4 +1,4 @@
-#summary {
+#view {
     height: auto;
     position: relative;
     overflow-x: hidden;
@@ -24,6 +24,12 @@
     letter-spacing: 2px;
     color: var(--blue);
   }
+  .hero-content h4 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    color: var(--blue);
+    font-size: 1.5em;
+  }
   .tbl{
       margin:50px;
       border:1px solid var(--black);
@@ -41,38 +47,3 @@
     border:1px solid var(--white);
     padding:15px 70px;
   }
-  button {
-    position: relative;
-    height: 30px;
-    width: 300px;
-    background-color: var(--blue);
-    border: none;
-    outline: none;
-    border-radius: 50px;
-    color: var(--white);
-    font-size: 15px;
-    cursor: pointer;
-    transition: transform 0.3s;
-    margin-top: 40px;
-    margin-bottom: 50px; 
-  }
-  button:hover {
-    background-color: rgba(0, 136, 169, 0.8);
-    transform: translateY(5px);
-  }
-  .stat{
-      margin:0px 30px 30px 30px;
-      border:1px solid var(--black);
-  }
-  .stat tr th{
-    background-color: var(--white);
-    color: var(--black);
-    border:1px solid var(--black);
-    padding:5px 3px;
-  }
-  .stat tr td{
-    color: var(--white);
-    border:1px solid var(--white);
-    padding:5px 3px;
-  }
-  

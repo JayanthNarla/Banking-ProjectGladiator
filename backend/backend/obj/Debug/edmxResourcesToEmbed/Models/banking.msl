@@ -16,9 +16,9 @@
     <EntitySetMapping Name="tblBeneficiary">
       <EntityTypeMapping TypeName="dbBankingModel.tblBeneficiary">
         <MappingFragment StoreEntitySet="tblBeneficiary">
+          <ScalarProperty Name="ben_name" ColumnName="ben_name" />
           <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="username" ColumnName="username" />
           <ScalarProperty Name="nickname" ColumnName="nickname" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -283,6 +283,16 @@
           <ScalarProperty Name="acc_type" ColumnName="acc_type" />
           <ScalarProperty Name="balance" ColumnName="balance" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBeneficiaries" FunctionName="dbBankingModel.Store.proc_GetBeneficiaries">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBeneficiaries_Result">
+          <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="ben_name" ColumnName="ben_name" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

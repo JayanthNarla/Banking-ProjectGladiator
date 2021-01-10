@@ -22,7 +22,7 @@
           </Key>
           <Property Name="ben_acc_num" Type="varchar" MaxLength="20" />
           <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ben_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="tblBlocked">
@@ -107,7 +107,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblBenefi__ben_a__25869641">
+        <Association Name="FK__tblBenefi__ben_a__6FE99F9F">
           <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
           <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
           <ReferentialConstraint>
@@ -197,6 +197,7 @@
         <Function Name="proc_getAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_GetBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
@@ -255,7 +256,7 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblAccounts" EntitySet="tblAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblBenefi__ben_a__25869641" Association="Self.FK__tblBenefi__ben_a__25869641">
+          <AssociationSet Name="FK__tblBenefi__ben_a__6FE99F9F" Association="Self.FK__tblBenefi__ben_a__6FE99F9F">
             <End Role="tblAccounts" EntitySet="tblAccounts" />
             <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
           </AssociationSet>
@@ -307,9 +308,9 @@
           </Key>
           <Property Name="ben_acc_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblBeneficiary" ToRole="tblAccounts" />
+          <Property Name="ben_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblBlocked">
           <Key>
@@ -575,6 +576,8 @@
           <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
           <Parameter Name="acc" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetBeneficiaries" ReturnType="Collection(dbBankingModel.GetBeneficiaries_Result)" />
+          <FunctionImport Name="proc_GetBeneficiaries" ReturnType="Collection(dbBankingModel.proc_GetBeneficiaries_Result)" />
         </EntityContainer>
         <ComplexType Name="proc_getAllApprovedAppStatus_Result">
           <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -718,6 +721,18 @@
           <Property Type="String" Name="balance" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="92" />
         </ComplexType>
+        <ComplexType Name="GetBeneficiaries_Result">
+          <Property Type="String" Name="ben_acc_num" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ben_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_GetBeneficiaries_Result">
+          <Property Type="String" Name="ben_acc_num" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ben_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="false" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -739,9 +754,9 @@
           <EntitySetMapping Name="tblBeneficiary">
             <EntityTypeMapping TypeName="dbBankingModel.tblBeneficiary">
               <MappingFragment StoreEntitySet="tblBeneficiary">
+                <ScalarProperty Name="ben_name" ColumnName="ben_name" />
                 <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1006,6 +1021,16 @@
                 <ScalarProperty Name="acc_type" ColumnName="acc_type" />
                 <ScalarProperty Name="balance" ColumnName="balance" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetBeneficiaries" FunctionName="dbBankingModel.Store.proc_GetBeneficiaries">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBeneficiaries_Result">
+                <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="ben_name" ColumnName="ben_name" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

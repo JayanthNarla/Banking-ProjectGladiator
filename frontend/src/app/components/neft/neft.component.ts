@@ -9,6 +9,8 @@ import {
 } from '@angular/forms';
 import { Transaction } from 'src/app/models/transaction.model';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-neft',
@@ -39,7 +41,7 @@ export class NeftComponent implements OnInit {
     remark: [{ type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' }]
   };
 
-  constructor(private formBuilder:FormBuilder,private ser:TransactionService) {
+  constructor(private formBuilder:FormBuilder,private ser:TransactionService,private toastr:ToastrService) {
     this.trans=new Transaction();
     this.trans.mat_ins="";
     this.trans.transaction_type="neft";
@@ -79,7 +81,7 @@ export class NeftComponent implements OnInit {
     dc=this.transForm.get("deb_acc").value;
     this.ser.GetPassword(dc).subscribe(
       d=>present=d.toString(),
-      err=>{alert("Invalid Account number");this.transForm.get("deb_acc").setValue("")});
+      err=>{this.toastr.error("Invalid Account number");this.transForm.get("deb_acc").setValue("")});
   }
 
   validateAcc()
@@ -88,7 +90,7 @@ export class NeftComponent implements OnInit {
     console.log(acc);
     this.ser.GetPassword(acc).subscribe(
       d=>present=d.toString(),
-      err=>{alert("Invalid Account number");this.transForm.get("cred_acc").setValue("")});
+      err=>{this.toastr.error("Invalid Account number");this.transForm.get("cred_acc").setValue("")});
   }
   
 }
