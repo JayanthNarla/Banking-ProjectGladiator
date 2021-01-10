@@ -1,0 +1,103 @@
+#statement {
+    height: 150vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 160px);
+  }
+  
+  .hero-content {
+    margin-left: 20px;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+  }
+  .tbl{
+      margin:50px;
+      border:1px solid var(--black);
+      border-radius: 20px;
+      -moz-border-radius:20px;
+  }
+  .tbl tr th{
+    background-color: var(--white);
+    color: var(--black);
+    border:1px solid var(--black);
+    padding:20px 70px;
+  }
+  .tbl tr td{
+    color: var(--white);
+    border:1px solid var(--white);
+    padding:15px 70px;
+  }
+  form{
+      margin: 10px;
+      display: flex;
+      padding: 10px 30px;
+  }
+  
+  .error-message {
+    color: var(--light-red);
+  }
+  input.ng-touched.ng-invalid {
+    border: 1px solid var(--light-red);
+  }
+  button {
+    position: relative;
+    width: 200px;
+    height: 30px;
+    background-color: var(--blue);
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    color: var(--white);
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-top: 40px;
+    margin-bottom: 30px; 
+  }
+  button:hover {
+    background-color: rgba(0, 136, 169, 0.8);
+    transform: translateY(5px);
+  }
+  .stat{
+      margin:40px 30px 30px 30px;
+      border:1px solid var(--black);
+  }
+  .stat tr th{
+    background-color: var(--white);
+    color: var(--black);
+    border:1px solid var(--black);
+    padding:2px 7px;
+  }
+  .stat tr td{
+    color: var(--white);
+    border:1px solid var(--white);
+    padding:2px 7px;
+  }
+  button:disabled{
+    cursor: not-allowed;
+  }
+  .box{
+    margin-top: 50px;
+    border:3px solid var(--blue);
+    background-color: rgb(234, 245, 250);
+    text-align: center;
+    padding:30px;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+  
+  

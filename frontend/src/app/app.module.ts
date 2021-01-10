@@ -2,6 +2,7 @@ import { PersonalDetailsComponent } from './components/personal-details/personal
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
 import { TransactionService } from './services/transaction.service';
+import { AccountStatementService } from './services/accountstatement.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +42,8 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
 import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
 import { TrackApplicationComponent } from './components/track-application/track-application.component';
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
+import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
+import { PayeeComponent } from './components/payee/payee.component';
 
 
 @NgModule({
@@ -76,6 +79,8 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     RegisterDashboardComponent,
     TrackApplicationComponent,
     RegisterOptsComponent,
+    TransactionFailedComponent,
+    PayeeComponent,
 
   ],
   imports: [
@@ -94,7 +99,7 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     }),
 
   ],
-  providers: [LoginService, CustomerService,TransactionService],
+  providers: [LoginService, CustomerService,TransactionService,AccountStatementService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

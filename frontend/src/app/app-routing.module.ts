@@ -23,6 +23,9 @@ import { AddBeneficiaryComponent } from './components/add-beneficiary/add-benefi
 import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
+import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
+import { PayeeComponent } from './components/payee/payee.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: AdminLoginComponent },
@@ -67,7 +70,10 @@ const routes: Routes = [
           { path: 'summary', component: AccountSummaryComponent },
           { path: 'change', component: ChangeIdPasswordComponent },
           { path: 'addben', component:AddBeneficiaryComponent  },
-          { path: 'transpass', component:TransactionPasswordComponent  }
+          { path: 'transpass', component:TransactionPasswordComponent },
+          { path: 'success', component:TransactionSuccessComponent },
+          { path: 'cancel', component:TransactionFailedComponent },
+          { path: 'payee', component:PayeeComponent },
         ]},  
 ];
 

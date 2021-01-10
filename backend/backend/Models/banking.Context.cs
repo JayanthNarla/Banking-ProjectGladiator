@@ -231,5 +231,40 @@ namespace backend.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getApplicationByRefno_Result>("proc_getApplicationByRefno", ref_noParameter);
         }
+    
+        public virtual ObjectResult<proc_GetTopTransactions_Result> proc_GetTopTransactions(string acc)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetTopTransactions_Result>("proc_GetTopTransactions", accParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetTransactionsWithinDate_Result> proc_GetTransactionsWithinDate(string acc, Nullable<System.DateTime> from, Nullable<System.DateTime> to)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            var fromParameter = from.HasValue ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(System.DateTime));
+    
+            var toParameter = to.HasValue ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetTransactionsWithinDate_Result>("proc_GetTransactionsWithinDate", accParameter, fromParameter, toParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAccountDetails_Result> proc_GetAccountDetails(string acc)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAccountDetails_Result>("proc_GetAccountDetails", accParameter);
+        }
     }
 }

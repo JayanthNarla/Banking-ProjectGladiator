@@ -162,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblTransa__acc_n__1A14E395">
+  <Association Name="FK__tblTransa__acc_n__5DCAEF64">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
     <ReferentialConstraint>
@@ -176,6 +176,9 @@
   </Association>
   <Function Name="proc_denyAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ref_no" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetAccountDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="acc" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_getAllApprovedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="proc_getAllAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -192,6 +195,14 @@
   <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
     <Parameter Name="acc_number" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetTopTransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="acc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetTransactionsWithinDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="acc" Type="varchar" Mode="In" />
+    <Parameter Name="from" Type="date" Mode="In" />
+    <Parameter Name="to" Type="date" Mode="In" />
   </Function>
   <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -259,7 +270,7 @@
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblTransa__acc_n__1A14E395" Association="Self.FK__tblTransa__acc_n__1A14E395">
+    <AssociationSet Name="FK__tblTransa__acc_n__5DCAEF64" Association="Self.FK__tblTransa__acc_n__5DCAEF64">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblTransaction" EntitySet="tblTransaction" />
     </AssociationSet>

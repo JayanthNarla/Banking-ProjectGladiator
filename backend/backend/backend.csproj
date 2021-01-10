@@ -111,6 +111,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -130,6 +131,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>banking.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetAccountDetails_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proc_getAllApprovedAppStatus_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
@@ -159,6 +163,12 @@
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proc_getCustDetails_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetTopTransactions_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proc_GetTransactionsWithinDate_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proc_UserLogin_Result.cs">

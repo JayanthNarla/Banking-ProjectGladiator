@@ -1,1 +1,50 @@
-<p>account-summary works!</p>
+<section id="summary">
+    <div class="hero">
+        <div class="hero-content">
+          <h2>Account summary</h2>
+          <table class="tbl">
+              <tr>
+                  <th>Account number</th>
+                  <th>Name</th>
+                  <th>Account type</th>
+                  <th>Balance</th>
+              </tr>
+              <tr>
+                <td>{{account.acc_number}}</td>
+                <td>{{account.Name}}</td>
+                <td>{{account.acc_type}}</td>
+                <td>{{account.balance}}</td>
+              </tr>
+          </table>
+          
+          <table *ngIf="show" class="stat">
+            <tr>
+            <td colspan="8" style="border: none;height:120px;">
+            <h2>Recent Transactions</h2>
+            </td>
+          </tr>
+            <tr>
+              <th>Date</th>
+              <th>Narration</th>
+              <th>Reference no.</th>
+              <th>Type</th>
+              <th>Maturity Instruction</th>
+              <th>Remarks</th>
+              <th>Amount</th>
+              <th>Balance</th>
+            </tr>
+            <tr *ngFor="let s of statements">
+              <td>{{s.date}}</td>
+              <td>{{s.nar}}</td>
+              <td>{{s.txn_no}}</td>
+              <td>{{s.dcred}}</td>
+              <td>{{s.mat_ins}}</td>
+              <td>{{s.remark}}</td>
+              <td>{{s.amt}}</td>
+              <td>{{s.balance}}</td>
+            </tr>
+          </table>
+          <button (click)="View()">{{ show === false ? 'Click here to see last ten transactions' : 'Hide statements'}}</button>
+        </div>
+    </div>
+</section>

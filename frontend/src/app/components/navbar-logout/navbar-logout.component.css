@@ -6,6 +6,7 @@ a>button {
   font-size: 18px;
   color: var(--white);
   text-decoration: none;
+  cursor: pointer;
 }
 
 header {

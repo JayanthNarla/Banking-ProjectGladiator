@@ -737,6 +737,120 @@ GO
 
 
 
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	For Account summary
+-- =============================================
+CREATE PROCEDURE proc_GetTopTransactions
+(@acc varchar(20))
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select top 10 * from tblTransaction
+	where cred_acc=@acc or deb_acc=@acc
+	order by tran_date desc
+END
+GO
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	For Account statement
+-- =============================================
+CREATE PROCEDURE proc_GetTransactionsWithinDate
+(@acc varchar(20),@from date,@to date)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select * from tblTransaction
+	where (cred_acc=@acc or deb_acc=@acc) and (tran_date>=@from and tran_date<=@to)
+	order by tran_date desc
+END
+GO
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	To get account details
+-- =============================================
+CREATE PROCEDURE proc_GetAccountDetails
+(@acc varchar(20))
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Declare @cus varchar(30);
+	SET @cus=(select cust_id from tblAccounts where acc_number=@acc)
+	
+	-- Insert statements for procedure here
+	select cust_id,acc_number,acc_type,balance,
+	(select CONCAT(first_name,' ',middle_name,' ',last_name)from tblCustomer where cust_id=@cus) as Name
+	from tblAccounts where acc_number=@acc
+END
+GO
 
 
 
@@ -773,6 +887,19 @@ proc_getAllDeniedAppStatus
 proc_getAllAppStatus
 proc_getAllCustDetailsAlongWithAppStatus
 
+
+proc_GetTopTransactions'111111111111111'
+proc_GetTransactionsWithinDate '111111111111111','2021-01-08','2021-01-09'
+proc_GetAccountDetails '111111111111111'
+
+
 select * from tblStatus
 
 select * from tblLogin
+
+select * from tblAccounts;
+
+select * from tblTransaction order by tran_date desc
+
+
+

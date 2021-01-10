@@ -1,1 +1,48 @@
-<p>transaction-success works!</p>
+<section id="success">
+    <div class="cntr">
+      <div class="wrapper">
+        <table border="1px">
+            <tr>
+            <td colspan="3" align="center">
+                <h2>Your payment was successful</h2>
+            </td>
+            </tr>
+            <tr>
+                <td>Reference No.</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{tran.transaction_id}}</td>
+            </tr>
+            <tr>
+                <td>Mode</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{tran.transaction_type}}</td>
+            </tr>
+            <tr>
+                <td>Paid to Account</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{to}}</td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{tran.transac_amt}}</td>
+            </tr>
+            <tr>
+                <td>From Account</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{from}}</td>
+            </tr>
+            <tr>
+                <td>On</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{tran.tran_date}}</td>
+            </tr>
+            <tr>
+                <td>Remarks</td>
+                <td style="width:5px;">-</td>
+                <td style="color: green;font-weight: normal;">{{tran.remark}}</td>
+            </tr>
+        </table>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,31 @@
+export class Statement{
+    date:string;
+    txn_no:string;
+    nar:string;
+    dcred:string;
+    remark:string;
+    amt:string;
+    balance:string;
+    mat_ins:string;
+
+    constructor(
+        date:string="",
+    txn_no:string="",
+    nar:string="",
+    dcred:string="",
+    remark:string="",
+    amt:string="",
+    balance:string="",
+    mat_ins:string=""
+    )
+    {
+        this.date=date;
+        this.txn_no=txn_no;
+        this.nar=nar;
+        this.dcred=dcred;
+        this.remark=remark;
+        this.amt=amt;
+        this.balance=balance;
+        this.mat_ins=mat_ins;
+    }
+}

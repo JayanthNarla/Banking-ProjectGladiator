@@ -280,6 +280,17 @@
     <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
       <Parameter Name="ref_no" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_GetTopTransactions" ReturnType="Collection(dbBankingModel.proc_GetTopTransactions_Result)">
+      <Parameter Name="acc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetTransactionsWithinDate" ReturnType="Collection(dbBankingModel.proc_GetTransactionsWithinDate_Result)">
+      <Parameter Name="acc" Mode="In" Type="String" />
+      <Parameter Name="from" Mode="In" Type="DateTime" />
+      <Parameter Name="to" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
+      <Parameter Name="acc" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
     <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -389,5 +400,38 @@
     <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
     <Property Type="DateTime" Name="app_date" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="proc_GetTopTransactions_Result">
+    <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="tran_date" Nullable="false" />
+    <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_GetTransactionsWithinDate_Result">
+    <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="tran_date" Nullable="false" />
+    <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="proc_GetAccountDetails_Result">
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="acc_number" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_type" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="balance" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="92" />
   </ComplexType>
 </Schema>

@@ -1,25 +1,38 @@
 export class Transaction{
+    acc_number:string;
+    transaction_id:string;
     deb_acc:string;
     cred_acc:string;
     transaction_type:string;
     transac_amt:string;
     tran_date:string;
+    deb_bal:string;
+    cred_bal:string;
     mat_ins:string;
     remark:string;
 
-    constructor(from:string="",
+    constructor(
+        acc:string="",
+        id:string="",
+        from:string="",
         to:string="",
         type:string="",
         transac_amt:string="",
         trans_date:string="",
+        da:string="",
+        ca:string="",
         mat_ins:string="",
         remark:string="")
     {
+        this.acc_number=acc;
+        this.transaction_id=id;
         this.deb_acc=to;
         this.cred_acc=from;
         this.transaction_type=type;
         this.transac_amt=transac_amt;
         this.tran_date=trans_date;
+        this.deb_bal=da;
+        this.cred_bal=ca;
         this.mat_ins=mat_ins;
         this.remark=remark;
     }

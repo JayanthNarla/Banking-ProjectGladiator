@@ -241,5 +241,50 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetTopTransactions" FunctionName="dbBankingModel.Store.proc_GetTopTransactions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTopTransactions_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+          <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+          <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+          <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+          <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+          <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetTransactionsWithinDate" FunctionName="dbBankingModel.Store.proc_GetTransactionsWithinDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTransactionsWithinDate_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+          <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+          <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+          <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+          <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+          <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetAccountDetails" FunctionName="dbBankingModel.Store.proc_GetAccountDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetAccountDetails_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="acc_type" ColumnName="acc_type" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

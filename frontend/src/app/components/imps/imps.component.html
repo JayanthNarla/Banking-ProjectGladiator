@@ -23,7 +23,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter your account number"
-                [(ngModel)]="trans.deb_acc"
+                (change)="validateDeb()"
               />
             </div>
           </div>
@@ -58,7 +58,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter beneficiary account number"
-                [(ngModel)]="trans.cred_acc"
+                (change)="validateAcc()"
               />
             </div>
           </div>
@@ -93,7 +93,7 @@
                 formControlName="trans_amt"
                 type="text"
                 placeholder="Enter transaction amount"
-                [(ngModel)]="trans.transac_amt"
+                
               />
             </div>
           </div>
@@ -111,7 +111,7 @@
             </ng-container>
           </div>
 
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="tran_date" class="col-sm-3 col-form-label">
                 Transaction date
               <span style="
@@ -129,7 +129,7 @@
                 type="text"                
                 placeholder="Enter transaction date"
                 onfocus="(this.type='date')"
-                [(ngModel)]="trans.tran_date"
+                
               />
             </div>
           </div>
@@ -145,7 +145,7 @@
                 {{ error.message }}
               </div>
             </ng-container>
-          </div>
+          </div> -->
 
           <div class="form-group row">
             <label for="mat_ins" class="col-sm-3 col-form-label">
@@ -158,7 +158,7 @@
                 formControlName="mat_ins"
                 type="text"
                 placeholder="Enter maturity instructions"
-                [(ngModel)]="trans.mat_ins"
+                
               />
             </div>
           </div>
@@ -185,7 +185,7 @@
                 formControlName="remark"
                 type="text"
                 placeholder="Enter remarks"
-                [(ngModel)]="trans.remark"
+                
               />
             </div>
           </div>
@@ -200,7 +200,7 @@
               </div>
             </ng-container>
           </div>
-            <button class="btn btn-reset" routerLink="">Add New+</button>
+            <button class="btn btn-reset" routerLink="../addben">Add New+</button>
             <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
             <button type="submit" class="btn btn-submit" routerLink="../transpass" [disabled]="!transForm.valid" (click)="onSubmit()">Continue</button>
           

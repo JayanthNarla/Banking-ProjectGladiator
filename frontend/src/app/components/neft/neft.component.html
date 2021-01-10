@@ -7,6 +7,7 @@
       <div style="width: 50%">
         <form [formGroup]="transForm">
           <div class="form-group row">
+
             <label for="deb_acc" class="col-sm-3 col-form-label">
                 From Account 
               <span style="
@@ -23,7 +24,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter your account number"
-                
+                (change)="validateDeb()"
               />
             </div>
           </div>
@@ -58,7 +59,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Enter beneficiary account number"
-                
+                (change)="validateAcc()"
               />
             </div>
           </div>
@@ -91,9 +92,8 @@
                 class="form-control"
                 name="trans_amt"
                 formControlName="trans_amt"
-                type="text"
+                type="number"
                 placeholder="Enter transaction amount"
-                
               />
             </div>
           </div>
@@ -111,7 +111,7 @@
             </ng-container>
           </div>
 
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="tran_date" class="col-sm-3 col-form-label">
                 Transaction date
               <span style="
@@ -129,7 +129,7 @@
                 type="text"                
                 placeholder="Enter transaction date"
                 onfocus="(this.type='date')"
-                
+                onchange="checkFunc()"
               />
             </div>
           </div>
@@ -145,7 +145,7 @@
                 {{ error.message }}
               </div>
             </ng-container>
-          </div>
+          </div> -->
 
           <div class="form-group row">
             <label for="remark" class="col-sm-3 col-form-label">
@@ -158,7 +158,7 @@
                 formControlName="remark"
                 type="text"
                 placeholder="Enter remarks"
-                
+                (click)="validateAcc()"
               />
             </div>
           </div>
@@ -186,7 +186,7 @@
               </ol>
             </dd>
           </dl>
-            <button class="btn btn-reset" routerLink="">Add New+</button> 
+            <button class="btn btn-reset" routerLink="../addben">Add New+</button> 
             <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
             <button type="submit" class="btn btn-submit" routerLink="../transpass" [disabled]="!transForm.valid" (click)="Submitted()">Continue</button>
         </form>

@@ -167,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblTransa__acc_n__1A14E395">
+        <Association Name="FK__tblTransa__acc_n__5DCAEF64">
           <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
           <End Role="tblTransaction" Type="Self.tblTransaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -181,6 +181,9 @@
         </Association>
         <Function Name="proc_denyAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ref_no" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_GetAccountDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_getAllApprovedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_getAllAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -197,6 +200,14 @@
         <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetTopTransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetTransactionsWithinDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
+          <Parameter Name="from" Type="date" Mode="In" />
+          <Parameter Name="to" Type="date" Mode="In" />
         </Function>
         <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -264,7 +275,7 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblStatus" EntitySet="tblStatus" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblTransa__acc_n__1A14E395" Association="Self.FK__tblTransa__acc_n__1A14E395">
+          <AssociationSet Name="FK__tblTransa__acc_n__5DCAEF64" Association="Self.FK__tblTransa__acc_n__5DCAEF64">
             <End Role="tblAccounts" EntitySet="tblAccounts" />
             <End Role="tblTransaction" EntitySet="tblTransaction" />
           </AssociationSet>
@@ -553,6 +564,17 @@
           <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
           <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="proc_GetTopTransactions" ReturnType="Collection(dbBankingModel.proc_GetTopTransactions_Result)">
+          <Parameter Name="acc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetTransactionsWithinDate" ReturnType="Collection(dbBankingModel.proc_GetTransactionsWithinDate_Result)">
+            <Parameter Name="acc" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="DateTime" />
+            <Parameter Name="to" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
+          <Parameter Name="acc" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_getAllApprovedAppStatus_Result">
           <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
@@ -662,6 +684,39 @@
           <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
           <Property Type="DateTime" Name="app_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetTopTransactions_Result">
+          <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="tran_date" Nullable="false" />
+          <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_GetTransactionsWithinDate_Result">
+          <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="tran_date" Nullable="false" />
+          <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_GetAccountDetails_Result">
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="acc_number" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_type" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="balance" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="92" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -906,6 +961,51 @@
                 <ScalarProperty Name="app_by" ColumnName="app_by" />
                 <ScalarProperty Name="acc_status" ColumnName="acc_status" />
                 <ScalarProperty Name="app_date" ColumnName="app_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetTopTransactions" FunctionName="dbBankingModel.Store.proc_GetTopTransactions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTopTransactions_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+                <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+                <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+                <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+                <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+                <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetTransactionsWithinDate" FunctionName="dbBankingModel.Store.proc_GetTransactionsWithinDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTransactionsWithinDate_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+                <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+                <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+                <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+                <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+                <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetAccountDetails" FunctionName="dbBankingModel.Store.proc_GetAccountDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetAccountDetails_Result">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="acc_type" ColumnName="acc_type" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
