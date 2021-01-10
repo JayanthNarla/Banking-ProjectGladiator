@@ -36,7 +36,7 @@ export class TrackApplicationComponent implements OnInit {
     });
   }
 
-  getStatus = (content) => {
+  getStatus = (content: any) => {
     this.cs.GetApplicationByRef(this.application).subscribe((data) => {
       this.modalService.open(content, {
         centered: true,
