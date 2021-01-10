@@ -18,8 +18,8 @@ export class AccountSummaryComponent implements OnInit {
   constructor(private ser:AccountStatementService) { 
     
     this.account=new Account();
-    this.ser.getAccountDetails('2345').subscribe(data=>this.account=data,err=>console.log(err.error_messages));
-    this.ser.getTopTransaction('2345').subscribe(data=>console.log(this.trans=data),err=>console.log("Invalid"));
+    this.ser.getAccountDetails(localStorage.getItem("cust_id")).subscribe(data=>this.account=data,err=>console.log(err.error_messages));
+    this.ser.getTopTransaction(localStorage.getItem("cust_id")).subscribe(data=>console.log(this.trans=data),err=>console.log("Invalid"));
   }
 
   ngOnInit(): void {

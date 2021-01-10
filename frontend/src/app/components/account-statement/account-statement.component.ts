@@ -20,7 +20,7 @@ export class AccountStatementComponent implements OnInit {
   i=0;
   constructor(private formBuilder:FormBuilder,private ser:AccountStatementService) { 
     this.account=new Account();
-    this.ser.getAccountDetails('1004').subscribe(data=>this.account=data,err=>console.log(err.error_messages));
+    this.ser.getAccountDetails(localStorage.getItem("cust_id")).subscribe(data=>this.account=data,err=>console.log(err.error_messages));
     
 
     this.stateForm=this.formBuilder.group(
@@ -36,7 +36,7 @@ export class AccountStatementComponent implements OnInit {
 
   Get()
   {
-    this.ser.getTransactions('1004',this.stateForm.get('start').value,this.stateForm.get('end').value).subscribe(data=>console.log(this.trans=data),err=>console.log(err));
+    this.ser.getTransactions(localStorage.getItem("cust_id"),this.stateForm.get('start').value,this.stateForm.get('end').value).subscribe(data=>console.log(this.trans=data),err=>console.log(err));
   }
 
   SetDate()

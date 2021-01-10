@@ -23,7 +23,7 @@ export class ViewBeneficiariesComponent implements OnInit {
   {
     for(let x of this.all)
     {
-      if(x.cust_id=='2345')
+      if(x.cust_id==localStorage.getItem("cust_id"))
       {
         this.list.push(x);
       }

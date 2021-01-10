@@ -76,7 +76,7 @@ export class AddBeneficiaryComponent implements OnInit {
     this.ben.ben_name=this.BeneficiaryForm.get('ben_name').value;
     this.ben.Re_enterAccount_num=this.BeneficiaryForm.get('Re_enterAccount_num').value;
     this.ben.nickname=this.BeneficiaryForm.get('nickname').value;
-    this.ben.cust_id = '2345';
+    this.ben.cust_id = localStorage.getItem("cust_id");
     
     this.ser.AddBeneficiary(this.ben).subscribe(data => {this.toastr.success("Beneficiary added successfully")},err=>{this.toastr.info("Beneficiary already exists")});
     this.BeneficiaryForm.reset()
