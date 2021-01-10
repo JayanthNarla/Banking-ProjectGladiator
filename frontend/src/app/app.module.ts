@@ -1,3 +1,6 @@
+import { TransactionService } from './services/transaction.service';
+import { BeneficiaryService } from './services/beneficiary.service';
+import { AccountStatementService } from './services/accountstatement.service';
 import { OtpService } from './services/otp.service';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { CustomerService } from './services/customer.service';
@@ -32,6 +35,21 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { FaqPageComponent } from './components/faq-page/faq-page.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ServicePageComponent } from './components/service-page/service-page.component';
+import { NeftComponent } from './components/neft/neft.component';
+import { ImpsComponent } from './components/imps/imps.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { AccountStatementComponent } from './components/account-statement/account-statement.component';
+import { AccountSummaryComponent } from './components/account-summary/account-summary.component';
+import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
+import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
+import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
+import { PayeeComponent } from './components/payee/payee.component';
+import { RtgsComponent } from './components/rtgs/rtgs.component';
+import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
+import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
+import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
+import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
+import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +76,22 @@ import { ServicePageComponent } from './components/service-page/service-page.com
     FaqPageComponent,
     ContactUsComponent,
     ServicePageComponent,
+
+    NeftComponent,
+    ImpsComponent,
+    RtgsComponent,
+    AccountSummaryComponent,
+    AccountStatementComponent,
+    AccountDetailsComponent,
+    ChangeIdPasswordComponent,
+    FundTransferComponent,
+    AddBeneficiaryComponent,
+    TransactionPasswordComponent,
+    NavbarLogoutComponent,
+    TransactionSuccessComponent,
+    TransactionFailedComponent,
+    PayeeComponent,
+    ViewBeneficiariesComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +108,14 @@ import { ServicePageComponent } from './components/service-page/service-page.com
       preventDuplicates: true,
     }),
   ],
-  providers: [LoginService, CustomerService, OtpService],
+  providers: [
+    LoginService,
+    CustomerService,
+    OtpService,
+    AccountStatementService,
+    BeneficiaryService,
+    TransactionService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

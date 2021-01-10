@@ -93,7 +93,7 @@ create table tblBeneficiary
 (
 	ben_acc_num varchar(20) foreign key references tblAccounts(acc_number),
 	cust_id varchar(20) primary key,
-	username varchar(50) not null,
+	ben_name varchar(50) not null,
 	nickname varchar(20) not null
 )
 --drop table tblBeneficiary
@@ -302,7 +302,7 @@ GO
 -- Create date: 25-12-2020
 -- Description:	Insert Blocked Contacts
 -- =============================================
-alter PROCEDURE proc_InsBlocked 
+create PROCEDURE proc_InsBlocked 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20)
 AS
@@ -665,6 +665,48 @@ GO
 
 
 
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Jayanth
+-- Create date: 02-01-2021
+-- Description:	Get all Application Status
+-- =============================================
+create PROCEDURE proc_pushTotblAccounts
+	@cust_id varchar(20),
+	@acc_number varchar(20),
+	@balance varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	declare @open_date date
+	set @open_date = (select GETDATE())
+    -- Insert statements for procedure here
+	insert into tblAccounts (cust_id,acc_number,acc_type,minbalance,balance,open_date) values (@cust_id, @acc_number, 'savings','10000',@balance,@open_date)
+END
+GO
+
+
+
+
+
 -- ================================================
 -- Template generated from Template Explorer using:
 -- Create Procedure (New Menu).SQL
@@ -772,6 +814,160 @@ BEGIN
 END
 GO
 
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	For Account summary
+-- =============================================
+CREATE PROCEDURE proc_GetTopTransactions
+(@acc varchar(20))
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select top 10 * from tblTransaction
+	where cred_acc=@acc or deb_acc=@acc
+	order by tran_date desc
+END
+GO
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	For Account statement
+-- =============================================
+CREATE PROCEDURE proc_GetTransactionsWithinDate
+(@acc varchar(20),@from date,@to date)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select * from tblTransaction
+	where (cred_acc=@acc or deb_acc=@acc) and (tran_date>=@from and tran_date<=@to)
+	order by tran_date desc
+END
+GO
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 09-01-2021
+-- Description:	To get account details
+-- =============================================
+CREATE PROCEDURE proc_GetAccountDetails
+(@acc varchar(20))
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	Declare @cus varchar(30);
+	SET @cus=(select cust_id from tblAccounts where acc_number=@acc)
+	
+	-- Insert statements for procedure here
+	select cust_id,acc_number,acc_type,balance,
+	(select CONCAT(first_name,' ',middle_name,' ',last_name)from tblCustomer where cust_id=@cus) as Name
+	from tblAccounts where acc_number=@acc
+END
+GO
+
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Shiyamala
+-- Create date: 10-01-2021
+-- Description:	Get all beneficiary
+-- =============================================
+CREATE PROCEDURE proc_GetBeneficiaries
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select * from tblBeneficiary
+END
+GO
 
 
 

@@ -1,0 +1,76 @@
+<header>
+  <div class="logo">PG Banking</div>
+  <nav>
+    <ul class="nav__links">
+      <li><a routerLink="">Home</a></li>
+      <li>
+        <a routerLink="statement">Account Statement</a>
+        <div class="demo">
+          <table>
+            <tr>
+              <td><button routerLink="statement">Account Statement</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="summary">Account Summary</button></td>
+            </tr>
+          </table>
+        </div>
+      </li>
+
+      <li>
+        <a routerLink="payee">Transfer Fund</a>
+        <div class="demo">
+          <table>
+            <tr>
+              <td><button routerLink="neft">NEFT</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="imps">IMPS</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="rtgs">RTGS</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="addben">Add Beneficiary</button></td>
+            </tr>
+          </table>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">User Profile</a>
+        <div class="demo">
+          <table>
+            <tr>
+              <td><button routerLink="details">Account Details</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="change">Change User ID</button></td>
+            </tr>
+            <tr>
+              <td><button routerLink="change">Change Password</button></td>
+            </tr>
+          </table>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Help Desk</a>
+        <div class="demo">
+          <table>
+            <tr>
+              <td><button>Q&A's</button></td>
+            </tr>
+            <tr>
+              <td><button>Contact Us</button></td>
+            </tr>
+            <tr>
+              <td><button>About us</button></td>
+            </tr>
+          </table>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <a href="" class="cta" (click)="logout()"><button>Logout</button></a>
+</header>

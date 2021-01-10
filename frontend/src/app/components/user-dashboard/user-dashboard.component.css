@@ -1,0 +1,22 @@
+.menu{
+    float: left;
+    margin-top:90px;
+    margin-left: 30px;
+    margin-bottom: 100px;
+}
+table{
+    border-collapse: separate;
+    border-spacing: 0px;
+    width:300px;
+}
+table td{
+    padding: 15px;
+    border: solid var(--black) 1px;
+    border-radius: 5px;
+    -moz-border-radius:5px;
+    height: 50px;
+    background-color: var(--white);
+}
+table td a{
+    color: var(--black);
+}

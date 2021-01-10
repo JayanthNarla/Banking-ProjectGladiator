@@ -16,5 +16,6 @@ namespace backend.Models
         public string cust_id { get; set; }
         public string acc_number { get; set; }
         public string user_type { get; set; }
+        public string pwd { get; set; }
     }
 }

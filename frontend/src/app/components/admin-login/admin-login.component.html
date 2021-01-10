@@ -88,19 +88,15 @@
               </div>
             </ng-container>
           </div>
-          <div class="wrapper">
+          <div class="btn_container">
             <button
               type="submit"
-              class="form-control btn btn-primary"
+              class="btn btn-login"
               [disabled]="!loginForm.valid"
             >
               Login
             </button>
-            <button
-              type="submit"
-              class="form-control btn btn-primary"
-              routerLink="/forgotPwd"
-            >
+            <button type="submit" class="btn btn-fpwd" routerLink="/forgotPwd">
               Forgot Password
             </button>
           </div>

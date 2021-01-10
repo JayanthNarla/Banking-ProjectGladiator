@@ -1,0 +1,49 @@
+#view {
+    height: auto;
+    position: relative;
+    overflow-x: hidden;
+  }
+.hero {
+    margin-top:100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  
+  .hero-content {
+    margin-left: 20px;
+    margin-bottom: 100px;
+    text-align: center;
+  }
+  
+  .hero-content h2 {
+    font-size: 1.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+  }
+  .hero-content h4 {
+    margin-top: 0px;
+    margin-bottom: 15px;
+    color: var(--blue);
+    font-size: 1.5em;
+  }
+  .tbl{
+      margin:50px;
+      border:1px solid var(--black);
+      border-radius: 20px;
+      -moz-border-radius:20px;
+  }
+  .tbl tr th{
+    background-color: var(--white);
+    color: var(--black);
+    border:1px solid var(--black);
+    padding:20px 70px;
+  }
+  .tbl tr td{
+    color: var(--white);
+    border:1px solid var(--white);
+    padding:15px 70px;
+  }

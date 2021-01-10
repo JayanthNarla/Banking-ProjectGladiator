@@ -23,7 +23,7 @@
   </ng-container>
   <ng-container *ngIf="isLogin == false">
     <a class="cta">
-      <button>Logout</button>
+      <button (click)="logout()">Logout</button>
     </a>
   </ng-container>
 </header>

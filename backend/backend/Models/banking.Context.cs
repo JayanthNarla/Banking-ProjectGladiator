@@ -36,6 +36,24 @@ namespace backend.Models
         public virtual DbSet<tblStatus> tblStatus { get; set; }
         public virtual DbSet<tblTransaction> tblTransaction { get; set; }
     
+        public virtual int proc_denyAppStatus(Nullable<int> ref_no)
+        {
+            var ref_noParameter = ref_no.HasValue ?
+                new ObjectParameter("ref_no", ref_no) :
+                new ObjectParameter("ref_no", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_denyAppStatus", ref_noParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetAccountDetails_Result> proc_GetAccountDetails(string acc)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetAccountDetails_Result>("proc_GetAccountDetails", accParameter);
+        }
+    
         public virtual ObjectResult<proc_getAllApprovedAppStatus_Result> proc_getAllApprovedAppStatus()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllApprovedAppStatus_Result>("proc_getAllApprovedAppStatus");
@@ -51,6 +69,11 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetails_Result>("proc_getAllCustDetails");
         }
     
+        public virtual ObjectResult<proc_getAllCustDetailsAlongWithAppStatus_Result> proc_getAllCustDetailsAlongWithAppStatus()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetailsAlongWithAppStatus_Result>("proc_getAllCustDetailsAlongWithAppStatus");
+        }
+    
         public virtual ObjectResult<proc_getAllDeniedAppStatus_Result> proc_getAllDeniedAppStatus()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllDeniedAppStatus_Result>("proc_getAllDeniedAppStatus");
@@ -61,6 +84,15 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllPendingAppStatus_Result>("proc_getAllPendingAppStatus");
         }
     
+        public virtual ObjectResult<proc_getApplicationByRefno_Result> proc_getApplicationByRefno(Nullable<int> ref_no)
+        {
+            var ref_noParameter = ref_no.HasValue ?
+                new ObjectParameter("ref_no", ref_no) :
+                new ObjectParameter("ref_no", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getApplicationByRefno_Result>("proc_getApplicationByRefno", ref_noParameter);
+        }
+    
         public virtual ObjectResult<proc_getAppStatus_Result> proc_getAppStatus(string cust_id)
         {
             var cust_idParameter = cust_id != null ?
@@ -68,6 +100,11 @@ namespace backend.Models
                 new ObjectParameter("cust_id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAppStatus_Result>("proc_getAppStatus", cust_idParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetBeneficiaries_Result> proc_GetBeneficiaries()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetBeneficiaries_Result>("proc_GetBeneficiaries");
         }
     
         public virtual ObjectResult<proc_GetBlocked_Result> proc_GetBlocked(string cust_id, string acc_number)
@@ -92,6 +129,32 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getCustDetails_Result>("proc_getCustDetails", cust_idParameter);
         }
     
+        public virtual ObjectResult<proc_GetTopTransactions_Result> proc_GetTopTransactions(string acc)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetTopTransactions_Result>("proc_GetTopTransactions", accParameter);
+        }
+    
+        public virtual ObjectResult<proc_GetTransactionsWithinDate_Result> proc_GetTransactionsWithinDate(string acc, Nullable<System.DateTime> from, Nullable<System.DateTime> to)
+        {
+            var accParameter = acc != null ?
+                new ObjectParameter("acc", acc) :
+                new ObjectParameter("acc", typeof(string));
+    
+            var fromParameter = from.HasValue ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(System.DateTime));
+    
+            var toParameter = to.HasValue ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetTransactionsWithinDate_Result>("proc_GetTransactionsWithinDate", accParameter, fromParameter, toParameter);
+        }
+    
         public virtual int proc_InsBlocked(string cust_id)
         {
             var cust_idParameter = cust_id != null ?
@@ -99,6 +162,23 @@ namespace backend.Models
                 new ObjectParameter("cust_id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter);
+        }
+    
+        public virtual int proc_pushTotblAccounts(string cust_id, string acc_number, string balance)
+        {
+            var cust_idParameter = cust_id != null ?
+                new ObjectParameter("cust_id", cust_id) :
+                new ObjectParameter("cust_id", typeof(string));
+    
+            var acc_numberParameter = acc_number != null ?
+                new ObjectParameter("acc_number", acc_number) :
+                new ObjectParameter("acc_number", typeof(string));
+    
+            var balanceParameter = balance != null ?
+                new ObjectParameter("balance", balance) :
+                new ObjectParameter("balance", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_pushTotblAccounts", cust_idParameter, acc_numberParameter, balanceParameter);
         }
     
         public virtual int proc_setUserLogin(string cust_id, string acc_number, string user_type, string pwd)
@@ -203,29 +283,6 @@ namespace backend.Models
                 new ObjectParameter("gender", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_UserReg", aadharParameter, cust_idParameter, titleParameter, first_nameParameter, middle_nameParameter, last_nameParameter, father_nameParameter, phoneParameter, cust_mailParameter, dobParameter, ageParameter, res_addressParameter, perm_addressParameter, genderParameter);
-        }
-    
-        public virtual int proc_denyAppStatus(Nullable<int> ref_no)
-        {
-            var ref_noParameter = ref_no.HasValue ?
-                new ObjectParameter("ref_no", ref_no) :
-                new ObjectParameter("ref_no", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_denyAppStatus", ref_noParameter);
-        }
-    
-        public virtual ObjectResult<proc_getAllCustDetailsAlongWithAppStatus_Result> proc_getAllCustDetailsAlongWithAppStatus()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getAllCustDetailsAlongWithAppStatus_Result>("proc_getAllCustDetailsAlongWithAppStatus");
-        }
-    
-        public virtual ObjectResult<proc_getApplicationByRefno_Result> proc_getApplicationByRefno(Nullable<int> ref_no)
-        {
-            var ref_noParameter = ref_no.HasValue ?
-                new ObjectParameter("ref_no", ref_no) :
-                new ObjectParameter("ref_no", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getApplicationByRefno_Result>("proc_getApplicationByRefno", ref_noParameter);
         }
     
         public virtual ObjectResult<proc_verifyMail_Result> proc_verifyMail(string cust_id)

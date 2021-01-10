@@ -1,0 +1,34 @@
+#fail{
+    height: 60vh;
+    position: relative;
+    overflow-x:hidden;
+  }
+  
+  h2 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 2.5em;
+  }
+    
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .cntr {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+  }
+.box{
+    border:3px solid red;
+    background-color: rgb(250, 231, 231);
+    text-align: center;
+    padding:100px;
+    border-radius: 10px;
+}

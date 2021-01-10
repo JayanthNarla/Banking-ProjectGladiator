@@ -1,0 +1,210 @@
+<section id="rtgs">
+  <div class="cntr">
+    <div class="wrapper">
+      <h3>Initiate RTGS Payment</h3>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form [formGroup]="transForm">
+          <div class="form-group row">
+            <label for="deb_acc" class="col-sm-3 col-form-label">
+                From Account 
+              <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                name="deb_acc"
+                formControlName="deb_acc"
+                class="form-control"
+                type="text"
+                placeholder="Enter your account number"
+                (change)="validateDeb()"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.deb_acc">
+              <div
+                class="error-message"
+                *ngIf="
+                  transForm.get('deb_acc').hasError(error.type) &&
+                  transForm.get('deb_acc').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div> 
+          
+          <div class="form-group row">
+            <label for="cred_acc" class="col-sm-3 col-form-label">
+                To Account 
+              <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                name="cred_acc"
+                formControlName="cred_acc"
+                class="form-control"
+                type="text"
+                placeholder="Enter beneficiary account number"
+                (change)="validateAcc()"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.cred_acc">
+              <div
+                class="error-message"
+                *ngIf="
+                transForm.get('cred_acc').hasError(error.type) &&
+                transForm.get('cred_acc').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label for="trans_amt" class="col-sm-3 col-form-label">
+                Amount
+              <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                name="trans_amt"
+                formControlName="trans_amt"
+                type="text"
+                placeholder="Enter transaction amount"
+                
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.trans_amt">
+              <div
+                class="error-message"
+                *ngIf="
+                transForm.get('trans_amt').hasError(error.type) &&
+                transForm.get('trans_amt').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- <div class="form-group row">
+            <label for="tran_date" class="col-sm-3 col-form-label">
+                Transaction date
+              <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                name="tran_date"
+                formControlName="tran_date"
+                type="text"                
+                placeholder="Enter transaction date"
+                onfocus="(this.type='date')"
+                
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.tran_date">
+              <div
+                class="error-message"
+                *ngIf="
+                transForm.get('tran_date').hasError(error.type) &&
+                transForm.get('tran_date').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div> -->
+
+          <div class="form-group row">
+            <label for="mat_ins" class="col-sm-3 col-form-label">
+                Maturity Instructions
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                name="mat_ins"
+                formControlName="mat_ins"
+                type="text"
+                placeholder="Enter maturity instructions"
+                
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.mat_ins">
+              <div
+                class="error-message"
+                *ngIf="
+                transForm.get('mat_ins').hasError(error.type)"
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label for="remark" class="col-sm-3 col-form-label">
+                Remark
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                name="remark"
+                formControlName="remark"
+                type="text"
+                placeholder="Enter remarks"
+                
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.remark">
+              <div
+                class="error-message"
+                *ngIf="
+                transForm.get('remark').hasError(error.type)"
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+            <button class="btn btn-reset" routerLink="../addben">Add New+</button>
+            <button type="reset" class="btn btn-reset" (click)="onReset()">Reset</button>
+            <button type="submit" class="btn btn-submit" [disabled]="!transForm.valid" (click)="onSubmit()" routerLink='../transpass'>Continue</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

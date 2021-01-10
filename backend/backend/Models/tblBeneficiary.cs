@@ -16,7 +16,7 @@ namespace backend.Models
     {
         public string ben_acc_num { get; set; }
         public string cust_id { get; set; }
-        public string username { get; set; }
+        public string ben_name { get; set; }
         public string nickname { get; set; }
     
         public virtual tblAccounts tblAccounts { get; set; }

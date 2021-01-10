@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Blocked } from './../../models/Blocked';
 import { LoginService } from './../../services/login.service';
 import { Login } from './../../models/Login';
@@ -48,7 +49,8 @@ export class AdminLoginComponent implements OnInit {
     public formBuilder: FormBuilder,
     private router: Router,
     private ls: LoginService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) {
     this.toast = 'toast';
     this.user = new Login();
@@ -80,8 +82,10 @@ export class AdminLoginComponent implements OnInit {
         console.log(data);
 
         if (data['user_type'] == 'admin') {
+          this.authService.login('cust_id', data['cust_id'], 1);
           this.router.navigate(['admindash']);
         } else if (data['user_type'] == 'customer') {
+          this.authService.login('cust_id', data['cust_id'], 1);
           this.router.navigate(['userdash']);
         }
       },
@@ -102,5 +106,7 @@ export class AdminLoginComponent implements OnInit {
       }
     );
   };
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.logout('cust_id');
+  }
 }

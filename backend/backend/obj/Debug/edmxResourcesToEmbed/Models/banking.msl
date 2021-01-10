@@ -18,7 +18,7 @@
         <MappingFragment StoreEntitySet="tblBeneficiary">
           <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="ben_name" ColumnName="ben_name" />
           <ScalarProperty Name="nickname" ColumnName="nickname" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -85,8 +85,6 @@
     <EntitySetMapping Name="tblTransaction">
       <EntityTypeMapping TypeName="dbBankingModel.tblTransaction">
         <MappingFragment StoreEntitySet="tblTransaction">
-          <ScalarProperty Name="remark" ColumnName="remark" />
-          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
           <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
           <ScalarProperty Name="acc_number" ColumnName="acc_number" />
           <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
@@ -96,9 +94,23 @@
           <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
           <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
           <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_denyAppStatus" FunctionName="dbBankingModel.Store.proc_denyAppStatus" />
+    <FunctionImportMapping FunctionImportName="proc_GetAccountDetails" FunctionName="dbBankingModel.Store.proc_GetAccountDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetAccountDetails_Result">
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="acc_type" ColumnName="acc_type" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_getAllApprovedAppStatus" FunctionName="dbBankingModel.Store.proc_getAllApprovedAppStatus">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllApprovedAppStatus_Result">
@@ -143,6 +155,26 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getAllCustDetailsAlongWithAppStatus" FunctionName="dbBankingModel.Store.proc_getAllCustDetailsAlongWithAppStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result">
+          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+          <ScalarProperty Name="dob" ColumnName="dob" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="res_address" ColumnName="res_address" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+          <ScalarProperty Name="app_by" ColumnName="app_by" />
+          <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_getAllDeniedAppStatus" FunctionName="dbBankingModel.Store.proc_getAllDeniedAppStatus">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllDeniedAppStatus_Result">
@@ -177,6 +209,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
+          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="app_by" ColumnName="app_by" />
+          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+          <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_getAppStatus" FunctionName="dbBankingModel.Store.proc_getAppStatus">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbBankingModel.proc_getAppStatus_Result">
@@ -185,6 +228,16 @@
           <ScalarProperty Name="app_by" ColumnName="app_by" />
           <ScalarProperty Name="acc_status" ColumnName="acc_status" />
           <ScalarProperty Name="app_date" ColumnName="app_date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetBeneficiaries" FunctionName="dbBankingModel.Store.proc_GetBeneficiaries">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBeneficiaries_Result">
+          <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
+          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+          <ScalarProperty Name="ben_name" ColumnName="ben_name" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -212,7 +265,42 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetTopTransactions" FunctionName="dbBankingModel.Store.proc_GetTopTransactions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTopTransactions_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+          <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+          <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+          <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+          <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+          <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_GetTransactionsWithinDate" FunctionName="dbBankingModel.Store.proc_GetTransactionsWithinDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTransactionsWithinDate_Result">
+          <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+          <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+          <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+          <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+          <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+          <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+          <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+          <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+          <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+          <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_InsBlocked" FunctionName="dbBankingModel.Store.proc_InsBlocked" />
+    <FunctionImportMapping FunctionImportName="proc_pushTotblAccounts" FunctionName="dbBankingModel.Store.proc_pushTotblAccounts" />
     <FunctionImportMapping FunctionImportName="proc_setUserLogin" FunctionName="dbBankingModel.Store.proc_setUserLogin" />
     <FunctionImportMapping FunctionImportName="proc_toggleAppStatus" FunctionName="dbBankingModel.Store.proc_toggleAppStatus" />
     <FunctionImportMapping FunctionImportName="proc_UserLogin" FunctionName="dbBankingModel.Store.proc_UserLogin">
@@ -221,42 +309,11 @@
           <ScalarProperty Name="cust_id" ColumnName="cust_id" />
           <ScalarProperty Name="acc_number" ColumnName="acc_number" />
           <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_UserReg" FunctionName="dbBankingModel.Store.proc_UserReg" />
-    <FunctionImportMapping FunctionImportName="proc_denyAppStatus" FunctionName="dbBankingModel.Store.proc_denyAppStatus" />
-    <FunctionImportMapping FunctionImportName="proc_getAllCustDetailsAlongWithAppStatus" FunctionName="dbBankingModel.Store.proc_getAllCustDetailsAlongWithAppStatus">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result">
-          <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-          <ScalarProperty Name="aadhar" ColumnName="aadhar" />
-          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="father_name" ColumnName="father_name" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
-          <ScalarProperty Name="dob" ColumnName="dob" />
-          <ScalarProperty Name="age" ColumnName="age" />
-          <ScalarProperty Name="res_address" ColumnName="res_address" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
-          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
-          <ScalarProperty Name="app_by" ColumnName="app_by" />
-          <ScalarProperty Name="app_date" ColumnName="app_date" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
-          <ScalarProperty Name="ref_no" ColumnName="ref_no" />
-          <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-          <ScalarProperty Name="app_by" ColumnName="app_by" />
-          <ScalarProperty Name="acc_status" ColumnName="acc_status" />
-          <ScalarProperty Name="app_date" ColumnName="app_date" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_verifyMail" FunctionName="dbBankingModel.Store.proc_verifyMail">
       <ResultMapping>
         <ComplexTypeMapping TypeName="dbBankingModel.proc_verifyMail_Result">

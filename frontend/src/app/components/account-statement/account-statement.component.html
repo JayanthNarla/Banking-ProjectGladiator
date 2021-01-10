@@ -1,0 +1,79 @@
+<section id="statement">
+    <div class="hero">
+        <div class="hero-content">
+        <div *ngIf="!show">
+          <h2>Account statement</h2>
+          <table class="tbl">
+              <tr>
+                  <th>Account number</th>
+                  <th>Name</th>
+                  <th>Account type</th>
+                  <th>Balance</th>
+              </tr>
+              <tr>
+                  <td>{{account.acc_number}}</td>
+                  <td>{{account.Name}}</td>
+                  <td>{{account.acc_type}}</td>
+                  <td>{{account.balance}}</td>
+              </tr>
+          </table>
+          
+        
+        <div style="width: 50%">
+          <form [formGroup]='stateForm'>
+              <label for="start" class="col-sm-5 col-form-label">Start date :</label>
+                <div class="col-sm-7">
+                    <input type="date" 
+                    name="start" 
+                    formControlName="start"
+                    class="form-control" 
+                    placeholder="Starting date"
+                    (change)="SetDate()"/>
+                </div>
+              <label class="col-sm-5 col-form-label">End date :</label>
+                <div class="col-sm-7">
+                    <input type="date" 
+                    formControlName="end"
+                    name="end" 
+                    class="form-control"  
+                    placeholder="Ending date"
+                    (change)="Get()"/>
+                </div>
+          </form>
+          
+        </div>
+        </div>
+          <table *ngIf="show" class="stat">
+            <tr>
+              <td colspan="8" style="border: none;height:100px;">
+              <h2>Account statement</h2>
+              </td>
+            <tr>
+              <th>Date</th>
+              <th>Narration</th>
+              <th>Reference no.</th>
+              <th>Type</th>
+              <th>Maturity Instruction</th>
+              <th>Remarks</th>
+              <th>Amount</th>
+              <th>Balance</th>
+            </tr>
+            <tr *ngFor="let s of statements">
+              <td>{{s.date}}</td>
+              <td>{{s.nar}}</td>
+              <td>{{s.txn_no}}</td>
+              <td>{{s.dcred}}</td>
+              <td>{{s.mat_ins}}</td>
+              <td>{{s.remark}}</td>
+              <td>{{s.amt}}</td>
+              <td>{{s.balance}}</td>
+            </tr>
+          </table>
+          
+          <button [disabled]="!stateForm.valid" (click)="View()">{{ show === false ? 'View statement' : 'Hide statement'}}</button>
+          <div *ngIf="empty">
+            <h4 class="box">No transaction performed!</h4>
+          </div>
+        </div>
+    </div>
+</section>

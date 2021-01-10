@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccounts">
           <Key>
             <PropertyRef Name="acc_number" />
@@ -22,8 +22,8 @@
           </Key>
           <Property Name="ben_acc_num" Type="varchar" MaxLength="20" />
           <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="nickname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ben_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nickname" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tblBlocked">
           <Key>
@@ -107,7 +107,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblBenefi__ben_a__36B12243">
+        <Association Name="FK__tblBenefi__ben_a__55F4C372">
           <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
           <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
           <ReferentialConstraint>
@@ -182,6 +182,9 @@
         <Function Name="proc_denyAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ref_no" Type="int" Mode="In" />
         </Function>
+        <Function Name="proc_GetAccountDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_getAllApprovedAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_getAllAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_getAllCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -194,6 +197,7 @@
         <Function Name="proc_getAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_GetBeneficiaries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_GetBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
@@ -201,8 +205,21 @@
         <Function Name="proc_getCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_GetTopTransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_GetTransactionsWithinDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc" Type="varchar" Mode="In" />
+          <Parameter Name="from" Type="date" Mode="In" />
+          <Parameter Name="to" Type="date" Mode="In" />
+        </Function>
         <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_pushTotblAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cust_id" Type="varchar" Mode="In" />
+          <Parameter Name="acc_number" Type="varchar" Mode="In" />
+          <Parameter Name="balance" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_setUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
@@ -249,7 +266,7 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblAccounts" EntitySet="tblAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblBenefi__ben_a__36B12243" Association="Self.FK__tblBenefi__ben_a__36B12243">
+          <AssociationSet Name="FK__tblBenefi__ben_a__55F4C372" Association="Self.FK__tblBenefi__ben_a__55F4C372">
             <End Role="tblAccounts" EntitySet="tblAccounts" />
             <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
           </AssociationSet>
@@ -274,7 +291,8 @@
             <End Role="tblTransaction" EntitySet="tblTransaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbBankingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -289,7 +307,7 @@
           <Property Name="balance" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="open_date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="tblCustomer" Relationship="Self.FK__tblAccoun__cust___286302EC" FromRole="tblAccounts" ToRole="tblCustomer" />
-          <NavigationProperty Name="tblBeneficiary" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblAccounts" ToRole="tblBeneficiary" />
+          <NavigationProperty Name="tblBeneficiary" Relationship="Self.FK__tblBenefi__ben_a__55F4C372" FromRole="tblAccounts" ToRole="tblBeneficiary" />
           <NavigationProperty Name="tblBlocked" Relationship="Self.FK__tblBlocke__acc_n__30F848ED" FromRole="tblAccounts" ToRole="tblBlocked" />
           <NavigationProperty Name="tblInternetBanking" Relationship="Self.FK__tblIntern__acc_n__33D4B598" FromRole="tblAccounts" ToRole="tblInternetBanking" />
           <NavigationProperty Name="tblLogin" Relationship="Self.FK__tblLogin__acc_nu__2E1BDC42" FromRole="tblAccounts" ToRole="tblLogin" />
@@ -301,9 +319,9 @@
           </Key>
           <Property Name="ben_acc_num" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="cust_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBenefi__ben_a__36B12243" FromRole="tblBeneficiary" ToRole="tblAccounts" />
+          <Property Name="ben_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblBenefi__ben_a__55F4C372" FromRole="tblBeneficiary" ToRole="tblAccounts" />
         </EntityType>
         <EntityType Name="tblBlocked">
           <Key>
@@ -378,9 +396,9 @@
           <Property Name="transac_amt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="deb_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cred_bal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblTransa__acc_n__2B3F6F97" FromRole="tblTransaction" ToRole="tblAccounts" />
           <Property Name="mat_ins" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAccounts" Relationship="Self.FK__tblTransa__acc_n__2B3F6F97" FromRole="tblTransaction" ToRole="tblAccounts" />
         </EntityType>
         <Association Name="FK__tblAccoun__cust___286302EC">
           <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
@@ -394,7 +412,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblBenefi__ben_a__36B12243">
+        <Association Name="FK__tblBenefi__ben_a__55F4C372">
           <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
           <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
           <ReferentialConstraint>
@@ -479,7 +497,7 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblAccounts" EntitySet="tblAccounts" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblBenefi__ben_a__36B12243" Association="Self.FK__tblBenefi__ben_a__36B12243">
+          <AssociationSet Name="FK__tblBenefi__ben_a__55F4C372" Association="Self.FK__tblBenefi__ben_a__55F4C372">
             <End Role="tblAccounts" EntitySet="tblAccounts" />
             <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
           </AssociationSet>
@@ -503,23 +521,47 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblStatus" EntitySet="tblStatus" />
           </AssociationSet>
+          <FunctionImport Name="proc_denyAppStatus">
+            <Parameter Name="ref_no" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
+            <Parameter Name="acc" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="proc_getAllApprovedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllApprovedAppStatus_Result)" />
           <FunctionImport Name="proc_getAllAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllAppStatus_Result)" />
           <FunctionImport Name="proc_getAllCustDetails" ReturnType="Collection(dbBankingModel.proc_getAllCustDetails_Result)" />
+          <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
           <FunctionImport Name="proc_getAllDeniedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllDeniedAppStatus_Result)" />
           <FunctionImport Name="proc_getAllPendingAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllPendingAppStatus_Result)" />
-          <FunctionImport Name="proc_getAppStatus" ReturnType="Collection(dbBankingModel.proc_getAppStatus_Result)">
-          <Parameter Name="cust_id" Mode="In" Type="String" />
+          <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
+            <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="proc_getAppStatus" ReturnType="Collection(dbBankingModel.proc_getAppStatus_Result)">
+            <Parameter Name="cust_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetBeneficiaries" ReturnType="Collection(dbBankingModel.proc_GetBeneficiaries_Result)" />
           <FunctionImport Name="proc_GetBlocked" ReturnType="Collection(dbBankingModel.proc_GetBlocked_Result)">
             <Parameter Name="cust_id" Mode="In" Type="String" />
             <Parameter Name="acc_number" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_getCustDetails" ReturnType="Collection(dbBankingModel.proc_getCustDetails_Result)">
-          <Parameter Name="cust_id" Mode="In" Type="String" />
+            <Parameter Name="cust_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetTopTransactions" ReturnType="Collection(dbBankingModel.proc_GetTopTransactions_Result)">
+            <Parameter Name="acc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_GetTransactionsWithinDate" ReturnType="Collection(dbBankingModel.proc_GetTransactionsWithinDate_Result)">
+            <Parameter Name="acc" Mode="In" Type="String" />
+            <Parameter Name="from" Mode="In" Type="DateTime" />
+            <Parameter Name="to" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="proc_InsBlocked">
             <Parameter Name="cust_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_pushTotblAccounts">
+            <Parameter Name="cust_id" Mode="In" Type="String" />
+            <Parameter Name="acc_number" Mode="In" Type="String" />
+            <Parameter Name="balance" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_setUserLogin">
             <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -528,7 +570,7 @@
             <Parameter Name="pwd" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_toggleAppStatus">
-          <Parameter Name="ref_no" Mode="In" Type="Int32" />
+            <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_UserLogin" ReturnType="Collection(dbBankingModel.proc_UserLogin_Result)">
             <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -550,17 +592,17 @@
             <Parameter Name="perm_address" Mode="In" Type="String" />
             <Parameter Name="gender" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="proc_denyAppStatus">
-          <Parameter Name="ref_no" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="proc_getAllCustDetailsAlongWithAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result)" />
-          <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
-          <Parameter Name="ref_no" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
-          <Parameter Name="cust_id" Mode="In" Type="String" />
+            <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="proc_GetAccountDetails_Result">
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="acc_number" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_type" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="balance" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="92" />
+        </ComplexType>
         <ComplexType Name="proc_getAllApprovedAppStatus_Result">
           <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
           <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
@@ -593,6 +635,22 @@
           <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
         </ComplexType>
+        <ComplexType Name="proc_getAllCustDetailsAlongWithAppStatus_Result">
+          <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
+          <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="dob" Nullable="false" />
+          <Property Type="Int32" Name="age" Nullable="false" />
+          <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="ref_no" Nullable="false" />
+          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="app_date" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="proc_getAllDeniedAppStatus_Result">
           <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
           <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
@@ -619,12 +677,25 @@
           <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
         </ComplexType>
+        <ComplexType Name="proc_getApplicationByRefno_Result">
+          <Property Type="Int32" Name="ref_no" Nullable="false" />
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="app_date" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="proc_getAppStatus_Result">
           <Property Type="Int32" Name="ref_no" Nullable="false" />
           <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
           <Property Type="DateTime" Name="app_date" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_GetBeneficiaries_Result">
+          <Property Type="String" Name="ben_acc_num" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ben_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nickname" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="proc_GetBlocked_Result">
           <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
@@ -642,33 +713,37 @@
           <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
         </ComplexType>
+        <ComplexType Name="proc_GetTopTransactions_Result">
+          <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="tran_date" Nullable="false" />
+          <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_GetTransactionsWithinDate_Result">
+          <Property Type="String" Name="transaction_id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="transaction_type" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="tran_date" Nullable="false" />
+          <Property Type="String" Name="cred_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_acc" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="transac_amt" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="deb_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cred_bal" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="mat_ins" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="remark" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="proc_UserLogin_Result">
           <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="acc_number" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="user_type" Nullable="false" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="proc_getAllCustDetailsAlongWithAppStatus_Result">
-          <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />
-          <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
-          <Property Type="DateTime" Name="dob" Nullable="false" />
-          <Property Type="Int32" Name="age" Nullable="false" />
-          <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
-          <Property Type="Int32" Name="ref_no" Nullable="false" />
-          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
-          <Property Type="DateTime" Name="app_date" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="proc_getApplicationByRefno_Result">
-          <Property Type="Int32" Name="ref_no" Nullable="false" />
-          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
-          <Property Type="DateTime" Name="app_date" Nullable="false" />
+          <Property Type="String" Name="pwd" Nullable="false" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="proc_verifyMail_Result">
           <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
@@ -697,7 +772,7 @@
               <MappingFragment StoreEntitySet="tblBeneficiary">
                 <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ben_name" ColumnName="ben_name" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -764,8 +839,6 @@
           <EntitySetMapping Name="tblTransaction">
             <EntityTypeMapping TypeName="dbBankingModel.tblTransaction">
               <MappingFragment StoreEntitySet="tblTransaction">
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
                 <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
                 <ScalarProperty Name="acc_number" ColumnName="acc_number" />
                 <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
@@ -775,9 +848,23 @@
                 <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
                 <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
                 <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_denyAppStatus" FunctionName="dbBankingModel.Store.proc_denyAppStatus" />
+          <FunctionImportMapping FunctionImportName="proc_GetAccountDetails" FunctionName="dbBankingModel.Store.proc_GetAccountDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetAccountDetails_Result">
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="acc_type" ColumnName="acc_type" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_getAllApprovedAppStatus" FunctionName="dbBankingModel.Store.proc_getAllApprovedAppStatus">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllApprovedAppStatus_Result">
@@ -822,6 +909,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_getAllCustDetailsAlongWithAppStatus" FunctionName="dbBankingModel.Store.proc_getAllCustDetailsAlongWithAppStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result">
+                <ScalarProperty Name="cust_name" ColumnName="cust_name" />
+                <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="father_name" ColumnName="father_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="res_address" ColumnName="res_address" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_getAllDeniedAppStatus" FunctionName="dbBankingModel.Store.proc_getAllDeniedAppStatus">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllDeniedAppStatus_Result">
@@ -856,6 +963,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_getAppStatus" FunctionName="dbBankingModel.Store.proc_getAppStatus">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbBankingModel.proc_getAppStatus_Result">
@@ -864,6 +982,16 @@
                 <ScalarProperty Name="app_by" ColumnName="app_by" />
                 <ScalarProperty Name="acc_status" ColumnName="acc_status" />
                 <ScalarProperty Name="app_date" ColumnName="app_date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetBeneficiaries" FunctionName="dbBankingModel.Store.proc_GetBeneficiaries">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetBeneficiaries_Result">
+                <ScalarProperty Name="ben_acc_num" ColumnName="ben_acc_num" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="ben_name" ColumnName="ben_name" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -891,7 +1019,42 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetTopTransactions" FunctionName="dbBankingModel.Store.proc_GetTopTransactions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTopTransactions_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+                <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+                <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+                <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+                <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+                <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_GetTransactionsWithinDate" FunctionName="dbBankingModel.Store.proc_GetTransactionsWithinDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_GetTransactionsWithinDate_Result">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="acc_number" ColumnName="acc_number" />
+                <ScalarProperty Name="transaction_type" ColumnName="transaction_type" />
+                <ScalarProperty Name="tran_date" ColumnName="tran_date" />
+                <ScalarProperty Name="cred_acc" ColumnName="cred_acc" />
+                <ScalarProperty Name="deb_acc" ColumnName="deb_acc" />
+                <ScalarProperty Name="transac_amt" ColumnName="transac_amt" />
+                <ScalarProperty Name="deb_bal" ColumnName="deb_bal" />
+                <ScalarProperty Name="cred_bal" ColumnName="cred_bal" />
+                <ScalarProperty Name="mat_ins" ColumnName="mat_ins" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_InsBlocked" FunctionName="dbBankingModel.Store.proc_InsBlocked" />
+          <FunctionImportMapping FunctionImportName="proc_pushTotblAccounts" FunctionName="dbBankingModel.Store.proc_pushTotblAccounts" />
           <FunctionImportMapping FunctionImportName="proc_setUserLogin" FunctionName="dbBankingModel.Store.proc_setUserLogin" />
           <FunctionImportMapping FunctionImportName="proc_toggleAppStatus" FunctionName="dbBankingModel.Store.proc_toggleAppStatus" />
           <FunctionImportMapping FunctionImportName="proc_UserLogin" FunctionName="dbBankingModel.Store.proc_UserLogin">
@@ -900,42 +1063,11 @@
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
                 <ScalarProperty Name="acc_number" ColumnName="acc_number" />
                 <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_UserReg" FunctionName="dbBankingModel.Store.proc_UserReg" />
-          <FunctionImportMapping FunctionImportName="proc_denyAppStatus" FunctionName="dbBankingModel.Store.proc_denyAppStatus" />
-          <FunctionImportMapping FunctionImportName="proc_getAllCustDetailsAlongWithAppStatus" FunctionName="dbBankingModel.Store.proc_getAllCustDetailsAlongWithAppStatus">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dbBankingModel.proc_getAllCustDetailsAlongWithAppStatus_Result">
-                <ScalarProperty Name="cust_name" ColumnName="cust_name" />
-                <ScalarProperty Name="aadhar" ColumnName="aadhar" />
-                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-                <ScalarProperty Name="father_name" ColumnName="father_name" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
-                <ScalarProperty Name="dob" ColumnName="dob" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="res_address" ColumnName="res_address" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
-                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
-                <ScalarProperty Name="app_by" ColumnName="app_by" />
-                <ScalarProperty Name="app_date" ColumnName="app_date" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="proc_getApplicationByRefno" FunctionName="dbBankingModel.Store.proc_getApplicationByRefno">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="dbBankingModel.proc_getApplicationByRefno_Result">
-                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
-                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
-                <ScalarProperty Name="app_by" ColumnName="app_by" />
-                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
-                <ScalarProperty Name="app_date" ColumnName="app_date" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="proc_verifyMail" FunctionName="dbBankingModel.Store.proc_verifyMail">
             <ResultMapping>
               <ComplexTypeMapping TypeName="dbBankingModel.proc_verifyMail_Result">
