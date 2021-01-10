@@ -1,3 +1,6 @@
+import { UserProfileService } from './services/user-profile.service';
+import { RegisterPageService } from './services/register-page.service';
+import { PersonalDetailsService } from './services/personal-details.service';
 import { TransactionService } from './services/transaction.service';
 import { BeneficiaryService } from './services/beneficiary.service';
 import { AccountStatementService } from './services/accountstatement.service';
@@ -51,6 +54,9 @@ import { TransactionSuccessComponent } from './components/transaction-success/tr
 import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
 import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
 
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
+import { StatusComponent } from './components/status/status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +98,9 @@ import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.
     TransactionFailedComponent,
     PayeeComponent,
     ViewBeneficiariesComponent,
+
+    StatusComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,6 +124,9 @@ import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.
     AccountStatementService,
     BeneficiaryService,
     TransactionService,
+    PersonalDetailsService,
+    RegisterPageService,
+    UserProfileService,
   ],
   bootstrap: [AppComponent],
 })

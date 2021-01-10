@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbBankingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAccounts">
           <Key>
             <PropertyRef Name="acc_number" />
@@ -179,6 +179,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getallCustomers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aadhar" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_denyAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ref_no" Type="int" Mode="In" />
         </Function>
@@ -205,6 +208,9 @@
         <Function Name="proc_getCustDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_getStatusbyId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_GetTopTransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="acc" Type="varchar" Mode="In" />
         </Function>
@@ -216,6 +222,18 @@
         <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_Internet_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="varchar" Mode="In" />
+          <Parameter Name="acno" Type="varchar" Mode="In" />
+          <Parameter Name="pwd" Type="varchar" Mode="In" />
+          <Parameter Name="tpwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Internet_register" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="varchar" Mode="In" />
+          <Parameter Name="acno" Type="varchar" Mode="In" />
+          <Parameter Name="pwd" Type="varchar" Mode="In" />
+          <Parameter Name="tpwd" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_pushTotblAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
@@ -226,6 +244,9 @@
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
           <Parameter Name="user_type" Type="varchar" Mode="In" />
           <Parameter Name="pwd" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_status_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cid" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_toggleAppStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ref_no" Type="int" Mode="In" />
@@ -291,8 +312,7 @@
             <End Role="tblTransaction" EntitySet="tblTransaction" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbBankingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -522,10 +542,10 @@
             <End Role="tblStatus" EntitySet="tblStatus" />
           </AssociationSet>
           <FunctionImport Name="proc_denyAppStatus">
-            <Parameter Name="ref_no" Mode="In" Type="Int32" />
+          <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_GetAccountDetails" ReturnType="Collection(dbBankingModel.proc_GetAccountDetails_Result)">
-            <Parameter Name="acc" Mode="In" Type="String" />
+          <Parameter Name="acc" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_getAllApprovedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllApprovedAppStatus_Result)" />
           <FunctionImport Name="proc_getAllAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllAppStatus_Result)" />
@@ -534,10 +554,10 @@
           <FunctionImport Name="proc_getAllDeniedAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllDeniedAppStatus_Result)" />
           <FunctionImport Name="proc_getAllPendingAppStatus" ReturnType="Collection(dbBankingModel.proc_getAllPendingAppStatus_Result)" />
           <FunctionImport Name="proc_getApplicationByRefno" ReturnType="Collection(dbBankingModel.proc_getApplicationByRefno_Result)">
-            <Parameter Name="ref_no" Mode="In" Type="Int32" />
+          <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_getAppStatus" ReturnType="Collection(dbBankingModel.proc_getAppStatus_Result)">
-            <Parameter Name="cust_id" Mode="In" Type="String" />
+          <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_GetBeneficiaries" ReturnType="Collection(dbBankingModel.proc_GetBeneficiaries_Result)" />
           <FunctionImport Name="proc_GetBlocked" ReturnType="Collection(dbBankingModel.proc_GetBlocked_Result)">
@@ -545,10 +565,10 @@
             <Parameter Name="acc_number" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_getCustDetails" ReturnType="Collection(dbBankingModel.proc_getCustDetails_Result)">
-            <Parameter Name="cust_id" Mode="In" Type="String" />
+          <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_GetTopTransactions" ReturnType="Collection(dbBankingModel.proc_GetTopTransactions_Result)">
-            <Parameter Name="acc" Mode="In" Type="String" />
+          <Parameter Name="acc" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_GetTransactionsWithinDate" ReturnType="Collection(dbBankingModel.proc_GetTransactionsWithinDate_Result)">
             <Parameter Name="acc" Mode="In" Type="String" />
@@ -556,7 +576,7 @@
             <Parameter Name="to" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="proc_InsBlocked">
-            <Parameter Name="cust_id" Mode="In" Type="String" />
+          <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_pushTotblAccounts">
             <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -570,7 +590,7 @@
             <Parameter Name="pwd" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_toggleAppStatus">
-            <Parameter Name="ref_no" Mode="In" Type="Int32" />
+          <Parameter Name="ref_no" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_UserLogin" ReturnType="Collection(dbBankingModel.proc_UserLogin_Result)">
             <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -593,7 +613,28 @@
             <Parameter Name="gender" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
-            <Parameter Name="cust_id" Mode="In" Type="String" />
+          <Parameter Name="cust_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getallCustomers" ReturnType="Collection(dbBankingModel.getallCustomers_Result)">
+            <Parameter Name="aadhar" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_getStatusbyId" ReturnType="Collection(dbBankingModel.proc_getStatusbyId_Result)">
+            <Parameter Name="cid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Internet_login">
+            <Parameter Name="cid" Mode="In" Type="String" />
+            <Parameter Name="acno" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+            <Parameter Name="tpwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Internet_register">
+            <Parameter Name="cid" Mode="In" Type="String" />
+            <Parameter Name="acno" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+            <Parameter Name="tpwd" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_status_by_id" ReturnType="Collection(dbBankingModel.proc_status_by_id_Result)">
+            <Parameter Name="cid" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_GetAccountDetails_Result">
@@ -748,6 +789,38 @@
         <ComplexType Name="proc_verifyMail_Result">
           <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getallCustomers_Result">
+          <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="first_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="last_name" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="dob" Nullable="false" />
+          <Property Type="Int32" Name="age" Nullable="false" />
+          <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="perm_address" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="proc_getStatusbyId_Result">
+          <Property Type="Int32" Name="ref_no" Nullable="false" />
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="app_date" Nullable="false" />
+          <Property Type="String" Name="Customer_Name" Nullable="false" MaxLength="90" />
+        </ComplexType>
+        <ComplexType Name="proc_status_by_id_Result">
+          <Property Type="Int32" Name="ref_no" Nullable="false" />
+          <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="app_date" Nullable="false" />
+          <Property Type="String" Name="Customer_Name" Nullable="false" MaxLength="90" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1073,6 +1146,52 @@
               <ComplexTypeMapping TypeName="dbBankingModel.proc_verifyMail_Result">
                 <ScalarProperty Name="cust_id" ColumnName="cust_id" />
                 <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getallCustomers" FunctionName="dbBankingModel.Store.getallCustomers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.getallCustomers_Result">
+                <ScalarProperty Name="aadhar" ColumnName="aadhar" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="father_name" ColumnName="father_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="cust_mail" ColumnName="cust_mail" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="res_address" ColumnName="res_address" />
+                <ScalarProperty Name="perm_address" ColumnName="perm_address" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_getStatusbyId" FunctionName="dbBankingModel.Store.proc_getStatusbyId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_getStatusbyId_Result">
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Internet_login" FunctionName="dbBankingModel.Store.proc_Internet_login" />
+          <FunctionImportMapping FunctionImportName="proc_Internet_register" FunctionName="dbBankingModel.Store.proc_Internet_register" />
+          <FunctionImportMapping FunctionImportName="proc_status_by_id" FunctionName="dbBankingModel.Store.proc_status_by_id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="dbBankingModel.proc_status_by_id_Result">
+                <ScalarProperty Name="ref_no" ColumnName="ref_no" />
+                <ScalarProperty Name="cust_id" ColumnName="cust_id" />
+                <ScalarProperty Name="app_by" ColumnName="app_by" />
+                <ScalarProperty Name="acc_status" ColumnName="acc_status" />
+                <ScalarProperty Name="app_date" ColumnName="app_date" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

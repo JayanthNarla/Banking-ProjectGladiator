@@ -1,5 +1,6 @@
 export class PersonalDetails {
     aadhar:string;
+    cust_id:string;
     title:string;
     first_name:string;
     middle_name:string;
@@ -13,11 +14,12 @@ export class PersonalDetails {
     dob:Date;
     gender:string;
     
-    constructor(aadhar:string=" ",title:string=" ",first_name:string=" ",middle_name:string=" ",last_name:string=" ",
+    constructor(aadhar:string=" ",cust_id:string=" ",title:string=" ",first_name:string=" ",middle_name:string=" ",last_name:string=" ",
     father_name:string=" ",phone:string=" ",cust_mail:string=" ",res_address:string=" ",perm_address:string=" ",age:number=0,dob:Date=null,
     gender:string=" ")
     {
         this.aadhar=aadhar;
+        this.cust_id=cust_id;
         this.title=title;
         this.first_name=first_name;
         this.middle_name=middle_name;

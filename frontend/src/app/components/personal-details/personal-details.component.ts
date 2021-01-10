@@ -1,5 +1,11 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PersonalDetailsService } from 'src/app/services/personal-details.service';
+import { PersonalDetails } from '../../Models/personal-details';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-personal-details',
@@ -9,9 +15,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PersonalDetailsComponent implements OnInit {
 pdform:FormGroup;
 submitted:boolean=false
+randomNumber:number
+lastNumber:number
+personalDetails:PersonalDetails
 error_messages = {
   first_name: [
-    { type: 'required', message: 'First Name is required' },
+    { type: 'required', 
+    message: 'First Name is required' },
   {
     type: 'minlength',
     message: 'first name length must be between 6 and 10 characters',
@@ -95,11 +105,26 @@ error_messages = {
       message:'Mandatory',
     },
   ],
+  age:[
+    {
+      type:'required',
+      message:'Mandatory',
+    },
+  ],
 };
-  constructor(private FormBuilder:FormBuilder) { 
+
+  constructor(private FormBuilder:FormBuilder,private http:HttpClientModule,private service:PersonalDetailsService,
+    private toast:ToastrService,private route:Router   ) {
+    
+   this.personalDetails=new PersonalDetails()
+    while(this.lastNumber==this.randomNumber){
+      this.lastNumber=Math.floor(Math.random()*90000)+(10000)
+    }
+    this.randomNumber=this.lastNumber
     this.pdform=this.FormBuilder.group({
       title:["",Validators.required],
       aadhar:["",Validators.required],
+      cust_id:[this.randomNumber],
       first_name:["",[Validators.required,Validators.minLength(4),Validators.maxLength(16)]],
       middle_name:[""],
       last_name:["",[Validators.required,Validators.minLength(4),Validators.maxLength(16)]],
@@ -113,31 +138,28 @@ error_messages = {
       perm_address:["",Validators.required],
 
       dob:["",Validators.required],
-      // age:["",Validators.required],
+      age:["",Validators.required],
       gender:["",Validators.required]
       
     })
+    
   }
 
-  onSubmit(){
-    this.submitted=true
-    console.log("button clicked");
-    console.log(this.pdform);
-    const invalid = [];
-        const controls = this.pdform.controls;
-        for (const name in controls) {
-
-            if (controls[name].invalid) {
-                invalid.push(name);
-            }
-        }
-        console.log(invalid);
-        
-    
-    if(this.pdform.valid){
-      console.table(this.pdform.value)
+  onSubmit(title,gender){
+    //   
+    this.personalDetails.title=title.value;
+    this.personalDetails.gender=gender.value;
+    this.personalDetails.cust_id=this.randomNumber.toString();
+    this.service.postDetails(this.personalDetails).subscribe(data=>{
+      console.log(data)
+      this.toast.success("Successfully submitted")
+      this.route.navigate(['/status',this.personalDetails.cust_id])
       this.pdform.reset()
-    }
+    })
+
+    
+
+    // }
 
   }
 

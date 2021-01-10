@@ -33,7 +33,8 @@ import { TransactionSuccessComponent } from './components/transaction-success/tr
 import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
 import { PayeeComponent } from './components/payee/payee.component';
 import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
-
+import { StatusComponent } from './components/status/status.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: AdminLoginComponent },
@@ -57,7 +58,7 @@ const routes: Routes = [
       { path: 'neft', component: NeftComponent },
       { path: 'imps', component: ImpsComponent },
       { path: 'rtgs', component: RtgsComponent },
-      { path: 'details', component: AccountDetailsComponent },
+      { path: 'details', component: UserProfileComponent },
       { path: 'summary', component: AccountSummaryComponent },
       { path: 'change', component: ChangeIdPasswordComponent },
       { path: 'addben', component: AddBeneficiaryComponent },
@@ -91,7 +92,8 @@ const routes: Routes = [
       },
     ],
   },
-
+  { path: 'status/:id', component: StatusComponent },
+  { path: 'userProfile', component: UserProfileComponent },
   { path: 'faq', component: FaqPageComponent },
   { path: 'services', component: ServicePageComponent },
   { path: 'contactUs', component: ContactUsComponent },

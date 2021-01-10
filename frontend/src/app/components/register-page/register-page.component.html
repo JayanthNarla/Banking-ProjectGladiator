@@ -1,61 +1,75 @@
-<h3>Register For Internet Banking</h3>
-<div class="hero">
+<section id="pd">
+  <div class="cntr">
+    <div class="wrapper">
+      <h3>Register For Internet Banking</h3>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form
+          [formGroup]="iregister"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+        >
+          <!-- <div class="hero">
   <div class="hero-content">
-    <form [formGroup]="iregister">
-      <div class="form-group row">
-        <label
-          >Account Number
-          <span style="color: var(--light-red)">*</span>
-        </label>
-        <input
-          type="text"
-          class="form-control"
-          formControlName="acc_number"
-          placeholder="Enter Account number"
-        />
-        <div class="error-messages">
-          <ng-container *ngFor="let error of error_messages.account_number">
-            <div
-              class="error-message"
-              *ngIf="
-                iregister.get('acc_number').hasError(error.type) &&
-                (iregister.get('acc_number').dirty ||
-                  iregister.get('acc_number').touched)
-              "
-            >
-              {{ error.message }}
-            </div>
-          </ng-container>
-        </div>
-      </div>
+    <form [formGroup]="iregister"> -->
 
-      <div class="form-group row">
-        <label
-          >Set Password
-          <span style="color: var(--light-red)">*</span>
-        </label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="pwd"
-          placeholder="Enter Password"
-        />
-        <div class="error-messages">
-          <ng-container *ngFor="let error of error_messages.password">
-            <div
-              class="error-message"
-              *ngIf="
-                iregister.get('pwd').hasError(error.type) &&
-                (iregister.get('pwd').dirty || iregister.get('pwd').touched)
-              "
-            >
-              {{ error.message }}
+          <div class="form-group row">
+            <label
+              >Account Number
+              <span style="color: var(--light-red)">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="acc_number"
+              placeholder="Enter Account number"
+              [(ngModel)]="register.acc_number"
+            />
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.account_number">
+                <div
+                  class="error-message"
+                  *ngIf="
+                    iregister.get('acc_number').hasError(error.type) &&
+                    (iregister.get('acc_number').dirty ||
+                      iregister.get('acc_number').touched)
+                  "
+                >
+                  {{ error.message }}
+                </div>
+              </ng-container>
             </div>
-          </ng-container>
-        </div>
-      </div>
+          </div>
 
-      <div class="form-group row">
+          <div class="form-group row">
+            <label
+              >Set Password
+              <span style="color: var(--light-red)">*</span>
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="pwd"
+              placeholder="Enter Password"
+              [(ngModel)]="register.pwd"
+            />
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.password">
+                <div
+                  class="error-message"
+                  *ngIf="
+                    iregister.get('pwd').hasError(error.type) &&
+                    (iregister.get('pwd').dirty || iregister.get('pwd').touched)
+                  "
+                >
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- <div class="form-group row">
         <label
           >Confirm Password
           <span style="color: var(--light-red)">*</span>
@@ -63,49 +77,58 @@
         <input
           type="password"
           class="form-control"
-          formControlName="pwd"
+          formControlName="cpwd"
           placeholder="Confirm Password"
+          
         />
         <div class="error-messages">
           <ng-container *ngFor="let error of error_messages.password">
             <div
               class="error-message"
               *ngIf="
-                iregister.get('pwd').hasError(error.type) &&
-                (iregister.get('pwd').dirty || iregister.get('pwd').touched)
+                iregister.get('cpwd').hasError(error.type) &&
+                (iregister.get('cpwd').dirty || iregister.get('cpwd').touched)
               "
             >
               {{ error.message }}
             </div>
+           
           </ng-container>
+          <div *ngIf="isValid" class="error-message">
+            Password does not match
         </div>
-      </div>
-      <div class="form-group row">
-        <label
-          >Set Transaction Password
-          <span style="color: var(--light-red)">*</span>
-        </label>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="Tpwd"
-          placeholder="Enter Transaction Password"
-        />
-        <div class="error-messages">
-          <ng-container *ngFor="let error of error_messages.password">
-            <div
-              class="error-message"
-              *ngIf="
-                iregister.get('Tpwd').hasError(error.type) &&
-                (iregister.get('Tpwd').dirty || iregister.get('Tpwd').touched)
-              "
-            >
-              {{ error.message }}
+        </div>
+      </div> -->
+
+          <div class="form-group row">
+            <label
+              >Set Transaction Password
+              <span style="color: var(--light-red)">*</span>
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              formControlName="Tpwd"
+              placeholder="Enter Transaction Password"
+              [(ngModel)]="register.Tpwd"
+            />
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.password">
+                <div
+                  class="error-message"
+                  *ngIf="
+                    iregister.get('Tpwd').hasError(error.type) &&
+                    (iregister.get('Tpwd').dirty ||
+                      iregister.get('Tpwd').touched)
+                  "
+                >
+                  {{ error.message }}
+                </div>
+              </ng-container>
             </div>
-          </ng-container>
-        </div>
-      </div>
-      <div class="form-group row">
+          </div>
+
+          <!-- <div class="form-group row">
         <label
           >Confirm Transaction Password
           <span style="color: var(--light-red)">*</span>
@@ -113,33 +136,45 @@
         <input
           type="password"
           class="form-control"
-          formControlName="Tpwd"
+          formControlName="CTpwd"
           placeholder="Confirm Transaction Password"
+          
         />
         <div class="error-messages">
           <ng-container *ngFor="let error of error_messages.password">
             <div
               class="error-message"
               *ngIf="
-                iregister.get('Tpwd').hasError(error.type) &&
-                (iregister.get('Tpwd').dirty || iregister.get('Tpwd').touched)
+                iregister.get('CTpwd').hasError(error.type) &&
+                (iregister.get('CTpwd').dirty || iregister.get('CTpwd').touched)
               "
             >
               {{ error.message }}
             </div>
           </ng-container>
+          <div *ngIf="(iregister.get('CTpwd').touched || iregister.get('CTpwd').dirty)" class="error-message">
+            <div *ngIf="iregister.get('CTpwd') != iregister.get('CTpwd').touched ">
+              Password does not match
+            </div> -->
+
+          <!-- </div>
         </div>
+      </div> -->
+
+          <div class="wrapper">
+            <button
+              type="submit"
+              class="form-control btn btn-primary"
+              style="margin-bottom: 20px; width: 100px"
+              [disabled]="!iregister.valid"
+            >
+              Submit
+            </button>
+          </div>
+
+          <br />
+        </form>
       </div>
-
-      <input
-        type="button"
-        value="Submit"
-        class="btn"
-        (click)="onSubmit()"
-        [disabled]="!iregister.valid"
-      />
-
-      <br />
-    </form>
+    </div>
   </div>
-</div>
+</section>

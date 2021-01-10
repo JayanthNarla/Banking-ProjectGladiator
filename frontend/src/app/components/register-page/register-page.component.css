@@ -1,4 +1,4 @@
-label {
+/* label {
   font-family: var(--primary-font);
   font-size: large;
 }
@@ -73,7 +73,57 @@ h3 {
   color: var(--white);
   transform: translateY(-7px);
 }
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
 .error-message {
   color: var(--light-red);
+} */
+
+/* #pd {
+  height: 70vh;
+  position: relative;
+  overflow-x: hidden;
+} */
+
+form {
+  margin-top: 10px;
+  margin-left: 60px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: var(--light-red);
+}
+input.ng-touched.ng-invalid {
+  border: 1px solid var(--light-red);
+}
+
+.btn-primary {
+  background-color: var(--blue) !important;
+  border: none !important;
+}
+
+/* .cntr {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+} */
+.wrapper h2 {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }

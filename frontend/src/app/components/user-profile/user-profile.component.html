@@ -1,0 +1,199 @@
+<section id="success">
+  <div class="cntr">
+    <div class="wrapper">
+      <div *ngIf="!Valid">
+        <input type="text" #id placeholder="Enter Aadhar" />
+        <button
+          class="btn btn-primary"
+          style="margin-bottom: 20px; width: 100px"
+          (click)="getUser(id)"
+        >
+          Submit
+        </button>
+      </div>
+      <table border="1px" *ngIf="isSubmitted">
+        <tr>
+          <td colspan="3" align="center">
+            <h2>User Profile</h2>
+          </td>
+        </tr>
+        <tr>
+          <td>Aadhar</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.aadhar }}</td>
+        </tr>
+        <tr>
+          <td>Title</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.title }}</td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.first_name }}
+          </td>
+        </tr>
+        <tr>
+          <td>Middle Name</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.middle_name }}
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.last_name }}
+          </td>
+        </tr>
+        <tr>
+          <td>Father Name</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.father_name }}
+          </td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.phone }}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.cust_mail }}
+          </td>
+        </tr>
+        <tr>
+          <td>Date Of Birth</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.dob }}</td>
+        </tr>
+        <tr>
+          <td>Age</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.age }}</td>
+        </tr>
+        <tr>
+          <td>Residential Address</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.res_address }}
+          </td>
+        </tr>
+        <tr>
+          <td>Permanent Address</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ user.perm_address }}
+          </td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ user.gender }}</td>
+        </tr>
+        <tr>
+          <button
+            (click)="Update(user.aadhar)"
+            class="btn btn-primary"
+            style="margin-bottom: 20px; width: 100px"
+          >
+            Edit Details
+          </button>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="isUpdate" class="container">
+      <form [formGroup]="userForm" (ngSubmit)="PutSubmit(userForm.value)">
+        <!-- <label>Title</label>
+            <input type="text" formControlName="title" >
+            
+            <label>Last Name</label>
+            <input type="text" formControlName="last_name" >
+
+            
+            <label>Phone</label>
+            <input type="text" formControlName="phone" >
+
+            
+            <label>Email</label>
+            <input type="text" formControlName="cust_mail" >
+
+            
+            <label>Age</label>
+            <input type="text" formControlName="age" >
+
+            
+            <label>Residential Address</label>
+            <input type="text" formControlName="res_address" >
+
+            
+            <label>Permanent Address</label>
+            <input type="text" formControlName="perm_address" > -->
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Title</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="title" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Last Name</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="last_name"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Phone</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="phone" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="cust_mail"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Age</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="age" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Residential Address</label>
+          <div class="col-sm-10">
+            <textarea
+              class="form-control"
+              formControlName="res_address"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Permanent Address</label>
+          <div class="col-sm-10">
+            <textarea
+              class="form-control"
+              formControlName="perm_address"
+            ></textarea>
+          </div>
+        </div>
+
+        <button class="btn btn-primary">Submit Details</button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -299,6 +299,27 @@
     <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
       <Parameter Name="cust_id" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="getallCustomers" ReturnType="Collection(dbBankingModel.getallCustomers_Result)">
+      <Parameter Name="aadhar" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_getStatusbyId" ReturnType="Collection(dbBankingModel.proc_getStatusbyId_Result)">
+      <Parameter Name="cid" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Internet_login">
+      <Parameter Name="cid" Mode="In" Type="String" />
+      <Parameter Name="acno" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+      <Parameter Name="tpwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Internet_register">
+      <Parameter Name="cid" Mode="In" Type="String" />
+      <Parameter Name="acno" Mode="In" Type="String" />
+      <Parameter Name="pwd" Mode="In" Type="String" />
+      <Parameter Name="tpwd" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_status_by_id" ReturnType="Collection(dbBankingModel.proc_status_by_id_Result)">
+      <Parameter Name="cid" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_GetAccountDetails_Result">
     <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
@@ -452,5 +473,37 @@
   <ComplexType Name="proc_verifyMail_Result">
     <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getallCustomers_Result">
+    <Property Type="String" Name="aadhar" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="cust_id" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="5" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="middle_name" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="father_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="phone" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="cust_mail" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="dob" Nullable="false" />
+    <Property Type="Int32" Name="age" Nullable="false" />
+    <Property Type="String" Name="res_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="perm_address" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="gender" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_getStatusbyId_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+    <Property Type="String" Name="Customer_Name" Nullable="false" MaxLength="90" />
+  </ComplexType>
+  <ComplexType Name="proc_status_by_id_Result">
+    <Property Type="Int32" Name="ref_no" Nullable="false" />
+    <Property Type="String" Name="cust_id" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="app_by" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="acc_status" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="app_date" Nullable="false" />
+    <Property Type="String" Name="Customer_Name" Nullable="false" MaxLength="90" />
   </ComplexType>
 </Schema>

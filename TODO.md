@@ -9,3 +9,7 @@
 1. making multiple API calls //DONE
 2. After handling all applications. Pending Title Doesn't change. Remains same //update size after approval
 3. alter DB to include occupational details (Customer Registeration)
+4. form validations //ZnS
+5. status generation after account opening //ZnS
+6. Not pushing into tblStatus after new account opening //ZnS
+7. Account Summary component styling //ZnS
