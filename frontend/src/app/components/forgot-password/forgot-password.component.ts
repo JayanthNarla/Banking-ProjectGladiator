@@ -30,6 +30,38 @@ export class ForgotPasswordComponent implements OnInit {
   error_messages = {
     id: [{ type: 'required', message: 'Customer ID is required' }],
     mail: [{ type: 'required', message: 'Email ID is required' }],
+    pwd: [
+      { type: 'required', message: 'password is required' },
+      {
+        type: 'minlength',
+        message: 'password length must be between 8 and 16 characters',
+      },
+      {
+        type: 'maxlength',
+        message: 'password length must be between 8 and 16 characters',
+      },
+      {
+        type: 'pattern',
+        message:
+          'password must consist one special character,one alphabet and one numeric',
+      },
+    ],
+    cpwd: [
+      { type: 'required', message: 'password is required' },
+      {
+        type: 'minlength',
+        message: 'password length must be between 8 and 16 characters',
+      },
+      {
+        type: 'maxlength',
+        message: 'password length must be between 8 and 16 characters',
+      },
+      {
+        type: 'pattern',
+        message:
+          'password must consist one special character,one alphabet and one numeric',
+      },
+    ],
   };
   sentOTP: boolean;
   toast: string;
@@ -52,8 +84,28 @@ export class ForgotPasswordComponent implements OnInit {
       mail: new FormControl('', Validators.compose([Validators.required])),
     });
     this.UpdPwd = this.formBuilder.group({
-      pwd: new FormControl(''),
-      cpwd: new FormControl(''),
+      pwd: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(15),
+          Validators.pattern(
+            '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
+          ),
+        ])
+      ),
+      cpwd: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(15),
+          Validators.pattern(
+            '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
+          ),
+        ])
+      ),
     });
   }
 

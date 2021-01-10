@@ -302,7 +302,7 @@ GO
 -- Create date: 25-12-2020
 -- Description:	Insert Blocked Contacts
 -- =============================================
-alter PROCEDURE proc_InsBlocked 
+create PROCEDURE proc_InsBlocked 
 	-- Add the parameters for the stored procedure here
 	@cust_id varchar(20)
 AS
@@ -662,6 +662,48 @@ BEGIN
 	update tblStatus set acc_status = 'approved', app_date = GETDATE() where ref_no = @ref_no;
 END
 GO
+
+
+
+
+
+-- ================================================
+-- Template generated from Template Explorer using:
+-- Create Procedure (New Menu).SQL
+--
+-- Use the Specify Values for Template Parameters 
+-- command (Ctrl-Shift-M) to fill in the parameter 
+-- values below.
+--
+-- This block of comments will not be included in
+-- the definition of the procedure.
+-- ================================================
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		Jayanth
+-- Create date: 02-01-2021
+-- Description:	Get all Application Status
+-- =============================================
+create PROCEDURE proc_pushTotblAccounts
+	@cust_id varchar(20),
+	@acc_number varchar(20),
+	@balance varchar(20)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	declare @open_date date
+	set @open_date = (select GETDATE())
+    -- Insert statements for procedure here
+	insert into tblAccounts (cust_id,acc_number,acc_type,minbalance,balance,open_date) values (@cust_id, @acc_number, 'savings','10000',@balance,@open_date)
+END
+GO
+
+
 
 
 

@@ -265,5 +265,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_pushTotblAccounts" FunctionName="dbBankingModel.Store.proc_pushTotblAccounts" />
   </EntityContainerMapping>
 </Mapping>

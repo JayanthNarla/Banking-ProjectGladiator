@@ -57,6 +57,8 @@ export class AllPendingListComponent implements OnInit {
         if (this.customers[i]['cust_id'] == data['cust_id']) {
           // this.customers.splice(i, 1);
           this.application_status.acc_status = 'approved';
+          this.application_status.cust_id = custId;
+
           // console.log(this.application_status);
 
           this.cs
@@ -64,7 +66,7 @@ export class AllPendingListComponent implements OnInit {
             .subscribe((d) => {
               this.toastr.success(`RefNo. ${data['ref_no']} is Approved`);
               this.cs.getAllPendingAppStatus().subscribe((aplData) => {
-                console.log(aplData);
+                // console.log(aplData);
                 this.applications = aplData;
                 this.modalService.dismissAll();
               });

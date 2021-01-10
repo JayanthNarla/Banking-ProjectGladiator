@@ -204,6 +204,11 @@
         <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_pushTotblAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cust_id" Type="varchar" Mode="In" />
+          <Parameter Name="acc_number" Type="varchar" Mode="In" />
+          <Parameter Name="balance" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="proc_setUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
           <Parameter Name="acc_number" Type="varchar" Mode="In" />
@@ -519,7 +524,7 @@
           <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_InsBlocked">
-            <Parameter Name="cust_id" Mode="In" Type="String" />
+          <Parameter Name="cust_id" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_setUserLogin">
             <Parameter Name="cust_id" Mode="In" Type="String" />
@@ -559,6 +564,11 @@
           </FunctionImport>
           <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
           <Parameter Name="cust_id" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_pushTotblAccounts">
+            <Parameter Name="cust_id" Mode="In" Type="String" />
+            <Parameter Name="acc_number" Mode="In" Type="String" />
+            <Parameter Name="balance" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_getAllApprovedAppStatus_Result">
@@ -944,6 +954,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_pushTotblAccounts" FunctionName="dbBankingModel.Store.proc_pushTotblAccounts" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

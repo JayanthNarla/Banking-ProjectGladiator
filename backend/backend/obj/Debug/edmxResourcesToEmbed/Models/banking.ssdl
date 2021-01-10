@@ -199,6 +199,11 @@
   <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_pushTotblAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cust_id" Type="varchar" Mode="In" />
+    <Parameter Name="acc_number" Type="varchar" Mode="In" />
+    <Parameter Name="balance" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="proc_setUserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
     <Parameter Name="acc_number" Type="varchar" Mode="In" />

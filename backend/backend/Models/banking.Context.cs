@@ -236,5 +236,22 @@ namespace backend.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_verifyMail_Result>("proc_verifyMail", cust_idParameter);
         }
+    
+        public virtual int proc_pushTotblAccounts(string cust_id, string acc_number, string balance)
+        {
+            var cust_idParameter = cust_id != null ?
+                new ObjectParameter("cust_id", cust_id) :
+                new ObjectParameter("cust_id", typeof(string));
+    
+            var acc_numberParameter = acc_number != null ?
+                new ObjectParameter("acc_number", acc_number) :
+                new ObjectParameter("acc_number", typeof(string));
+    
+            var balanceParameter = balance != null ?
+                new ObjectParameter("balance", balance) :
+                new ObjectParameter("balance", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_pushTotblAccounts", cust_idParameter, acc_numberParameter, balanceParameter);
+        }
     }
 }

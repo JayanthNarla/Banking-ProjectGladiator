@@ -43,10 +43,21 @@ namespace backend.Controllers
             DbContextTransaction transaction = entities.Database.BeginTransaction();
             try
             {
+                DateTime now = DateTime.Now;
                 tblStatus updateStatus = entities.tblStatus.Find(id);
                 updateStatus.acc_status = sts.acc_status;
+                updateStatus.app_date = now;
                 entities.SaveChanges();
 
+                Random _random = new Random();
+
+                string acc_number_tail = _random.Next(100000000, 1000000000).ToString();
+                string acc_number = "PGBNKG" + acc_number_tail;
+
+                string balance = _random.Next(100, 100000000).ToString();
+
+                //Console.WriteLine(acc_number.Length);
+                entities.proc_pushTotblAccounts(sts.cust_id, acc_number, balance);
                 transaction.Commit();
             }
             catch (Exception)

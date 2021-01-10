@@ -1,0 +1,37 @@
+.cardz {
+  position: relative;
+  padding: 50px;
+}
+
+.faq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 80vw;
+  margin: 0 auto;
+}
+.faq h1 {
+  margin-bottom: 50px;
+  font-weight: lighter;
+}
+span {
+  color: var(--blue);
+  font-weight: bold;
+}
+.faq h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: var(--blue);
+}
+
+.faq h3 {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.question {
+  color: var(--white);
+  margin-bottom: 50px;
+  width: 100%;
+}

@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,7 +16,9 @@ export class HomePageComponent implements OnInit {
   link1 = 'faq';
   link2 = 'services';
   link3 = 'contactUs';
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.logout('cust_id');
+  }
 }

@@ -282,6 +282,11 @@
     <FunctionImport Name="proc_verifyMail" ReturnType="Collection(dbBankingModel.proc_verifyMail_Result)">
       <Parameter Name="cust_id" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="proc_pushTotblAccounts">
+      <Parameter Name="cust_id" Mode="In" Type="String" />
+      <Parameter Name="acc_number" Mode="In" Type="String" />
+      <Parameter Name="balance" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_getAllApprovedAppStatus_Result">
     <Property Type="String" Name="cust_name" Nullable="false" MaxLength="98" />

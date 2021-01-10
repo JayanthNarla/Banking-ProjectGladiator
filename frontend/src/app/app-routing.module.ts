@@ -1,3 +1,4 @@
+import { AuthGuard } from './gaurds/auth.guard';
 import { ServicePageComponent } from './components/service-page/service-page.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FaqPageComponent } from './components/faq-page/faq-page.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {
     path: 'admindash',
     component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: AllPendingListComponent },
       { path: 'allApplications', component: AllApprovalsListComponent },
@@ -31,7 +33,11 @@ const routes: Routes = [
       { path: 'denied', component: AllDeniedListComponent },
     ],
   },
-  { path: 'userdash', component: UserDashboardComponent },
+  {
+    path: 'userdash',
+    component: UserDashboardComponent,
+    canActivate: [AuthGuard],
+  },
 
   { path: 'forgotPwd', component: ForgotPasswordComponent },
 
