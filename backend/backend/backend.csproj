@@ -203,6 +203,9 @@
     <Compile Include="Models\proc_UserLogin_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_verifyMailByAccNum_Result.cs">
+      <DependentUpon>banking.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_verifyMail_Result.cs">
       <DependentUpon>banking.tt</DependentUpon>
     </Compile>

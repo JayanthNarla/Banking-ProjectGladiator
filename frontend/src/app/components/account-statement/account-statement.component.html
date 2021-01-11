@@ -21,7 +21,15 @@
         
         <div style="width: 50%">
           <form [formGroup]='stateForm'>
-              <label for="start" class="col-sm-5 col-form-label">Start date :</label>
+              <label for="start" class="col-sm-5 col-form-label">
+                Start date :
+                <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+              </label>
                 <div class="col-sm-7">
                     <input type="date" 
                     name="start" 
@@ -29,15 +37,50 @@
                     class="form-control" 
                     placeholder="Starting date"
                     (change)="SetDate()"/>
+                    <div class="error-messages">
+                      <ng-container *ngFor="let error of error_messages.start">
+                        <div
+                          class="error-message"
+                          *ngIf="
+                            stateForm.get('start').hasError(error.type) &&
+                            stateForm.get('start').touched
+                          "
+                        >
+                          {{ error.message }}
+                        </div>
+                      </ng-container>
+                    </div>
                 </div>
-              <label class="col-sm-5 col-form-label">End date :</label>
+                 
+              <label class="col-sm-5 col-form-label">
+                End date :
+                <span style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;">
+                *
+              </span>
+              </label>
                 <div class="col-sm-7">
                     <input type="date" 
                     formControlName="end"
                     name="end" 
                     class="form-control"  
                     placeholder="Ending date"
-                    (change)="Get()"/>
+                    (change)="Get();ontouch()"/>
+                    <div class="error-messages">
+                      <ng-container *ngFor="let error of error_messages.end">
+                        <div
+                          class="error-message"
+                          *ngIf="
+                            stateForm.get('end').hasError(error.type) &&
+                            stateForm.get('end').touched
+                          "
+                        >
+                          {{ error.message }}
+                        </div>
+                      </ng-container>
+                    </div> 
                 </div>
           </form>
           

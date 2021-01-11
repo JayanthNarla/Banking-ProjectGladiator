@@ -1,5 +1,5 @@
 #success{
-    height: 70vh;
+    height: 80vh;
     position: relative;
     overflow-x:hidden;
   }
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
 
   .cntr {
@@ -38,4 +38,11 @@
     color: var(--black);
     font-weight: bold;
   }
-  
+  .note{
+    justify-content: center;
+    width:100%;
+    margin:20px 15px 0px 450px;
+    font-size: 14px;
+    font-style: italic;
+    font-stretch: expanded;
+  }

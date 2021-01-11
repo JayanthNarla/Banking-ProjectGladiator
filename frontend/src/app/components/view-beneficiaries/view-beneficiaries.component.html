@@ -15,11 +15,9 @@
                   <td>{{l.Nickname}}</td>
               </tr>
             </table>
-          
-        
-            <div *ngIf="!show">
-                <h4 class="box">No beneficiary added!</h4>
-            </div>
+        </div>
+        <div *ngIf="empty">
+            <h4 class="box">No beneficiary added!</h4>
         </div>
     </div>
     </div>

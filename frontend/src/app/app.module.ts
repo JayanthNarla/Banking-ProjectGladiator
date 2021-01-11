@@ -57,6 +57,7 @@ import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 import { StatusComponent } from './components/status/status.component';
+import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { StatusComponent } from './components/status/status.component';
 
     StatusComponent,
     UserProfileComponent,
+    LogoutComponentComponent,
   ],
   imports: [
     BrowserModule,

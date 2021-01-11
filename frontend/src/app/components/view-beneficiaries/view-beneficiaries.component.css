@@ -47,3 +47,11 @@
     border:1px solid var(--white);
     padding:15px 70px;
   }
+  .box{
+    margin-top: 80px;
+    border:3px solid var(--blue);
+    background-color: rgb(234, 245, 250);
+    text-align: center;
+    padding:50px;
+    border-radius: 10px;
+}

@@ -45,8 +45,6 @@ namespace backend.Controllers
                 {
                     customer.title = tbl.title;
                     customer.last_name = tbl.last_name;
-                    customer.phone = tbl.phone;
-                    customer.cust_mail = tbl.cust_mail;
                     customer.age = tbl.age;
                     customer.res_address = tbl.res_address;
                     customer.perm_address = tbl.perm_address;

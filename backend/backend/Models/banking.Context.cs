@@ -36,6 +36,15 @@ namespace backend.Models
         public virtual DbSet<tblStatus> tblStatus { get; set; }
         public virtual DbSet<tblTransaction> tblTransaction { get; set; }
     
+        public virtual ObjectResult<getallCustomers_Result> getallCustomers(string aadhar)
+        {
+            var aadharParameter = aadhar != null ?
+                new ObjectParameter("aadhar", aadhar) :
+                new ObjectParameter("aadhar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getallCustomers_Result>("getallCustomers", aadharParameter);
+        }
+    
         public virtual int proc_denyAppStatus(Nullable<int> ref_no)
         {
             var ref_noParameter = ref_no.HasValue ?
@@ -129,6 +138,15 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getCustDetails_Result>("proc_getCustDetails", cust_idParameter);
         }
     
+        public virtual ObjectResult<proc_getStatusbyId_Result> proc_getStatusbyId(string cid)
+        {
+            var cidParameter = cid != null ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getStatusbyId_Result>("proc_getStatusbyId", cidParameter);
+        }
+    
         public virtual ObjectResult<proc_GetTopTransactions_Result> proc_GetTopTransactions(string acc)
         {
             var accParameter = acc != null ?
@@ -162,6 +180,48 @@ namespace backend.Models
                 new ObjectParameter("cust_id", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter);
+        }
+    
+        public virtual int proc_Internet_login(string cid, string acno, string pwd, string tpwd)
+        {
+            var cidParameter = cid != null ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(string));
+    
+            var acnoParameter = acno != null ?
+                new ObjectParameter("acno", acno) :
+                new ObjectParameter("acno", typeof(string));
+    
+            var pwdParameter = pwd != null ?
+                new ObjectParameter("pwd", pwd) :
+                new ObjectParameter("pwd", typeof(string));
+    
+            var tpwdParameter = tpwd != null ?
+                new ObjectParameter("tpwd", tpwd) :
+                new ObjectParameter("tpwd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Internet_login", cidParameter, acnoParameter, pwdParameter, tpwdParameter);
+        }
+    
+        public virtual int proc_Internet_register(string cid, string acno, string pwd, string tpwd)
+        {
+            var cidParameter = cid != null ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(string));
+    
+            var acnoParameter = acno != null ?
+                new ObjectParameter("acno", acno) :
+                new ObjectParameter("acno", typeof(string));
+    
+            var pwdParameter = pwd != null ?
+                new ObjectParameter("pwd", pwd) :
+                new ObjectParameter("pwd", typeof(string));
+    
+            var tpwdParameter = tpwd != null ?
+                new ObjectParameter("tpwd", tpwd) :
+                new ObjectParameter("tpwd", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Internet_register", cidParameter, acnoParameter, pwdParameter, tpwdParameter);
         }
     
         public virtual int proc_pushTotblAccounts(string cust_id, string acc_number, string balance)
@@ -200,6 +260,15 @@ namespace backend.Models
                 new ObjectParameter("pwd", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_setUserLogin", cust_idParameter, acc_numberParameter, user_typeParameter, pwdParameter);
+        }
+    
+        public virtual ObjectResult<proc_status_by_id_Result> proc_status_by_id(string cid)
+        {
+            var cidParameter = cid != null ?
+                new ObjectParameter("cid", cid) :
+                new ObjectParameter("cid", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_status_by_id_Result>("proc_status_by_id", cidParameter);
         }
     
         public virtual int proc_toggleAppStatus(Nullable<int> ref_no)
@@ -294,73 +363,13 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_verifyMail_Result>("proc_verifyMail", cust_idParameter);
         }
     
-        public virtual ObjectResult<getallCustomers_Result> getallCustomers(string aadhar)
+        public virtual ObjectResult<proc_verifyMailByAccNum_Result> proc_verifyMailByAccNum(string acc_num)
         {
-            var aadharParameter = aadhar != null ?
-                new ObjectParameter("aadhar", aadhar) :
-                new ObjectParameter("aadhar", typeof(string));
+            var acc_numParameter = acc_num != null ?
+                new ObjectParameter("acc_num", acc_num) :
+                new ObjectParameter("acc_num", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getallCustomers_Result>("getallCustomers", aadharParameter);
-        }
-    
-        public virtual ObjectResult<proc_getStatusbyId_Result> proc_getStatusbyId(string cid)
-        {
-            var cidParameter = cid != null ?
-                new ObjectParameter("cid", cid) :
-                new ObjectParameter("cid", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_getStatusbyId_Result>("proc_getStatusbyId", cidParameter);
-        }
-    
-        public virtual int proc_Internet_login(string cid, string acno, string pwd, string tpwd)
-        {
-            var cidParameter = cid != null ?
-                new ObjectParameter("cid", cid) :
-                new ObjectParameter("cid", typeof(string));
-    
-            var acnoParameter = acno != null ?
-                new ObjectParameter("acno", acno) :
-                new ObjectParameter("acno", typeof(string));
-    
-            var pwdParameter = pwd != null ?
-                new ObjectParameter("pwd", pwd) :
-                new ObjectParameter("pwd", typeof(string));
-    
-            var tpwdParameter = tpwd != null ?
-                new ObjectParameter("tpwd", tpwd) :
-                new ObjectParameter("tpwd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Internet_login", cidParameter, acnoParameter, pwdParameter, tpwdParameter);
-        }
-    
-        public virtual int proc_Internet_register(string cid, string acno, string pwd, string tpwd)
-        {
-            var cidParameter = cid != null ?
-                new ObjectParameter("cid", cid) :
-                new ObjectParameter("cid", typeof(string));
-    
-            var acnoParameter = acno != null ?
-                new ObjectParameter("acno", acno) :
-                new ObjectParameter("acno", typeof(string));
-    
-            var pwdParameter = pwd != null ?
-                new ObjectParameter("pwd", pwd) :
-                new ObjectParameter("pwd", typeof(string));
-    
-            var tpwdParameter = tpwd != null ?
-                new ObjectParameter("tpwd", tpwd) :
-                new ObjectParameter("tpwd", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_Internet_register", cidParameter, acnoParameter, pwdParameter, tpwdParameter);
-        }
-    
-        public virtual ObjectResult<proc_status_by_id_Result> proc_status_by_id(string cid)
-        {
-            var cidParameter = cid != null ?
-                new ObjectParameter("cid", cid) :
-                new ObjectParameter("cid", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_status_by_id_Result>("proc_status_by_id", cidParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_verifyMailByAccNum_Result>("proc_verifyMailByAccNum", acc_numParameter);
         }
     }
 }

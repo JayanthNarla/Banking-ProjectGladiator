@@ -32,10 +32,12 @@ export class TransactionPasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   onReset()
   {
     this.passForm.reset();
   }
+
   onSubmit(){    
     if(this.passForm.valid){
       console.table(this.passForm.value)
@@ -44,6 +46,11 @@ export class TransactionPasswordComponent implements OnInit {
         err=>{this.toastr.error("Insufficient Balance"),this.route.navigate(['userdash/cancel'])});
       this.passForm.reset()
     }
+  }
+
+  ontouch()
+  {
+    this.passForm.get("pass").markAsTouched();
   }
 }
 

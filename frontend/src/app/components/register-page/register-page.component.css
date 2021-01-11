@@ -127,3 +127,10 @@ input.ng-touched.ng-invalid {
 button:disabled {
   cursor: not-allowed;
 }
+
+.btn_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 50px 0;
+}

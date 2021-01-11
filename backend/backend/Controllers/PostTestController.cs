@@ -24,7 +24,7 @@ namespace backend.Controllers
             }
             catch(Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound,"bbb");
+                return Request.CreateResponse(HttpStatusCode.NotFound,e);
             }
             
         }

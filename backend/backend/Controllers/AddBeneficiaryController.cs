@@ -60,7 +60,7 @@ namespace backend.Controllers
             if (ben.Count > 0)
                 return Request.CreateResponse(ben);
             else
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No beneficiary");
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, "No beneficiary");
             }
 
     }

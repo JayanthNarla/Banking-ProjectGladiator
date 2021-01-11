@@ -1,3 +1,4 @@
+import { PersonalDetails } from 'src/app/Models/personal-details';
 import { Customer } from './../models/Customer';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -22,6 +23,14 @@ export class OtpService {
     return this.http.post(
       `${GlobalVariables.BASE_API_URL}GetOTP/verifyMail`,
       cust
+    );
+  };
+  verifyMailByAccNum = (pDetails: Account) => {
+    console.log(pDetails);
+
+    return this.http.post(
+      `${GlobalVariables.BASE_API_URL}GetOTP/verifyMailByAccNum`,
+      pDetails
     );
   };
 }

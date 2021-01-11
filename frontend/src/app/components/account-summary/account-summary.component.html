@@ -47,6 +47,9 @@
             </tr>
           </table>
           <button (click)="View()">{{ show === false ? 'Click here to see last ten transactions' : 'Hide statements'}}</button>
+          <div *ngIf="empty">
+            <h4 class="box">No transaction performed!</h4>
+          </div>
         </div>
     </div>
 </section>

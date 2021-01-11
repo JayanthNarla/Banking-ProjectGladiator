@@ -72,5 +72,17 @@ namespace backend.Controllers
                 return Request.CreateResponse<proc_verifyMail_Result>(result);
         }
 
+
+        [HttpPost]
+        [Route("verifyMailByAccNum")]
+        public HttpResponseMessage verifyMailByAccNum(tblAccounts acc)
+        {
+            proc_verifyMailByAccNum_Result result = null;
+            result = entities.proc_verifyMailByAccNum(acc.acc_number).FirstOrDefault();
+            if (result == null)
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Mail ID Incorrect");
+            else
+                return Request.CreateResponse<proc_verifyMailByAccNum_Result>(result);
+        }
     }
 }

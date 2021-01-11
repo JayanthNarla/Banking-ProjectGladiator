@@ -1,8 +1,7 @@
 #add-beneficiary {
-    height: 80vh;
+    height: 90vh;
     position: relative;
     overflow-x: hidden;
-    overflow-x: initial !important;
   }
 
   h3 {
@@ -34,7 +33,7 @@
   .cntr {
     position: absolute;
     top: 50%;
-    left: 62.5%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
   }

@@ -55,6 +55,7 @@
   
   .error-message {
     color: var(--light-red);
+    text-align: left;
   }
   input.ng-touched.ng-invalid {
     border: 1px solid var(--light-red);
@@ -81,7 +82,6 @@
   .stat{
       margin:0px 30px 30px 30px;
       border:1px solid var(--black);
-      height: calc(100vh - 160px);
   }
   .stat tr th{
     background-color: var(--white);

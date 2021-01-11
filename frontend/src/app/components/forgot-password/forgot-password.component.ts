@@ -140,7 +140,7 @@ export class ForgotPasswordComponent implements OnInit {
       });
     } else {
       this.toastr.error(`Enter correct OTP`);
-    }
+    } 
   };
 
   verifyMailAndGenOTP = () => {

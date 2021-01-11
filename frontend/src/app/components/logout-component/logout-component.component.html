@@ -1,0 +1,36 @@
+<app-navbar
+  [main]="main"
+  [opt1]="opt1"
+  [opt2]="opt2"
+  [opt3]="opt3"
+  [isLogin]="isLogin"
+  [mainLink]="mainLink"
+  [link1]="link1"
+  [link2]="link2"
+  [link3]="link3"
+></app-navbar>
+<div id="logoutsection">
+  <div class="content">
+    <h1 class="title">You have been logged out.</h1>
+    <div class="hero-section">
+      <div class="reason">Session Expired</div>
+      <div class="form-group row">
+        <div class="last_login">
+          <label for="lastlogin">Last Logged in - </label>
+          <input
+            type="text"
+            name="lastlogin"
+            class="form-control"
+            [value]="lastLoggedTime"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="button_container">
+        <button routerLink="/login" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

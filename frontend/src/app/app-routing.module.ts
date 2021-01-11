@@ -1,3 +1,4 @@
+import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 import { AuthGuard } from './gaurds/auth.guard';
 import { ServicePageComponent } from './components/service-page/service-page.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
@@ -53,6 +54,7 @@ const routes: Routes = [
     path: 'userdash',
     component: UserDashboardComponent,
     children: [
+      { path: '', pathMatch: 'full', redirectTo: 'summary' },
       { path: 'statement', component: AccountStatementComponent },
       { path: 'fund', component: FundTransferComponent },
       { path: 'neft', component: NeftComponent },
@@ -97,6 +99,10 @@ const routes: Routes = [
   { path: 'faq', component: FaqPageComponent },
   { path: 'services', component: ServicePageComponent },
   { path: 'contactUs', component: ContactUsComponent },
+  {
+    path: 'logout',
+    component: LogoutComponentComponent,
+  },
 ];
 
 @NgModule({

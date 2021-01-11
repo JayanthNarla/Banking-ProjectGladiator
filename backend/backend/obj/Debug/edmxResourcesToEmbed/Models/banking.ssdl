@@ -68,7 +68,7 @@
     <Key>
       <PropertyRef Name="ref_no" />
     </Key>
-    <Property Name="ref_no" Type="int" Nullable="false" />
+    <Property Name="ref_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cust_id" Type="varchar" MaxLength="20" />
     <Property Name="app_by" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="acc_status" Type="varchar" MaxLength="10" Nullable="false" />
@@ -150,7 +150,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblStatus__cust___6FE99F9F">
+  <Association Name="FK__tblStatus__cust___681373AD">
     <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
     <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="*" />
     <ReferentialConstraint>
@@ -269,6 +269,9 @@
   <Function Name="proc_verifyMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cust_id" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_verifyMailByAccNum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="acc_num" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="dbBankingModelStoreContainer">
     <EntitySet Name="tblAccounts" EntityType="Self.tblAccounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblBeneficiary" EntityType="Self.tblBeneficiary" Schema="dbo" store:Type="Tables" />
@@ -298,7 +301,7 @@
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblLogin" EntitySet="tblLogin" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblStatus__cust___6FE99F9F" Association="Self.FK__tblStatus__cust___6FE99F9F">
+    <AssociationSet Name="FK__tblStatus__cust___681373AD" Association="Self.FK__tblStatus__cust___681373AD">
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblStatus" EntitySet="tblStatus" />
     </AssociationSet>

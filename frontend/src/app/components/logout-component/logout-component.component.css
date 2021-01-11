@@ -1,0 +1,26 @@
+#logoutsection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
+.content {
+  width: 80vw;
+  text-align: center;
+}
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.title {
+  color: var(--blue);
+  margin: 100px;
+  margin-top: -150px;
+}
+.btn {
+  padding: 10px 45px;
+  font-size: 18px;
+}

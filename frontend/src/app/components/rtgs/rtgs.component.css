@@ -76,4 +76,9 @@
   button:disabled {
     cursor: not-allowed;
   }
-  
+  .note{
+    margin:60px 15px 0px 15px;
+    font-size: 12px;
+    font-style: italic;
+    font-stretch: expanded;
+  }

@@ -5,11 +5,7 @@
     </div>
     <div class="wrapper">
       <div style="width: 50%">
-        <form
-          [formGroup]="iregister"
-          (ngSubmit)="onSubmit()"
-          autocomplete="off"
-        >
+        <form [formGroup]="iregister" autocomplete="off">
           <!-- <div class="hero">
   <div class="hero-content">
     <form [formGroup]="iregister"> -->
@@ -42,7 +38,67 @@
             </div>
           </div>
 
-          <div class="form-group row">
+          <div class="form-group row" *ngIf="sentOTP == false">
+            <label for="mail"
+              >Registered Mail ID:
+              <span style="color: var(--light-red)"> * </span>
+            </label>
+            <input
+              class="form-control"
+              formControlName="mail"
+              type="mail"
+              name="mail"
+              id="mail"
+              placeholder="Enter your registered Mail ID"
+              [(ngModel)]="mailID"
+            />
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.mail">
+                <div
+                  class="error-message"
+                  *ngIf="
+                    iregister.get('mail').hasError(error.type) &&
+                    (iregister.get('mail').dirty ||
+                      iregister.get('mail').touched)
+                  "
+                >
+                  {{ error.message }}
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div
+            class="form-group row"
+            *ngIf="sentOTP == true && verifiedOTP == false"
+          >
+            <label for="otp"
+              >OTP:
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <input
+              class="form-control"
+              formControlName="otp"
+              id="otp"
+              type="text"
+              name="otp"
+              placeholder="Enter the OTP sent to your registered Mail ID"
+              [(ngModel)]="otp.otp"
+            />
+          </div>
+
+          <div
+            class="form-group row"
+            *ngIf="sentOTP == true && verifiedOTP == true"
+          >
             <label
               >Set Password
               <span style="color: var(--light-red)">*</span>
@@ -100,7 +156,10 @@
         </div>
       </div> -->
 
-          <div class="form-group row">
+          <div
+            class="form-group row"
+            *ngIf="sentOTP == true && verifiedOTP == true"
+          >
             <label
               >Set Transaction Password
               <span style="color: var(--light-red)">*</span>
@@ -161,12 +220,28 @@
         </div>
       </div> -->
 
-          <div class="wrapper">
+          <div class="btn_container">
             <button
               type="submit"
-              class="form-control btn btn-primary"
-              style="margin-bottom: 20px; width: 100px"
-              [disabled]="!iregister.valid"
+              *ngIf="sentOTP == false"
+              class="btn btn-primary"
+              (click)="verifyMailAndGenOTP()"
+            >
+              Generate OTP
+            </button>
+            <button
+              type="submit"
+              *ngIf="sentOTP == true && verifiedOTP == false"
+              class="btn btn-primary"
+              (click)="verifyOTP()"
+            >
+              Verify OTP
+            </button>
+            <button
+              type="submit"
+              *ngIf="sentOTP == true && verifiedOTP == true"
+              class="btn btn-primary"
+              (click)="onSubmit()"
             >
               Submit
             </button>

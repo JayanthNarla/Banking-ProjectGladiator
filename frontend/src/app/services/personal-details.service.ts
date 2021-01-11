@@ -9,7 +9,7 @@ export class PersonalDetailsService {
   constructor(private http: HttpClient) {}
 
   postDetails(PersonalDetails: PersonalDetails) {
-    console.log(PersonalDetails);
+    console.log('in service' + PersonalDetails);
 
     return this.http.post(
       'http://localhost:52759/api/CustStatus',
