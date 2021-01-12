@@ -36,6 +36,7 @@ import { PayeeComponent } from './components/payee/payee.component';
 import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
 import { StatusComponent } from './components/status/status.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'login', component: AdminLoginComponent },
@@ -103,6 +104,7 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponentComponent,
   },
+  { path: '**', component: PathNotFoundComponent },
 ];
 
 @NgModule({

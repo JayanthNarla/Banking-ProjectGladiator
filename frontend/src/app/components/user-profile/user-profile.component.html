@@ -2,10 +2,15 @@
   <div class="cntr">
     <div class="wrapper">
       <div *ngIf="!Valid">
-        <input type="text" #id placeholder="Enter Aadhar" />
+        <input
+          type="text"
+          #id
+          placeholder="Enter Aadhar"
+          style="padding: 0 5px; margin-right: 20px"
+        />
         <button
-          class="btn btn-primary"
-          style="margin-bottom: 20px; width: 100px"
+          class="btn-group-sm btn-primary"
+          style="width: 100px"
           (click)="getUser(id)"
         >
           Submit

@@ -20,9 +20,9 @@ export class NavbarComponent implements OnInit {
   @Input() isLogin: boolean;
   constructor(private authService: AuthService, private router: Router) {}
 
-  logout = () => {
-    this.authService.logout('cust_id');
-  };
+  // logout = () => {
+  //   this.router.navigateByUrl('logout');
+  // };
 
   ngOnInit(): void {}
 }

@@ -22,8 +22,8 @@
     </a>
   </ng-container>
   <ng-container *ngIf="isLogin == false">
-    <a class="cta">
-      <button (click)="logout()" routerLink="/logout">Logout</button>
+    <a class="cta" routerLink="/logout">
+      <button>Logout</button>
     </a>
   </ng-container>
 </header>

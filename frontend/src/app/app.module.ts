@@ -58,6 +58,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 
 import { StatusComponent } from './components/status/status.component';
 import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
+import { PathNotFoundComponent } from './components/path-not-found/path-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +104,7 @@ import { LogoutComponentComponent } from './components/logout-component/logout-c
     StatusComponent,
     UserProfileComponent,
     LogoutComponentComponent,
+    PathNotFoundComponent,
   ],
   imports: [
     BrowserModule,

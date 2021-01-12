@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -16,9 +17,11 @@ export class LogoutComponentComponent implements OnInit {
   link2 = 'services';
   link3 = 'contactUs';
   lastLoggedTime: string;
-  constructor() {
-    this.lastLoggedTime = JSON.parse(localStorage.getItem('loggedTime'));
+  constructor(private authService: AuthService) {
+    this.authService.logout('cust_id');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.lastLoggedTime = localStorage.getItem('loggedTime');
+  }
 }
