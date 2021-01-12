@@ -53,7 +53,7 @@ namespace backend.Controllers
         public HttpResponseMessage SetUserBlocked(tblBlocked blocked)
         {
             int? result = null;   
-            result = entities.proc_InsBlocked(blocked.cust_id);
+            result = entities.proc_InsBlocked(blocked.cust_id,blocked.acc_number);
             if (result == null)
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Not Blocked");
             else

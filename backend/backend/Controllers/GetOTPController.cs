@@ -19,7 +19,15 @@ namespace backend.Controllers
         public string send_otp { get; set; }
         public string mail { get; set; }
     }
-[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    public class mailIBDets
+    {
+        public string user_id { get; set; }
+        public string acc_number { get; set; }
+        public string pwd { get; set; }
+        public string tpwd { get; set; }
+
+    }
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
 
 
     [RoutePrefix("api/GetOTP")]
@@ -58,6 +66,43 @@ namespace backend.Controllers
             }
 
         }
+
+
+
+        [HttpPost]
+        [Route("sendIBDets")]
+        public string sendIBDets(mailIBDets iBDets)
+        {
+            proc_verifyMailByAccNum_Result result = entities.proc_verifyMailByAccNum(iBDets.acc_number).FirstOrDefault();
+
+                MailAddress to = new MailAddress(result.cust_mail);
+                MailAddress from = new MailAddress("projectgladiatorbanking@gmail.com");
+
+                MailMessage message = new MailMessage(from, to);
+                message.Subject = "Internet Banking Details";
+                message.Body = "Credentials for Internet Banking are: \n\nLogin User ID: " + iBDets.user_id + "\nPassword: " + iBDets.pwd+ "\nTrasaction Password is: " +iBDets.tpwd+"\n\nThank You";
+
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("projectgladiatorbanking@gmail.com", "Qwerty!23"),
+                    EnableSsl = true
+                };
+
+
+                try
+                {
+                    client.Send(message);
+                    return "Done";
+                }
+                catch (SmtpException ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return "sorry";
+                }
+            
+            
+        }
+
 
 
         [HttpPost]

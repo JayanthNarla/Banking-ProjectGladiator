@@ -1,3 +1,4 @@
+import { IBDets } from './../models/IBDets';
 import { PersonalDetails } from 'src/app/Models/personal-details';
 import { Customer } from './../models/Customer';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +17,12 @@ export class OtpService {
 
     return this.http.post(`${GlobalVariables.BASE_API_URL}getOTP/genOtp`, otp);
   };
-
+  sendIBDets = (ibdets: IBDets) => {
+    return this.http.post(
+      `${GlobalVariables.BASE_API_URL}GetOTP/sendIBDets`,
+      ibdets
+    );
+  };
   verifyMail = (cust: Customer) => {
     // console.log(cust);
 

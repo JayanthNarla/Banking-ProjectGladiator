@@ -221,6 +221,7 @@
         </Function>
         <Function Name="proc_InsBlocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cust_id" Type="varchar" Mode="In" />
+          <Parameter Name="acc_number" Type="varchar" Mode="In" />
         </Function>
         <Function Name="proc_Internet_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cid" Type="varchar" Mode="In" />
@@ -586,6 +587,7 @@
           </FunctionImport>
           <FunctionImport Name="proc_InsBlocked">
           <Parameter Name="cust_id" Mode="In" Type="String" />
+            <Parameter Name="acc_number" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_Internet_login">
             <Parameter Name="cid" Mode="In" Type="String" />

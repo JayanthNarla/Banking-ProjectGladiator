@@ -173,13 +173,17 @@ namespace backend.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_GetTransactionsWithinDate_Result>("proc_GetTransactionsWithinDate", accParameter, fromParameter, toParameter);
         }
     
-        public virtual int proc_InsBlocked(string cust_id)
+        public virtual int proc_InsBlocked(string cust_id, string acc_number)
         {
             var cust_idParameter = cust_id != null ?
                 new ObjectParameter("cust_id", cust_id) :
                 new ObjectParameter("cust_id", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter);
+            var acc_numberParameter = acc_number != null ?
+                new ObjectParameter("acc_number", acc_number) :
+                new ObjectParameter("acc_number", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_InsBlocked", cust_idParameter, acc_numberParameter);
         }
     
         public virtual int proc_Internet_login(string cid, string acno, string pwd, string tpwd)

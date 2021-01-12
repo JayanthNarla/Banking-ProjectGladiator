@@ -1,3 +1,4 @@
+import { IBDets } from './../../models/IBDets';
 import { Account } from 'src/app/models/account.model';
 import { PersonalDetails } from 'src/app/Models/personal-details';
 import { OtpService } from './../../services/otp.service';
@@ -66,8 +67,9 @@ export class RegisterPageComponent implements OnInit {
     ],
   };
   otp: Otp;
-  pDetails: Account;
+  pDetails: any;
   verifiedOTP: boolean;
+  ibdets: IBDets;
 
   constructor(
     private fb: FormBuilder,
@@ -78,6 +80,7 @@ export class RegisterPageComponent implements OnInit {
     while (this.lastNumber == this.randomNumber) {
       this.lastNumber = Math.floor(Math.random() * 90000) + 10000;
     }
+    this.ibdets = new IBDets();
     this.otp = new Otp();
     this.pDetails = new Account();
     this.toast = 'toast';
@@ -153,8 +156,17 @@ export class RegisterPageComponent implements OnInit {
     this.service.postInternetDetails(this.register).subscribe(
       (data) => {
         console.log(data);
-        this.toastr.success('Submitted Successfully');
-        this.iregister.reset();
+        this.ibdets.user_id = this.register.cust_id;
+        this.ibdets.pwd = this.register.pwd;
+        this.ibdets.tpwd = this.register.Tpwd;
+        this.ibdets.acc_number = this.register.acc_number;
+        this.os.sendIBDets(this.ibdets).subscribe((data) => {
+          // console.log(data);
+          this.toastr.success(
+            'Submitted Successfully\nlogin details sent to Mail'
+          );
+          this.iregister.reset();
+        });
       },
       (error: HttpErrorResponse) => {
         console.log(error.error);
