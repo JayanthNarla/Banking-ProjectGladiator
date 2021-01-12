@@ -9,13 +9,20 @@ export class PersonalDetailsService {
   constructor(private http: HttpClient) {}
 
   postDetails(PersonalDetails: PersonalDetails) {
-    console.log('in service' + PersonalDetails);
+    console.log(PersonalDetails);
 
     return this.http.post(
       'http://localhost:52759/api/CustStatus',
       PersonalDetails
     );
   }
+
+  forgotUID = (pDets: any) => {
+    return this.http.post(
+      'http://localhost:52759/api/CustStatus/forgotUid',
+      pDets
+    );
+  };
 
   getDetails(id: string) {
     return this.http.get('http://localhost:52759/api/CustStatus/' + id);

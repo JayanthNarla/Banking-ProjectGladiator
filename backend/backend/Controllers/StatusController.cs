@@ -8,6 +8,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using backend.Models;
 
+using System.Net.Mail;
+
 namespace backend.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
@@ -36,6 +38,38 @@ namespace backend.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        public string sendAccNum(string accNum, string mail)
+        {
+
+            MailAddress to = new MailAddress(mail);
+            MailAddress from = new MailAddress("projectgladiatorbanking@gmail.com");
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Internet Banking Details";
+            message.Body = "Welcome to PG Banking\nYour Account number is: "+ accNum +"\nDon't forget to register for Internet Banking.\nThank You";
+
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("projectgladiatorbanking@gmail.com", "Qwerty!23"),
+                EnableSsl = true
+            };
+
+
+            try
+            {
+                client.Send(message);
+                return "Done";
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return "sorry";
+            }
+
+
+        }
+
+
         [HttpPut]
         
         public HttpResponseMessage Put(int id, tblStatus sts)
@@ -58,7 +92,17 @@ namespace backend.Controllers
 
                 //Console.WriteLine(acc_number.Length);
                 entities.proc_pushTotblAccounts(sts.cust_id, acc_number, balance);
+                
+                //var refCust_id = entities.tblStatus.Where(c => c.ref_no == sts.ref_no).FirstOrDefault().cust_id;
+                var toMail = entities.tblCustomer.Where(c => c.cust_id == sts.cust_id).FirstOrDefault().cust_mail;
+
+                sendAccNum(acc_number, toMail);
+
+
                 transaction.Commit();
+
+
+
             }
             catch (Exception)
             {

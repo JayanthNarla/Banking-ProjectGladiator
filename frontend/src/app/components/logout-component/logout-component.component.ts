@@ -17,7 +17,7 @@ export class LogoutComponentComponent implements OnInit {
   link3 = 'contactUs';
   lastLoggedTime: string;
   constructor() {
-    this.lastLoggedTime = JSON.parse(localStorage.getItem('loggedTime'));
+    this.lastLoggedTime = localStorage.getItem('loggedTime');
   }
 
   ngOnInit(): void {}

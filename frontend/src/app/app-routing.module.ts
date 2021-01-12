@@ -1,3 +1,4 @@
+import { ForgotUserIdComponent } from './components/forgot-user-id/forgot-user-id.component';
 import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 import { AuthGuard } from './gaurds/auth.guard';
 import { ServicePageComponent } from './components/service-page/service-page.component';
@@ -62,7 +63,7 @@ const routes: Routes = [
       { path: 'rtgs', component: RtgsComponent },
       { path: 'details', component: UserProfileComponent },
       { path: 'summary', component: AccountSummaryComponent },
-      { path: 'change', component: ChangeIdPasswordComponent },
+      // { path: 'change', component: ChangeIdPasswordComponent },
       { path: 'addben', component: AddBeneficiaryComponent },
       { path: 'transpass', component: TransactionPasswordComponent },
       { path: 'success', component: TransactionSuccessComponent },
@@ -74,6 +75,7 @@ const routes: Routes = [
   },
 
   { path: 'forgotPwd', component: ForgotPasswordComponent },
+  { path: 'forgotuid', component: ForgotUserIdComponent },
 
   {
     path: 'register',

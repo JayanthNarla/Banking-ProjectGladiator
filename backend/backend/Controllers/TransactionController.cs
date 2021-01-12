@@ -58,6 +58,7 @@ namespace backend.Controllers
             return Request.CreateResponse(id);
             
         }
+        [HttpGet]
         public HttpResponseMessage GetPassword(string acc_no)
         {
             tblInternetBanking pwd = entities.tblInternetBanking.Where(t => t.acc_number == acc_no).FirstOrDefault();
@@ -65,6 +66,18 @@ namespace backend.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Account Number");
             else
                 return Request.CreateResponse(pwd.Tpwd);
+        }
+
+        [Route("api/checkBenAccNum")]
+        [HttpGet]
+        public HttpResponseMessage checkBenAccNum(string acc_no)
+        {
+            tblAccounts pwd = entities.tblAccounts.Where(t => t.acc_number == acc_no).FirstOrDefault();
+            if (pwd == null)
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Account Number");
+            else
+                //return Request.CreateResponse(pwd.Tpwd);
+                return Request.CreateResponse(HttpStatusCode.OK,"Valid");
         }
 
     }

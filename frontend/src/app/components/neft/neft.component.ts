@@ -17,103 +17,133 @@ import { BeneficiaryService } from 'src/app/services/beneficiary.service';
 @Component({
   selector: 'app-neft',
   templateUrl: './neft.component.html',
-  styleUrls: ['./neft.component.css']
+  styleUrls: ['./neft.component.css'],
 })
 export class NeftComponent implements OnInit {
-  all:any;
-  list:any=[];
+  all: any;
+  list: any = [];
 
-  trans:Transaction;
-  
-  useracc:any;
-  
-  show=false;
-  
-  currentDate=new Date();
-  
-  public transForm:FormGroup;
+  trans: Transaction;
+
+  useracc: any;
+
+  show = false;
+
+  currentDate = new Date();
+
+  public transForm: FormGroup;
   public error_messages = {
     cred_acc: [
       { type: 'required', message: 'To account is required' },
       { type: 'maxlength', message: 'To account number must be of length 15' },
       { type: 'minlength', message: 'To account number must be of length 15' },
-      { type:'SameAccount',message:'Both from and to account are same'}],
+      { type: 'SameAccount', message: 'Both from and to account are same' },
+    ],
     trans_amt: [
       { type: 'required', message: 'Transaction amount is required' },
-      {type:'max',message:'Transaction amount cannot exceed Rs.25,000'},
-      {type:'min',message:'Transaction amount must be greater than Rs.100'}],
-    remark: [{ type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' }]
+      { type: 'max', message: 'Transaction amount cannot exceed Rs.25,000' },
+      {
+        type: 'min',
+        message: 'Transaction amount must be greater than Rs.100',
+      },
+    ],
+    remark: [
+      { type: 'maxlength', message: 'Remark cannot exceed 50 alphabets' },
+    ],
   };
 
-  constructor(private ben:BeneficiaryService,private acc:AccountStatementService, private formBuilder:FormBuilder,private ser:TransactionService,private toastr:ToastrService) {
-    this.trans=new Transaction();
-    this.trans.mat_ins="";
-    this.trans.transaction_type="neft";
+  constructor(
+    private ben: BeneficiaryService,
+    private acc: AccountStatementService,
+    private formBuilder: FormBuilder,
+    private ser: TransactionService,
+    private toastr: ToastrService
+  ) {
+    this.trans = new Transaction();
+    this.trans.mat_ins = '';
+    this.trans.transaction_type = 'neft';
 
-    this.ben.getBenefiaries().subscribe(d=>{this.all=d;this.Split()});
+    this.ben.getBenefiaries().subscribe((d) => {
+      this.all = d;
+      this.Split();
+    });
 
-    this.acc.getAccountDetails(JSON.parse(localStorage.getItem('cust_id'))['value']).subscribe(d=>this.useracc=d);
-    
+    this.acc
+      .getAccountDetails(JSON.parse(localStorage.getItem('cust_id'))['value'])
+      .subscribe((d) => (this.useracc = d));
+
     this.transForm = this.formBuilder.group({
-      ben:new FormControl(''),
-      cred_acc:new FormControl('',Validators.compose([Validators.required,Validators.maxLength(15),Validators.minLength(15)])),
-      trans_amt:new FormControl('',Validators.compose([Validators.required,Validators.max(25000),Validators.min(100)])),
-      remark:new FormControl('',Validators.maxLength(50)),
+      ben: new FormControl(''),
+      cred_acc: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(15),
+          Validators.minLength(15),
+        ])
+      ),
+      trans_amt: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.max(25000),
+          Validators.min(100),
+        ])
+      ),
+      remark: new FormControl('', Validators.maxLength(50)),
     });
   }
 
-  selectBen()
-  {
-    this.transForm.get("cred_acc").setValue(this.transForm.get("ben").value.ben_acc_num);
+  selectBen() {
+    this.transForm
+      .get('cred_acc')
+      .setValue(this.transForm.get('ben').value.ben_acc_num);
   }
 
-  Split()
-  {
-    for(let x of this.all)
-    {
-      if(x.cust_id==JSON.parse(localStorage.getItem('cust_id'))['value'])
-      {
+  Split() {
+    for (let x of this.all) {
+      if (x.cust_id == JSON.parse(localStorage.getItem('cust_id'))['value']) {
         this.list.push(x);
       }
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onReset()
-  {
+  onReset() {
     window.location.reload();
   }
 
-  Submitted(){
-       
-    if(this.transForm.valid){
-      console.table(this.transForm.value)
-      this.trans.deb_acc=this.useracc.acc_number;
-      this.trans.cred_acc=this.transForm.get('cred_acc').value;
-      this.trans.tran_date=this.currentDate.toLocaleString();
-      this.trans.transac_amt=this.transForm.get('trans_amt').value;
-      this.trans.remark=this.transForm.get('remark').value;
-      
+  Submitted() {
+    if (this.transForm.valid) {
+      console.table(this.transForm.value);
+      this.trans.deb_acc = this.useracc.acc_number;
+      this.trans.cred_acc = this.transForm.get('cred_acc').value;
+      this.trans.tran_date = this.currentDate.toLocaleString();
+      this.trans.transac_amt = this.transForm.get('trans_amt').value;
+      this.trans.remark = this.transForm.get('remark').value;
+
       this.ser.getData(this.trans);
-      this.transForm.reset()
+      this.transForm.reset();
     }
   }
-  validateAcc()
-  {
-    var present="";
-    var acc=this.transForm.get("cred_acc").value;
+  validateAcc() {
+    var present = '';
+    var acc = this.transForm.get('cred_acc').value;
     console.log(acc);
-    this.ser.GetPassword(acc).subscribe(
-      d=>present=d.toString(),
-      err=>{this.toastr.error("Invalid Account number");this.transForm.get("cred_acc").setValue("")});
-      if(present!=null && this.transForm.get("cred_acc").value==this.useracc.acc_number)
-      {
-      this.toastr.info("You cannot pay yourself");
-      this.transForm.get("cred_acc").setValue("");
+    this.ser.checkBenAccNum(acc).subscribe(
+      (d) => (present = d.toString()),
+      (err) => {
+        this.toastr.error('Invalid Account number');
+        this.transForm.get('cred_acc').setValue('');
       }
+    );
+    if (
+      present != null &&
+      this.transForm.get('cred_acc').value == this.useracc.acc_number
+    ) {
+      this.toastr.info('You cannot pay yourself');
+      this.transForm.get('cred_acc').setValue('');
     }
-  
+  }
 }
-

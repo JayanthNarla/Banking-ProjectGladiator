@@ -18,3 +18,9 @@
 7. Account Summary component styling //ZnS
 8. View added beneficiaries //MnS
 9. Phone and email editing not allowed //ZnS
+
+# remaining
+
+1. after approval - account number //done
+2. change user ID //Done
+3. min max age not working

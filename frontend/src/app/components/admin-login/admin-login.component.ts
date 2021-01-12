@@ -83,12 +83,12 @@ export class AdminLoginComponent implements OnInit {
 
         if (data['user_type'] == 'admin') {
           this.authService.login('cust_id', data['cust_id'], 1);
-          localStorage.setItem('loggedTime', new Date().getTime().toString());
+          localStorage.setItem('loggedTime', new Date().toString());
           this.router.navigate(['admindash']);
         } else if (data['user_type'] == 'customer') {
           this.authService.login('cust_id', data['cust_id'], 1);
-          localStorage.setItem('loggedTime', new Date().getTime().toString());
-
+          localStorage.setItem('loggedTime', new Date().toString());
+          localStorage.setItem('user_id', data['cust_id']);
           this.router.navigate(['userdash']);
         }
       },

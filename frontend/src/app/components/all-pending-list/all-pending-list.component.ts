@@ -69,6 +69,9 @@ export class AllPendingListComponent implements OnInit {
                 // console.log(aplData);
                 this.applications = aplData;
                 this.modalService.dismissAll();
+
+                //TODO: accountNumber
+
               });
             });
           this.applications_size--;
