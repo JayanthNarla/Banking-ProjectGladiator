@@ -38,7 +38,7 @@ namespace backend.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
-        public string sendAccNum(string accNum, string mail)
+        public string sendAccNum(string accNum, string mail, string cid)
         {
 
             MailAddress to = new MailAddress(mail);
@@ -46,7 +46,7 @@ namespace backend.Controllers
 
             MailMessage message = new MailMessage(from, to);
             message.Subject = "Internet Banking Details";
-            message.Body = "Welcome to PG Banking\nYour Account number is: "+ accNum +"\nDon't forget to register for Internet Banking.\nThank You";
+            message.Body = "Welcome to PG Banking\nYour Account number is: "+ accNum +"\nYour Customer ID is: "+ cid+"\nDon't forget to register for Internet Banking.\nThank You";
 
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
             {
@@ -87,16 +87,16 @@ namespace backend.Controllers
 
                 string acc_number_tail = _random.Next(100000000, 1000000000).ToString();
                 string acc_number = "PGBNKG" + acc_number_tail;
-
-                string balance = _random.Next(100, 100000000).ToString();
+                
+                string balance = "35000";
 
                 //Console.WriteLine(acc_number.Length);
                 entities.proc_pushTotblAccounts(sts.cust_id, acc_number, balance);
                 
                 //var refCust_id = entities.tblStatus.Where(c => c.ref_no == sts.ref_no).FirstOrDefault().cust_id;
                 var toMail = entities.tblCustomer.Where(c => c.cust_id == sts.cust_id).FirstOrDefault().cust_mail;
-
-                sendAccNum(acc_number, toMail);
+                
+                sendAccNum(acc_number, toMail, sts.cust_id);
 
 
                 transaction.Commit();

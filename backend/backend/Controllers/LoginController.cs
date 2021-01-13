@@ -33,7 +33,7 @@ namespace backend.Controllers
             DbContextTransaction transaction = entities.Database.BeginTransaction();
             try
             {
-                tblLogin updateLogin = entities.tblLogin.Find(id);
+                tblLogin updateLogin = entities.tblLogin.Where(l=>l.acc_number==id).FirstOrDefault();
                 updateLogin.pwd = user.pwd;
                 entities.SaveChanges();
 

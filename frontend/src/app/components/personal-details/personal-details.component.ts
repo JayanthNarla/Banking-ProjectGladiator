@@ -198,7 +198,14 @@ export class PersonalDetailsComponent implements OnInit {
         '',
         Validators.compose([Validators.required, ValideDob])
       ),
-      age: ['', Validators.required, Validators.min(16), Validators.max(120)],
+      age: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.min(16),
+          Validators.max(120),
+        ])
+      ),
       gender: ['', Validators.required],
     });
   }

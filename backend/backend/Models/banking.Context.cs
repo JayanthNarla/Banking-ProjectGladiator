@@ -28,13 +28,13 @@ namespace backend.Models
         }
     
         public virtual DbSet<tblAccounts> tblAccounts { get; set; }
-        public virtual DbSet<tblBeneficiary> tblBeneficiary { get; set; }
         public virtual DbSet<tblBlocked> tblBlocked { get; set; }
         public virtual DbSet<tblCustomer> tblCustomer { get; set; }
         public virtual DbSet<tblInternetBanking> tblInternetBanking { get; set; }
         public virtual DbSet<tblLogin> tblLogin { get; set; }
         public virtual DbSet<tblStatus> tblStatus { get; set; }
         public virtual DbSet<tblTransaction> tblTransaction { get; set; }
+        public virtual DbSet<tblBeneficiary> tblBeneficiary { get; set; }
     
         public virtual ObjectResult<getallCustomers_Result> getallCustomers(string aadhar)
         {

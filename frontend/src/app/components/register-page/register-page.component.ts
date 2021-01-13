@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { IBDets } from './../../models/IBDets';
 import { Account } from 'src/app/models/account.model';
 import { PersonalDetails } from 'src/app/Models/personal-details';
@@ -75,7 +76,8 @@ export class RegisterPageComponent implements OnInit {
     private fb: FormBuilder,
     private service: RegisterPageService,
     private toastr: ToastrService,
-    private os: OtpService
+    private os: OtpService,
+    private router: Router
   ) {
     while (this.lastNumber == this.randomNumber) {
       this.lastNumber = Math.floor(Math.random() * 90000) + 10000;
@@ -165,6 +167,7 @@ export class RegisterPageComponent implements OnInit {
           this.toastr.success(
             'Submitted Successfully\nlogin details sent to Mail'
           );
+          this.router.navigate(['/login']);
           this.iregister.reset();
         });
       },

@@ -17,11 +17,11 @@ namespace backend.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblAccounts()
         {
-            this.tblBeneficiary = new HashSet<tblBeneficiary>();
             this.tblBlocked = new HashSet<tblBlocked>();
             this.tblInternetBanking = new HashSet<tblInternetBanking>();
             this.tblLogin = new HashSet<tblLogin>();
             this.tblTransaction = new HashSet<tblTransaction>();
+            this.tblBeneficiary = new HashSet<tblBeneficiary>();
         }
     
         public string cust_id { get; set; }
@@ -33,8 +33,6 @@ namespace backend.Models
     
         public virtual tblCustomer tblCustomer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBeneficiary> tblBeneficiary { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblBlocked> tblBlocked { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblInternetBanking> tblInternetBanking { get; set; }
@@ -42,5 +40,7 @@ namespace backend.Models
         public virtual ICollection<tblLogin> tblLogin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransaction> tblTransaction { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblBeneficiary> tblBeneficiary { get; set; }
     }
 }

@@ -80,7 +80,7 @@ namespace backend.Controllers
 
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Internet Banking Details";
-                message.Body = "Credentials for Internet Banking are: \n\nLogin User ID: " + iBDets.user_id + "\nPassword: " + iBDets.pwd+ "\nTrasaction Password is: " +iBDets.tpwd+"\n\nThank You";
+                message.Body = "Credentials for Internet Banking are: \n\nLogin User ID: " + iBDets.user_id + "\n\nThank You";
 
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {

@@ -1,3 +1,4 @@
+import { Account } from './../../models/account.model';
 import { Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
 import { Login } from './../../models/Login';
@@ -28,8 +29,8 @@ export class ForgotPasswordComponent implements OnInit {
   user: Login;
 
   error_messages = {
-    id: [{ type: 'required', message: 'Customer ID is required' }],
     mail: [{ type: 'required', message: 'Email ID is required' }],
+    acc_num: [{ type: 'required', message: 'Account Number is required' }],
     pwd: [
       { type: 'required', message: 'password is required' },
       {
@@ -65,6 +66,7 @@ export class ForgotPasswordComponent implements OnInit {
   };
   sentOTP: boolean;
   toast: string;
+  pDets: any;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -74,14 +76,15 @@ export class ForgotPasswordComponent implements OnInit {
     private ls: LoginService,
     private router: Router
   ) {
+    this.pDets = new Account();
     this.otp = new Otp();
     this.cust = new Customer();
     this.toast = 'toast';
     this.user = new Login();
     this.frgtPwd = this.formBuilder.group({
       otp: new FormControl(''),
-      id: new FormControl('', Validators.compose([Validators.required])),
       mail: new FormControl('', Validators.compose([Validators.required])),
+      acc_num: new FormControl('', Validators.compose([Validators.required])),
     });
     this.UpdPwd = this.formBuilder.group({
       pwd: new FormControl(
@@ -114,7 +117,7 @@ export class ForgotPasswordComponent implements OnInit {
     let cpwd = this.UpdPwd.get('cpwd').value;
     if (pwd == cpwd) {
       this.user.pwd = cpwd;
-      this.user.cust_id = this.frgtPwd.get('id').value;
+      this.user.cust_id = this.frgtPwd.get('acc_num').value;
 
       this.ls.updatePassword(this.user).subscribe((data) => {
         this.toastr.success(`Password Updated`);
@@ -140,15 +143,16 @@ export class ForgotPasswordComponent implements OnInit {
       });
     } else {
       this.toastr.error(`Enter correct OTP`);
-    } 
+    }
   };
 
   verifyMailAndGenOTP = () => {
     let usermail = this.frgtPwd.get('mail').value;
     this.otp.mail = usermail;
     console.log(usermail);
+    this.pDets.acc_number = this.frgtPwd.get('acc_num').value;
 
-    this.os.verifyMail(this.cust).subscribe((data) => {
+    this.os.verifyMailByAccNum(this.pDets).subscribe((data) => {
       if (usermail == data['cust_mail']) {
         this.sentOTP = true;
         this.otp.send_otp = this.randomNumber(10000, 100000).toString();

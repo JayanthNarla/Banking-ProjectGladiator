@@ -59,6 +59,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { StatusComponent } from './components/status/status.component';
 import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 import { ForgotUserIdComponent } from './components/forgot-user-id/forgot-user-id.component';
+import { ChangeTpwdComponent } from './components/change-tpwd/change-tpwd.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +106,7 @@ import { ForgotUserIdComponent } from './components/forgot-user-id/forgot-user-i
     UserProfileComponent,
     LogoutComponentComponent,
     ForgotUserIdComponent,
+    ChangeTpwdComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@
   <EntityType Name="tblBeneficiary">
     <Key>
       <PropertyRef Name="cust_id" />
+      <PropertyRef Name="ben_name" />
     </Key>
     <Property Name="ben_acc_num" Type="varchar" MaxLength="20" />
     <Property Name="cust_id" Type="varchar" MaxLength="20" Nullable="false" />
@@ -102,7 +103,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblBenefi__ben_a__55F4C372">
+  <Association Name="FK__tblBenefi__ben_a__756D6ECB">
     <End Role="tblAccounts" Type="Self.tblAccounts" Multiplicity="0..1" />
     <End Role="tblBeneficiary" Type="Self.tblBeneficiary" Multiplicity="*" />
     <ReferentialConstraint>
@@ -286,7 +287,7 @@
       <End Role="tblCustomer" EntitySet="tblCustomer" />
       <End Role="tblAccounts" EntitySet="tblAccounts" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblBenefi__ben_a__55F4C372" Association="Self.FK__tblBenefi__ben_a__55F4C372">
+    <AssociationSet Name="FK__tblBenefi__ben_a__756D6ECB" Association="Self.FK__tblBenefi__ben_a__756D6ECB">
       <End Role="tblAccounts" EntitySet="tblAccounts" />
       <End Role="tblBeneficiary" EntitySet="tblBeneficiary" />
     </AssociationSet>

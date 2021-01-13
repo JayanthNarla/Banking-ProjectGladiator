@@ -1,24 +1,24 @@
 <section id="view">
-    <div class="hero">
-        <div class="hero-content">
-        <div *ngIf="show">
-          <h2>View added beneficiaries</h2>
-            <table class="tbl">
-              <tr>
-                  <th>Beneciary name</th>
-                  <th>Account number</th>
-                  <th>Nickname</th>
-              </tr>
-              <tr *ngFor="let l of list">
-                  <td>{{l.ben_name}}</td>
-                  <td>{{l.ben_acc_num}}</td>
-                  <td>{{l.Nickname}}</td>
-              </tr>
-            </table>
-        </div>
-        <div *ngIf="empty">
-            <h4 class="box">No beneficiary added!</h4>
-        </div>
+  <div class="hero">
+    <div class="hero-content">
+      <div *ngIf="show">
+        <h2>View added beneficiaries</h2>
+        <table class="tbl">
+          <tr>
+            <th>Beneciary name</th>
+            <th>Account number</th>
+            <th>Nickname</th>
+          </tr>
+          <tr *ngFor="let l of list">
+            <td>{{ l.ben_name }}</td>
+            <td>{{ l.ben_acc_num }}</td>
+            <td>{{ l.nickname }}</td>
+          </tr>
+        </table>
+      </div>
+      <div *ngIf="empty">
+        <h4 class="box">No beneficiary added!</h4>
+      </div>
     </div>
-    </div>
+  </div>
 </section>

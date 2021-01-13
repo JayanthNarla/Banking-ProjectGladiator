@@ -27,7 +27,7 @@ namespace backend.Controllers
                 tblBeneficiary bene = new tblBeneficiary();
                 bene.ben_acc_num = ben.ben_acc_num;
                 bene.cust_id = ben.cust_id;
-                bene.ben_name = ben.ben_name;
+                bene.ben_name = ben.ben_name.ToLower();
                 bene.nickname = ben.nickname;
 
                 entities.tblBeneficiary.Add(bene);

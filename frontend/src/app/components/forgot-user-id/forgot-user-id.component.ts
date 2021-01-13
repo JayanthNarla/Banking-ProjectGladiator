@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { IBDets } from './../../models/IBDets';
 import { Login } from './../../models/Login';
@@ -25,7 +26,8 @@ export class ForgotUserIdComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private ps: PersonalDetailsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.pDets = new IBDets();
     this.toast = 'toast';
@@ -43,6 +45,7 @@ export class ForgotUserIdComponent implements OnInit {
       (data) => {
         console.log(data);
         this.toastr.success('Mail Sent to registered mail ID');
+        this.router.navigate(['/login']);
       },
       (err) => {
         this.toastr.error('Enter Correct Account Number');

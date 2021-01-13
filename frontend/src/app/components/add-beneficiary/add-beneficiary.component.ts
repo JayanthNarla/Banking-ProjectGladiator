@@ -114,6 +114,8 @@ export class AddBeneficiaryComponent implements OnInit {
       this.ben.Re_enterAccount_num = this.BeneficiaryForm.get(
         'Re_enterAccount_num'
       ).value;
+      console.log(this.BeneficiaryForm.get('nickname').value);
+
       this.ben.nickname = this.BeneficiaryForm.get('nickname').value;
       this.ben.cust_id = JSON.parse(localStorage.getItem('cust_id'))['value'];
 
