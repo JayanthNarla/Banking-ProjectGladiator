@@ -104,8 +104,8 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('button clicked');
-    console.log(this.BeneficiaryForm);
+    // console.log('button clicked');
+    // console.log(this.BeneficiaryForm);
 
     if (this.BeneficiaryForm.valid) {
       console.table(this.BeneficiaryForm.value);
@@ -114,7 +114,7 @@ export class AddBeneficiaryComponent implements OnInit {
       this.ben.Re_enterAccount_num = this.BeneficiaryForm.get(
         'Re_enterAccount_num'
       ).value;
-      console.log(this.BeneficiaryForm.get('nickname').value);
+      // console.log(this.BeneficiaryForm.get('nickname').value);
 
       this.ben.nickname = this.BeneficiaryForm.get('nickname').value;
       this.ben.cust_id = JSON.parse(localStorage.getItem('cust_id'))['value'];

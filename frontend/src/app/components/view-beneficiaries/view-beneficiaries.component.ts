@@ -18,7 +18,7 @@ export class ViewBeneficiariesComponent implements OnInit {
   constructor(private toastr: ToastrService, private ser: BeneficiaryService) {
     this.ser.getBenefiaries().subscribe(
       (d) => {
-        console.log((this.all = d));
+        // console.log((this.all = d));
         this.Split();
       },
       (err) => {

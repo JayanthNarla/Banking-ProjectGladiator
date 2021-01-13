@@ -32,7 +32,7 @@ export class OtpService {
     );
   };
   verifyMailByAccNum = (pDetails: Account) => {
-    console.log(pDetails);
+    // console.log(pDetails);
 
     return this.http.post(
       `${GlobalVariables.BASE_API_URL}GetOTP/verifyMailByAccNum`,

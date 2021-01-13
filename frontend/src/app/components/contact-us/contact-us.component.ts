@@ -18,7 +18,7 @@ export class ContactUsComponent implements OnInit {
   constructor() {}
 
   contact = () => {
-    console.log('Contacted');
+    // console.log('Contacted');
   };
 
   ngOnInit(): void {}

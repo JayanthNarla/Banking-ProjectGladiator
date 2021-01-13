@@ -1,1 +1,220 @@
-<p>change-tpwd works!</p>
+<app-navbar></app-navbar>
+<div id="forgotPwd">
+  <div class="cntr">
+    <div class="wrapper">
+      <h2>Reset Transaction Password</h2>
+    </div>
+    <div class="wrapper">
+      <div style="width: 50%">
+        <form [formGroup]="frgtPwd" autocomplete="off">
+          <div class="form-group row">
+            <label for="acc_num" class="col-sm-3 col-form-label"
+              >Account Number:
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="acc_num"
+                type="text"
+                name="acc_num"
+                placeholder="Enter your Account Number"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.acc_num">
+              <div
+                class="error-message"
+                *ngIf="
+                  frgtPwd.get('acc_num').hasError(error.type) &&
+                  frgtPwd.get('acc_num').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label for="mail" class="col-sm-3 col-form-label"
+              >Registered Mail ID:
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="mail"
+                type="mail"
+                name="mail"
+                id="mail"
+                placeholder="Enter your registered Mail ID"
+                [(ngModel)]="mailID"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.mail">
+              <div
+                class="error-message"
+                *ngIf="
+                  frgtPwd.get('mail').hasError(error.type) &&
+                  frgtPwd.get('mail').touched
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row" *ngIf="sentOTP == true">
+            <label for="otp" class="col-sm-3 col-form-label"
+              >OTP:
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="otp"
+                id="otp"
+                type="text"
+                name="otp"
+                placeholder="Enter the OTP sent to your registered Mail ID"
+                [(ngModel)]="otp.otp"
+              />
+            </div>
+          </div>
+
+          <div class="btn_container" style="margin-top: 30px">
+            <button
+              type="submit"
+              class="btn"
+              style="margin-right: 200px"
+              (click)="verifyMailAndGenOTP()"
+              [disabled]="!frgtPwd.valid"
+            >
+              Generate OTP
+            </button>
+            <button
+              *ngIf="sentOTP == true"
+              type="submit"
+              class="btn"
+              (click)="verifyOTP(updatePwd)"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #updatePwd let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Update Transaction Password
+    </h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="UpdPwd" autocomplete="off">
+      <div class="form-group">
+        <label for="pwd">Enter Transaction Password: </label>
+        <input
+          type="password"
+          class="form-control"
+          id="pwd"
+          name="pwd"
+          formControlName="pwd"
+          required
+        />
+      </div>
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.pwd">
+          <div
+            class="error-message"
+            *ngIf="
+              UpdPwd.get('pwd').hasError(error.type) &&
+              UpdPwd.get('pwd').touched
+            "
+          >
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+      <div class="form-group">
+        <label for="cpwd">Confirm Transaction Password: </label>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="cpwd"
+          id="cpwd"
+          name="cpwd"
+          required
+        />
+      </div>
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.cpwd">
+          <div
+            class="error-message"
+            *ngIf="
+              UpdPwd.get('cpwd').hasError(error.type) &&
+              UpdPwd.get('cpwd').touched
+            "
+          >
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="updatePassword()"
+      [disabled]="!UpdPwd.valid"
+    >
+      Update Transaction Password
+    </button>
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="modal.dismiss()"
+    >
+      Close
+    </button>
+  </div>
+</ng-template>

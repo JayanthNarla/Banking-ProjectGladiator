@@ -218,7 +218,7 @@ export class PersonalDetailsComponent implements OnInit {
     this.personalDetails.phone = this.phoneNum.toString();
     this.service.postDetails(this.personalDetails).subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
         this.toast.success('Successfully submitted');
         this.route.navigate(['/status', this.personalDetails.cust_id]);
         this.pdform.reset();

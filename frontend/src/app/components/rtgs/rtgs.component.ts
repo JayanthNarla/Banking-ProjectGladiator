@@ -131,7 +131,7 @@ export class RtgsComponent implements OnInit {
   validateAcc() {
     var present = '';
     var acc = this.transForm.get('cred_acc').value;
-    console.log(acc);
+    // console.log(acc);
     this.ser.checkBenAccNum(acc).subscribe(
       (d) => (present = d.toString()),
       (err) => {

@@ -1,6 +1,6 @@
 li,
-li>a,
-a>button {
+li > a,
+a > button {
   font-family: "Lato", sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -46,11 +46,10 @@ header {
   padding: 5px;
   border-radius: 4px;
   width: 150px;
-  -moz-border-radius:3px;
-  
+  -moz-border-radius: 3px;
 }
 
-.nav__links li a:hover+div{
+.nav__links li a:hover + div {
   display: block;
   color: var(--blue);
   transition-delay: 30s;
@@ -58,41 +57,39 @@ header {
   box-shadow: 1.5px #ccc;
 }
 
-.nav__links li a + div:hover{
+.nav__links li a + div:hover {
   display: block;
   color: var(--blue);
   cursor: pointer;
-  overflow-x:visible;
+  overflow-x: visible;
   z-index: 1;
 }
 
-
-table tr td button{
-  border:none;
+table tr td button {
+  border: none;
   color: var(--black);
   padding: 5px;
   background-color: var(--white);
-  min-width: 165px;
+  min-width: 240px;
 }
-table tr td button:hover{
-  border:none;
+table tr td button:hover {
+  border: none;
   color: var(--white);
   padding: 5px;
   background-color: var(--blue);
-  min-width: 165px;
+  min-width: 240px;
   font-size: 16px;
   font-stretch: wider;
 }
-table{
+table {
   font-size: 16px;
-  border:1px solid var(--black);
+  border: 1px solid var(--black);
   text-align: center;
   border-radius: 30px;
-  -moz-border-radius:30px ;
+  -moz-border-radius: 30px;
 }
 
-
-a>button {
+a > button {
   padding: 9px 25px;
   background-color: var(--blue);
   border: none;
@@ -100,15 +97,13 @@ a>button {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-a>button:hover {
+a > button:hover {
   background-color: var(--white);
   color: var(--black);
   transform: translateY(5px);
 }
 
-
-.demo
-{
+.demo {
   display: none;
   position: absolute;
 }

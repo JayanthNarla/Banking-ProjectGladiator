@@ -17,11 +17,11 @@ export class StatusComponent implements OnInit {
   ) {
     this.status = new Status();
     this.cid = this.route.snapshot.params['id'];
-    console.log(this.cid);
+    // console.log(this.cid);
     this.service.getDetails(this.cid).subscribe((data) => {
       this.status = data;
-      console.log(data);
-      console.log(this.status);
+      // console.log(data);
+      // console.log(this.status);
     });
   }
 

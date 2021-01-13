@@ -149,7 +149,7 @@ export class ForgotPasswordComponent implements OnInit {
   verifyMailAndGenOTP = () => {
     let usermail = this.frgtPwd.get('mail').value;
     this.otp.mail = usermail;
-    console.log(usermail);
+    // console.log(usermail);
     this.pDets.acc_number = this.frgtPwd.get('acc_num').value;
 
     this.os.verifyMailByAccNum(this.pDets).subscribe((data) => {
@@ -158,7 +158,7 @@ export class ForgotPasswordComponent implements OnInit {
         this.otp.send_otp = this.randomNumber(10000, 100000).toString();
 
         this.os.generateOTP(this.otp).subscribe((msg) => {
-          console.log(msg);
+          // console.log(msg);
           this.toastr.success(`OTP Sent to registered mail ID`);
         });
       } else {

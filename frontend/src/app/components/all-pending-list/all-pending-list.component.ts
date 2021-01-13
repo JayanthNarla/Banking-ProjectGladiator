@@ -33,10 +33,10 @@ export class AllPendingListComponent implements OnInit {
     this.toast = 'toast';
 
     this.cs.getAllCustomers().subscribe((custData) => {
-      console.log(custData);
+      // console.log(custData);
       this.customers = custData;
       this.cs.getAllPendingAppStatus().subscribe((aplData) => {
-        console.log('application data ', aplData);
+        // console.log('application data ', aplData);
         this.applications = aplData;
         this.applications_size = Object.keys(this.applications).length;
       });
@@ -48,9 +48,9 @@ export class AllPendingListComponent implements OnInit {
     // console.log(custId);
 
     this.application_id.cust_id = custId;
-    console.log('appl_Size', this.applications_size);
+    // console.log('appl_Size', this.applications_size);
     this.cs.getAppStatus(this.application_id).subscribe((data) => {
-      console.log('app data ref no ', data);
+      // console.log('app data ref no ', data);
       // console.log(typeof this.applications[0]['ref_no']);
 
       for (let i = 0; i < this.customers.length; i++) {
@@ -71,7 +71,6 @@ export class AllPendingListComponent implements OnInit {
                 this.modalService.dismissAll();
 
                 //TODO: accountNumber
-
               });
             });
           this.applications_size--;
@@ -87,7 +86,7 @@ export class AllPendingListComponent implements OnInit {
     this.application_id.cust_id = custId;
 
     this.cs.getAppStatus(this.application_id).subscribe((data) => {
-      console.log('app data ref no ', data['ref_no']);
+      // console.log('app data ref no ', data['ref_no']);
       // console.log(typeof this.applications[0]['ref_no']);
 
       for (let i = 0; i < this.customers.length; i++) {
@@ -101,7 +100,7 @@ export class AllPendingListComponent implements OnInit {
             .subscribe((d) => {
               this.toastr.error(`RefNo. ${data['ref_no']} is Denied`);
               this.cs.getAllPendingAppStatus().subscribe((aplData) => {
-                console.log(aplData);
+                // console.log(aplData);
                 this.applications = aplData;
                 this.modalService.dismissAll();
               });

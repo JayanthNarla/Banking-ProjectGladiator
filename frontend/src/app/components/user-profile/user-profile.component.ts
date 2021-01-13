@@ -37,13 +37,14 @@ export class UserProfileComponent implements OnInit {
     this.service.getUserById(this.aadhar).subscribe(
       (data) => {
         this.user = data;
+        this.user.dob = data['dob'].slice(0, 10);
         this.isSubmitted = true;
       },
       (err: HttpErrorResponse) => {
         this.toast.error('Invalid Aadhar');
       }
     );
-    console.log('Clicked');
+    // console.log('Clicked');
   }
 
   Update(aadhar: any) {
@@ -62,7 +63,7 @@ export class UserProfileComponent implements OnInit {
     });
   }
   PutSubmit(profile: PersonalDetails) {
-    console.log(profile);
+    // console.log(profile);
     this.service.getUserById(this.aadhar).subscribe((data) => {
       this.user = data;
     });
@@ -80,10 +81,10 @@ export class UserProfileComponent implements OnInit {
       let details = data;
       this.user = data;
       this.toast.success('Successfully Updated Changes');
-      console.log(details);
+      // console.log(details);
     });
     this.isUpdate = false;
-    console.log('button clicked');
+    // console.log('button clicked');
   }
   ngOnInit(): void {}
 }

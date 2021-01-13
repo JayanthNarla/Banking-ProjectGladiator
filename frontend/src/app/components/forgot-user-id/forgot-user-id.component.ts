@@ -43,7 +43,7 @@ export class ForgotUserIdComponent implements OnInit {
     this.pDets.acc_number = this.frgtid.get('acc_number').value;
     this.ps.forgotUID(this.pDets).subscribe(
       (data) => {
-        console.log(data);
+        // console.log(data);
         this.toastr.success('Mail Sent to registered mail ID');
         this.router.navigate(['/login']);
       },

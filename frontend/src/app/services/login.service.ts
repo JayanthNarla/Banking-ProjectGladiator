@@ -20,6 +20,12 @@ export class LoginService {
       user
     );
   };
+  updateTPassword = (user: Login) => {
+    return this.http.put(
+      `${GlobalVariables.BASE_API_URL}transaction/${user.cust_id}`,
+      user
+    );
+  };
 
   setBlockedUser = (blocked: Blocked) => {
     return this.http.post(

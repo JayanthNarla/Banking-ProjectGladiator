@@ -1,3 +1,4 @@
+import { ChangeTpwdComponent } from './components/change-tpwd/change-tpwd.component';
 import { ForgotUserIdComponent } from './components/forgot-user-id/forgot-user-id.component';
 import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
 import { AuthGuard } from './gaurds/auth.guard';
@@ -75,6 +76,7 @@ const routes: Routes = [
   },
 
   { path: 'forgotPwd', component: ForgotPasswordComponent },
+  { path: 'changetpwd', component: ChangeTpwdComponent },
   { path: 'forgotuid', component: ForgotUserIdComponent },
 
   {

@@ -76,10 +76,10 @@ export class AdminLoginComponent implements OnInit {
   }
 
   AdminLogin = () => {
-    console.log('submitted');
+    // console.log('submitted');
     this.ls.userLogin(this.user).subscribe(
       (data) => {
-        console.log(data['user_type']);
+        // console.log(data['user_type']);
 
         if (data['user_type'] == 'admin') {
           this.authService.login('cust_id', data['cust_id'], 1);
@@ -95,16 +95,16 @@ export class AdminLoginComponent implements OnInit {
       (err) => {
         if (this.login_count == 3) {
           this.blockedAcc.cust_id = this.loginForm.get('id').value;
-          console.log(this.blockedAcc);
+          // console.log(this.blockedAcc);
           this.toastr.error(`You're Blocked Contact admin`);
           this.ls.setBlockedUser(this.blockedAcc).subscribe((blk) => {
-            console.log(blk);
+            // console.log(blk);
             this.login_count = 0;
           });
         } else {
           this.toastr.error(`Enter Valid Customer ID and password`);
           this.login_count = this.login_count + 1;
-          console.log(this.login_count);
+          // console.log(this.login_count);
         }
       }
     );

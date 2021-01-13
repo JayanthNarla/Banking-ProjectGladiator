@@ -172,7 +172,7 @@ export class RegisterPageComponent implements OnInit {
         });
       },
       (error: HttpErrorResponse) => {
-        console.log(error.error);
+        // console.log(error.error);
 
         this.toastr.error('Invalid Account Number');
         this.iregister.reset();
@@ -193,20 +193,20 @@ export class RegisterPageComponent implements OnInit {
 
   verifyMailAndGenOTP = () => {
     let usermail = this.iregister.get('mail').value;
-    console.log(usermail);
+    // console.log(usermail);
     this.otp.mail = usermail;
 
     this.pDetails.acc_number = this.iregister.get('acc_number').value;
     // console.log(this.pDetails);
 
     this.os.verifyMailByAccNum(this.pDetails).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
 
       if (usermail == data['cust_mail']) {
         this.otp.send_otp = this.randomNumberGen(10000, 100000).toString();
 
         this.os.generateOTP(this.otp).subscribe((msg) => {
-          console.log(msg);
+          // console.log(msg);
           this.toastr.success(`OTP Sent to registered mail ID`);
           this.sentOTP = true;
         });

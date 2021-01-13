@@ -80,5 +80,25 @@ namespace backend.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK,"Valid");
         }
 
+
+        [HttpPut]
+        public HttpResponseMessage Put(string id, tblLogin user)
+        {
+            DbContextTransaction transaction = entities.Database.BeginTransaction();
+            try
+            {
+                tblInternetBanking updateLogin = entities.tblInternetBanking.Where(l => l.acc_number == id).FirstOrDefault();
+                updateLogin.Tpwd = user.pwd;
+                entities.SaveChanges();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Could not update the table");
+            }
+            return Request.CreateResponse(HttpStatusCode.Accepted, user);
+        }
     }
 }
