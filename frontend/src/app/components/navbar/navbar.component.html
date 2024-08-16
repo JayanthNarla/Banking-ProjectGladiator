@@ -17,13 +17,13 @@
     </ul>
   </nav>
   <ng-container *ngIf="isLogin == true">
-    <a routerLink="login" class="cta">
+    <a routerLink="/login" class="cta">
       <button>Login</button>
     </a>
   </ng-container>
   <ng-container *ngIf="isLogin == false">
     <a class="cta">
-      <button>Logout</button>
+      <button (click)="logout()" routerLink="/logout">Logout</button>
     </a>
   </ng-container>
 </header>

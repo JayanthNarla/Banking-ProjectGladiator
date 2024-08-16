@@ -13,7 +13,7 @@
         >
           <div class="form-group row">
             <label for="id" class="col-sm-3 col-form-label"
-              >User Id
+              >USER ID
               <span
                 style="
                   color: var(--light-red);
@@ -88,14 +88,19 @@
               </div>
             </ng-container>
           </div>
-          <div class="wrapper">
+          <div class="btn_container">
             <button
               type="submit"
-              class="form-control btn btn-primary"
-              style="margin-bottom: 20px; width: 100px"
+              class="btn btn-login"
               [disabled]="!loginForm.valid"
             >
               Login
+            </button>
+            <button type="submit" class="btn btn-fpwd" routerLink="/forgotPwd">
+              Forgot Password
+            </button>
+            <button type="submit" class="btn btn-fpwd" routerLink="/forgotuid">
+              Forgot User Id
             </button>
           </div>
         </form>

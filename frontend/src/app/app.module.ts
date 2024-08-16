@@ -1,3 +1,10 @@
+import { UserProfileService } from './services/user-profile.service';
+import { RegisterPageService } from './services/register-page.service';
+import { PersonalDetailsService } from './services/personal-details.service';
+import { TransactionService } from './services/transaction.service';
+import { BeneficiaryService } from './services/beneficiary.service';
+import { AccountStatementService } from './services/accountstatement.service';
+import { OtpService } from './services/otp.service';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { CustomerService } from './services/customer.service';
 import { LoginService } from './services/login.service';
@@ -27,7 +34,32 @@ import { AllApprovedListComponent } from './components/all-approved-list/all-app
 import { RegisterDashboardComponent } from './components/register-dashboard/register-dashboard.component';
 import { TrackApplicationComponent } from './components/track-application/track-application.component';
 import { RegisterOptsComponent } from './components/register-opts/register-opts.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { FaqPageComponent } from './components/faq-page/faq-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ServicePageComponent } from './components/service-page/service-page.component';
+import { NeftComponent } from './components/neft/neft.component';
+import { ImpsComponent } from './components/imps/imps.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { AccountStatementComponent } from './components/account-statement/account-statement.component';
+import { AccountSummaryComponent } from './components/account-summary/account-summary.component';
+import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
+import { ChangeIdPasswordComponent } from './components/change-id-password/change-id-password.component';
+import { FundTransferComponent } from './components/fund-transfer/fund-transfer.component';
+import { PayeeComponent } from './components/payee/payee.component';
+import { RtgsComponent } from './components/rtgs/rtgs.component';
+import { TransactionFailedComponent } from './components/transaction-failed/transaction-failed.component';
+import { TransactionPasswordComponent } from './components/transaction-password/transaction-password.component';
+import { TransactionSuccessComponent } from './components/transaction-success/transaction-success.component';
+import { ViewBeneficiariesComponent } from './components/view-beneficiaries/view-beneficiaries.component';
+import { NavbarLogoutComponent } from './components/navbar-logout/navbar-logout.component';
 
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
+import { StatusComponent } from './components/status/status.component';
+import { LogoutComponentComponent } from './components/logout-component/logout-component.component';
+import { ForgotUserIdComponent } from './components/forgot-user-id/forgot-user-id.component';
+import { ChangeTpwdComponent } from './components/change-tpwd/change-tpwd.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +81,32 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
     RegisterDashboardComponent,
     TrackApplicationComponent,
     RegisterOptsComponent,
+    ForgotPasswordComponent,
+    FaqPageComponent,
+    ContactUsComponent,
+    ServicePageComponent,
+
+    NeftComponent,
+    ImpsComponent,
+    RtgsComponent,
+    AccountSummaryComponent,
+    AccountStatementComponent,
+    AccountDetailsComponent,
+    ChangeIdPasswordComponent,
+    FundTransferComponent,
+    AddBeneficiaryComponent,
+    TransactionPasswordComponent,
+    NavbarLogoutComponent,
+    TransactionSuccessComponent,
+    TransactionFailedComponent,
+    PayeeComponent,
+    ViewBeneficiariesComponent,
+
+    StatusComponent,
+    UserProfileComponent,
+    LogoutComponentComponent,
+    ForgotUserIdComponent,
+    ChangeTpwdComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +123,17 @@ import { RegisterOptsComponent } from './components/register-opts/register-opts.
       preventDuplicates: true,
     }),
   ],
-  providers: [LoginService, CustomerService],
+  providers: [
+    LoginService,
+    CustomerService,
+    OtpService,
+    AccountStatementService,
+    BeneficiaryService,
+    TransactionService,
+    PersonalDetailsService,
+    RegisterPageService,
+    UserProfileService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

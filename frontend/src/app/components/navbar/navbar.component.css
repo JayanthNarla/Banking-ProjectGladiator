@@ -53,8 +53,8 @@ button {
 }
 
 button:hover {
-  background-color: var(--blue);
-  box-shadow: 0px 3px 7px var(--bs-blue);
-  color: var(--white);
+  background-color: var(--white);
+  box-shadow: 0px 3px 7px var(--white);
+  color: var(--black);
   transform: translateY(-7px);
 }

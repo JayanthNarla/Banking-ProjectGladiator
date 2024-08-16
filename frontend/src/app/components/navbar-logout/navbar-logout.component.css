@@ -1,0 +1,109 @@
+li,
+li > a,
+a > button {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.logo {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: var(--secondary-font);
+  color: var(--white);
+  font-size: 20px;
+  letter-spacing: 1.5px;
+}
+
+.nav__links {
+  list-style: none;
+}
+
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav__links li a {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__links li a:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: var(--blue);
+  border: solid 1px var(--black);
+  padding: 5px;
+  border-radius: 4px;
+  width: 150px;
+  -moz-border-radius: 3px;
+}
+
+.nav__links li a:hover + div {
+  display: block;
+  color: var(--blue);
+  transition-delay: 30s;
+  z-index: 1;
+  box-shadow: 1.5px #ccc;
+}
+
+.nav__links li a + div:hover {
+  display: block;
+  color: var(--blue);
+  cursor: pointer;
+  overflow-x: visible;
+  z-index: 1;
+}
+
+table tr td button {
+  border: none;
+  color: var(--black);
+  padding: 5px;
+  background-color: var(--white);
+  min-width: 240px;
+}
+table tr td button:hover {
+  border: none;
+  color: var(--white);
+  padding: 5px;
+  background-color: var(--blue);
+  min-width: 240px;
+  font-size: 16px;
+  font-stretch: wider;
+}
+table {
+  font-size: 16px;
+  border: 1px solid var(--black);
+  text-align: center;
+  border-radius: 30px;
+  -moz-border-radius: 30px;
+}
+
+a > button {
+  padding: 9px 25px;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+a > button:hover {
+  background-color: var(--white);
+  color: var(--black);
+  transform: translateY(5px);
+}
+
+.demo {
+  display: none;
+  position: absolute;
+}

@@ -1,4 +1,3 @@
-<!-- <app-navbar></app-navbar> -->
 <section id="pd">
   <div class="cntr">
     <div class="wrapper">
@@ -6,7 +5,11 @@
     </div>
     <div class="wrapper">
       <div style="width: 50%">
-        <form [formGroup]="pdform" (ngSubmit)="onSubmit()" autocomplete="off">
+        <form
+          [formGroup]="pdform"
+          (ngSubmit)="onSubmit(title, gender)"
+          autocomplete="off"
+        >
           <div class="form-group row">
             <label class="col-sm-3 col-form-label"
               >Title
@@ -21,8 +24,8 @@
               </span>
             </label>
             <div class="col-sm-7">
-              <select formControlName="title" class="form-control">
-                <option value=""></option>
+              <select #title formControlName="title" class="form-control">
+                <option value="" selected="selected">Choose one</option>
                 <option value="Mr">Mr</option>
                 <option value="Mrs">Mrs</option>
                 <option value="Miss">Miss</option>
@@ -63,6 +66,7 @@
                 formControlName="first_name"
                 type="text"
                 placeholder="Enter Your First Name"
+                [(ngModel)]="personalDetails.first_name"
               />
             </div>
           </div>
@@ -72,7 +76,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('first_name').hasError(error.type) &&
-                  pdform.get('first_name').touched
+                  (pdform.get('first_name').dirty ||
+                    pdform.get('first_name').touched)
                 "
               >
                 {{ error.message }}
@@ -88,6 +93,7 @@
                 formControlName="middle_name"
                 type="text"
                 placeholder="Enter Your Middle Name"
+                [(ngModel)]="personalDetails.middle_name"
               />
             </div>
           </div>
@@ -111,6 +117,7 @@
                 formControlName="last_name"
                 type="text"
                 placeholder="Enter Your Last Name"
+                [(ngModel)]="personalDetails.last_name"
               />
             </div>
           </div>
@@ -120,7 +127,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('last_name').hasError(error.type) &&
-                  pdform.get('last_name').touched
+                  (pdform.get('last_name').touched ||
+                    pdform.get('last_name').dirty)
                 "
               >
                 {{ error.message }}
@@ -147,6 +155,7 @@
                 formControlName="father_name"
                 type="text"
                 placeholder="Enter Your Fathers Name"
+                [(ngModel)]="personalDetails.father_name"
               />
             </div>
           </div>
@@ -156,7 +165,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('father_name').hasError(error.type) &&
-                  pdform.get('father_name').touched
+                  (pdform.get('father_name').touched ||
+                    pdform.get('father_name').dirty)
                 "
               >
                 {{ error.message }}
@@ -183,6 +193,7 @@
                 formControlName="cust_mail"
                 type="text"
                 placeholder="Enter Your Email"
+                [(ngModel)]="personalDetails.cust_mail"
               />
             </div>
           </div>
@@ -192,7 +203,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('cust_mail').hasError(error.type) &&
-                  pdform.get('cust_mail').touched
+                  (pdform.get('cust_mail').touched ||
+                    pdform.get('cust_mail').dirty)
                 "
               >
                 {{ error.message }}
@@ -217,8 +229,9 @@
               <input
                 class="form-control"
                 formControlName="phone"
-                type="text"
+                type="number"
                 placeholder="Enter Your phone Number"
+                [(ngModel)]="phoneNum"
               />
             </div>
           </div>
@@ -228,7 +241,7 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('phone').hasError(error.type) &&
-                  pdform.get('phone').touched
+                  (pdform.get('phone').touched || pdform.get('phone').dirty)
                 "
               >
                 {{ error.message }}
@@ -255,6 +268,7 @@
                 formControlName="aadhar"
                 type="text"
                 placeholder="Enter Your Aadhar Number"
+                [(ngModel)]="personalDetails.aadhar"
               />
             </div>
           </div>
@@ -264,7 +278,7 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('aadhar').hasError(error.type) &&
-                  pdform.get('aadhar').touched
+                  (pdform.get('aadhar').touched || pdform.get('aadhar').dirty)
                 "
               >
                 {{ error.message }}
@@ -291,6 +305,7 @@
                 formControlName="dob"
                 type="date"
                 placeholder="Enter Your Date of Birth"
+                [(ngModel)]="personalDetails.dob"
               />
             </div>
           </div>
@@ -300,7 +315,44 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('dob').hasError(error.type) &&
-                  pdform.get('dob').touched
+                  (pdform.get('dob').touched || pdform.get('dob').dirty)
+                "
+              >
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label"
+              >Age
+              <span
+                style="
+                  color: var(--light-red);
+                  font-size: 18px;
+                  margin-left: 5px;
+                "
+              >
+                *
+              </span>
+            </label>
+            <div class="col-sm-7">
+              <input
+                class="form-control"
+                formControlName="age"
+                type="number"
+                placeholder="Enter Your Age"
+                [(ngModel)]="personalDetails.age"
+              />
+            </div>
+          </div>
+          <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.age">
+              <div
+                class="error-message"
+                *ngIf="
+                  pdform.get('age').hasError(error.type) &&
+                  (pdform.get('age').touched || pdform.get('age').dirty)
                 "
               >
                 {{ error.message }}
@@ -322,10 +374,11 @@
               </span>
             </label>
             <div class="col-sm-7">
-              <select formControlName="gender" class="form-control">
-                <option value=""></option>
+              <select #gender formControlName="gender" class="form-control">
+                <option value="" selected="selected">Choose one</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </div>
@@ -335,7 +388,7 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('gender').hasError(error.type) &&
-                  pdform.get('gender').touched
+                  (pdform.get('gender').touched || pdform.get('gender').dirty)
                 "
               >
                 {{ error.message }}
@@ -362,6 +415,7 @@
                 rows="5"
                 cols="45"
                 formControlName="res_address"
+                [(ngModel)]="personalDetails.res_address"
               ></textarea>
             </div>
           </div>
@@ -371,7 +425,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('res_address').hasError(error.type) &&
-                  pdform.get('res_address').touched
+                  (pdform.get('res_address').touched ||
+                    pdform.get('res_address').dirty)
                 "
               >
                 {{ error.message }}
@@ -398,6 +453,7 @@
                 rows="5"
                 cols="45"
                 formControlName="perm_address"
+                [(ngModel)]="personalDetails.perm_address"
               ></textarea>
             </div>
           </div>
@@ -407,7 +463,8 @@
                 class="error-message"
                 *ngIf="
                   pdform.get('perm_address').hasError(error.type) &&
-                  pdform.get('perm_address').touched
+                  (pdform.get('perm_address').touched ||
+                    pdform.get('perm_address').dirty)
                 "
               >
                 {{ error.message }}

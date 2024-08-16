@@ -1,0 +1,48 @@
+<section id="success">
+  <div class="cntr">
+    <div class="wrapper">
+      <table border="1px">
+        <tr>
+          <td colspan="3" align="center">
+            <h2>Your Status is as Follows</h2>
+            <h4>Note down the reference number for further use</h4>
+          </td>
+        </tr>
+        <tr>
+          <td>Reference No.</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ status.ref_no }}</td>
+        </tr>
+        <tr *ngIf="status.acc_status == 'approved'">
+          <td>Approved By</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">{{ status.app_by }}</td>
+        </tr>
+        <tr>
+          <td>Account Status</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ status.acc_status }}
+          </td>
+        </tr>
+        <tr *ngIf="status.acc_status == 'approved'">
+          <td>Approved Date</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ status.app_date }}
+          </td>
+        </tr>
+        <tr>
+          <td>Customer Name</td>
+          <td style="width: 5px">-</td>
+          <td style="color: green; font-weight: normal">
+            {{ status.Customer_Name }}
+          </td>
+        </tr>
+      </table>
+      <div class="btn btn-primary" style="margin-top: 50px" routerLink="/">
+        Home
+      </div>
+    </div>
+  </div>
+</section>

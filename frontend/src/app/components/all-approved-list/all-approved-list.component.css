@@ -1,9 +1,10 @@
 .approvalList {
-  height: calc(100vh - 120px);
+  /* height: calc(100vh - 120px); */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 100px 0;
 }
 
 .list__title {

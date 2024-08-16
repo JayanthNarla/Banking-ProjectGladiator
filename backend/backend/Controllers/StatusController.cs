@@ -8,6 +8,8 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using backend.Models;
 
+using System.Net.Mail;
+
 namespace backend.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
@@ -36,6 +38,38 @@ namespace backend.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        public string sendAccNum(string accNum, string mail, string cid)
+        {
+
+            MailAddress to = new MailAddress(mail);
+            MailAddress from = new MailAddress("projectgladiatorbanking@gmail.com");
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Internet Banking Details";
+            message.Body = "Welcome to PG Banking\nYour Account number is: "+ accNum +"\nYour Customer ID is: "+ cid+"\nDon't forget to register for Internet Banking.\nThank You";
+
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("projectgladiatorbanking@gmail.com", "Qwerty!23"),
+                EnableSsl = true
+            };
+
+
+            try
+            {
+                client.Send(message);
+                return "Done";
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return "sorry";
+            }
+
+
+        }
+
+
         [HttpPut]
         
         public HttpResponseMessage Put(int id, tblStatus sts)
@@ -43,11 +77,32 @@ namespace backend.Controllers
             DbContextTransaction transaction = entities.Database.BeginTransaction();
             try
             {
+                DateTime now = DateTime.Now;
                 tblStatus updateStatus = entities.tblStatus.Find(id);
                 updateStatus.acc_status = sts.acc_status;
+                updateStatus.app_date = now;
                 entities.SaveChanges();
 
+                Random _random = new Random();
+
+                string acc_number_tail = _random.Next(100000000, 1000000000).ToString();
+                string acc_number = "PGBNKG" + acc_number_tail;
+                
+                string balance = "35000";
+
+                //Console.WriteLine(acc_number.Length);
+                entities.proc_pushTotblAccounts(sts.cust_id, acc_number, balance);
+                
+                //var refCust_id = entities.tblStatus.Where(c => c.ref_no == sts.ref_no).FirstOrDefault().cust_id;
+                var toMail = entities.tblCustomer.Where(c => c.cust_id == sts.cust_id).FirstOrDefault().cust_mail;
+                
+                sendAccNum(acc_number, toMail, sts.cust_id);
+
+
                 transaction.Commit();
+
+
+
             }
             catch (Exception)
             {

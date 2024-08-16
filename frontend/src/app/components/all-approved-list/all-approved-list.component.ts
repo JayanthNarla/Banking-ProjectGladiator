@@ -29,7 +29,7 @@ export class AllApprovedListComponent implements OnInit {
       // console.log(custData);
       this.customers = custData;
       this.cs.getAllApprovedAppStatus().subscribe((aplData) => {
-        console.log(aplData);
+        // console.log(aplData);
         this.applications = aplData;
         this.applications_size = Object.keys(this.applications).length;
       });
